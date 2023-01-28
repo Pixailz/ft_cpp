@@ -1,6 +1,6 @@
 # compiled things
 *.o
-CPP01/ex00/megaphone
+CPP00/ex00/megaphone
 
 # vscode settings folder
 .vscode
