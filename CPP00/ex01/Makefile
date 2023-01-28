@@ -6,7 +6,7 @@
 #    By: brda-sil <brda-sil@students.42angouleme    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/08/24 19:36:36 by brda-sil          #+#    #+#              #
-#    Updated: 2023/01/28 13:10:43 by brda-sil         ###   ########.fr        #
+#    Updated: 2023/01/28 13:45:31 by brda-sil         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,6 +16,7 @@ CFLAGS			:= -Wall -Wextra -Werror --std=c++98
 RM				:= rm -rf
 
 SRC_C			:= Contact.cpp					\
+				   PhoneBook.cpp				\
 				   main.cpp
 
 OBJ_C			:= $(SRC_C:%.cpp=%.o)

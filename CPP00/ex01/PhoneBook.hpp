@@ -1,21 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.cpp                                           :+:      :+:    :+:   */
+/*   PhoneBook.hpp                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: brda-sil <brda-sil@students.42angouleme    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/01/28 13:10:48 by brda-sil          #+#    #+#             */
-/*   Updated: 2023/01/28 13:48:24 by brda-sil         ###   ########.fr       */
+/*   Created: 2023/01/28 13:41:16 by brda-sil          #+#    #+#             */
+/*   Updated: 2023/01/28 14:00:36 by brda-sil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "PhoneBook.hpp"
+#include "Contact.hpp"
 
-int	main(void)
+class PhoneBook
 {
-	PhoneBook	test;
+	private:
+		Contact	entry[8];
+	
+	public:
+		PhoneBook(void);
+		~PhoneBook(void);
 
-	test.loop();
-	return (0);
-}
+		// OTHERS
+		void	main_loop(void);
+		void	add_entry(void);
+};

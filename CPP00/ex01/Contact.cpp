@@ -6,22 +6,22 @@
 /*   By: brda-sil <brda-sil@students.42angouleme    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/29 20:18:07 by brda-sil          #+#    #+#             */
-/*   Updated: 2023/01/28 13:32:38 by brda-sil         ###   ########.fr       */
+/*   Updated: 2023/01/28 13:44:54 by brda-sil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Contact.hpp"
 
 
-Contact::Contact(void)
-{
-	std::cout << "contact created!\n";
-}
+Contact::Contact(void) {}
+// {
+// 	std::cout << "Contact class created!\n";
+// }
 
-Contact::~Contact(void)
-{
-	std::cout << "contact destructed!\n";
-}
+Contact::~Contact(void) {}
+// {
+// 	std::cout << "Contact class destructed!\n";
+// }
 
 void	Contact::set_first_name(std::string first_name)
 {

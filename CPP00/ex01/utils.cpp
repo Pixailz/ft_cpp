@@ -1,21 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.cpp                                           :+:      :+:    :+:   */
+/*   utils.cpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: brda-sil <brda-sil@students.42angouleme    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/01/28 13:10:48 by brda-sil          #+#    #+#             */
-/*   Updated: 2023/01/28 13:48:24 by brda-sil         ###   ########.fr       */
+/*   Created: 2023/01/28 13:54:08 by brda-sil          #+#    #+#             */
+/*   Updated: 2023/01/28 13:55:10 by brda-sil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "PhoneBook.hpp"
-
-int	main(void)
+bool	is_good_param(std::string user_input)
 {
-	PhoneBook	test;
-
-	test.loop();
-	return (0);
+	if (user_input == "ADD" || user_input == "EXIT" || \
+		user_input == "SEARCH")
+		return (true);
+	return (false);
 }
