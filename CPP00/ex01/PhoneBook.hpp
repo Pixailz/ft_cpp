@@ -6,7 +6,7 @@
 /*   By: brda-sil <brda-sil@students.42angouleme    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/28 13:41:16 by brda-sil          #+#    #+#             */
-/*   Updated: 2023/01/28 14:00:36 by brda-sil         ###   ########.fr       */
+/*   Updated: 2023/01/28 14:41:06 by brda-sil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,4 +24,5 @@ class PhoneBook
 		// OTHERS
 		void	main_loop(void);
 		void	add_entry(void);
+		void	print_all_entry(void);
 };

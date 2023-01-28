@@ -6,7 +6,7 @@
 /*   By: brda-sil <brda-sil@students.42angouleme    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/28 13:40:54 by brda-sil          #+#    #+#             */
-/*   Updated: 2023/01/28 14:00:24 by brda-sil         ###   ########.fr       */
+/*   Updated: 2023/01/28 14:37:31 by brda-sil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,11 @@ PhoneBook::PhoneBook(void)
 PhoneBook::~PhoneBook(void)
 {
 	std::cout << "PhoneBook class destructed\n";
+}
+
+void	PhoneBook::print_all_entry(void)
+{
+	
 }
 
 void	PhoneBook::add_entry(void)
