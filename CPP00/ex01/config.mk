@@ -1,33 +1,22 @@
 # **************************************************************************** #
 #                                                                              #
 #                                                         :::      ::::::::    #
-#    Makefile                                           :+:      :+:    :+:    #
+#    config.mk                                          :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
 #    By: brda-sil <brda-sil@students.42angouleme    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/08/24 19:36:36 by brda-sil          #+#    #+#              #
-#    Updated: 2023/01/29 04:03:59 by brda-sil         ###   ########.fr        #
+#    Updated: 2023/01/29 09:10:11 by brda-sil         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
--include ./config.mk
+TARGET			:= contact_app
+CC				:= c++
+CFLAGS			:= -Wall -Wextra --std=c++98
+RM				:= rm -rf
 
-ifeq ($(DEBUG),1)
-CFLAGS			+= -g3
-else
-CFLAGS			+= -Werror
-endif
+SRC_C			:= Contact.cpp					\
+				   PhoneBook.cpp				\
+				   main.cpp
 
-$(TARGET):		$(OBJ_C)
-	$(CC) $(OBJ_C) $(CFLAGS) -o $@
-
-%.o				: %.cpp
-	$(CC) $(CFLAGS) -c $^ -o $@
-
-clean:
-	$(RM) $(OBJ_C)
-
-fclean:			clean
-	$(RM) $(TARGET)
-
-re:	fclean $(TARGET)
+OBJ_C			:= $(SRC_C:%.cpp=%.o)
