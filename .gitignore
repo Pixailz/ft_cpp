@@ -2,10 +2,9 @@
 
 *obj/
 
-CPP00/ex00/megaphone
-CPP00/ex01/contact_app
-CPP01/ex00/brainz
-CPP01/ex01/brainz
+*megaphone
+*contact_app
+*brainz
 
 # vscode settings folder
 .vscode
