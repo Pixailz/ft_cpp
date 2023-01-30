@@ -1,22 +1,16 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   PhoneBook.cpp                                      :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: brda-sil <brda-sil@students.42angouleme    +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/01/28 13:40:54 by brda-sil          #+#    #+#             */
-/*   Updated: 2023/01/29 09:17:41 by brda-sil         ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
+/*#BEGIN#_________________________>#_|INFO|_#<_______________________________#*/
+/*#                                                         ______ _         #*/
+/*# DETAILS:                                                | ___ (_)        #*/
+/*#- FILENAME		PhoneBook.cpp                           | |_/ /___  __   #*/
+/*#- PROJECT_NAME	CPP00                                   |  __/| \ \/ /   #*/
+/*#- AUTHOR			Pixailz                                 | |   | |>  <    #*/
+/*#- CREATED		2023−01−30T11:33:55+0100                \_|   |_/_/\_\   #*/
+/*#                                                                          #*/
+/*#END#___________________________<#_|INFO|_#>_______________________________#*/
 
 #include "PhoneBook.hpp"
 
-void	PhoneBook::update_index(void)
-{
-	for (int i = 0; i < PHONE_BOOK_SIZE; i++)
-		this->phone_book[i].set_index(i + 1);
-}
+/*#BEGIN#_____________________>#_|CONSTRUCTOR|_#<___________________________##*/
 
 PhoneBook::PhoneBook(void)
 {
@@ -25,54 +19,34 @@ PhoneBook::PhoneBook(void)
 	// std::cout << "PhoneBook class created\n";
 }
 
+/*#END#_______________________<#_|CONSTRUCTOR|_#>___________________________##*/
+
+/*#BEGIN#______________________>#_|DESTRUCTOR|_#<___________________________##*/
+
 PhoneBook::~PhoneBook(void) { }
 // {
 // 	std::cout << "PhoneBook class destructed\n";
 // }
 
-void	PhoneBook::print_all_entry(void)
-{
-	for (int i = 0; i < PHONE_BOOK_SIZE; i++)
-		this->phone_book[i].print_contact_formated(10);
-}
+/*#END#________________________<#_|DESTRUCTOR|_#>___________________________##*/
 
-void	PhoneBook::search_phone_book(void)
-{
-	std::string	line;
-	int			converted;
-	char		*ptr;
+/*#BEGIN#_______________________>#_|PRIVATE|_#<_____________________________##*/
 
-	this->print_all_entry();
-	std::cout << "(1-8)> ";
-	getline(std::cin, line);
-	converted = strtol(line.c_str(), &ptr, 10);
-	if (!*ptr && converted > 0 && converted < PHONE_BOOK_SIZE)
-		this->phone_book[converted - 1].print_contact();
+/*#BEGIN#________________________>#_|SETTER|_#<_____________________________##*/
+
+void	PhoneBook::add_phone_book(void)
+{
+	Contact	user_input;
+
+	user_input.set_first_name(get_entry("first_name"));
+	user_input.set_last_name(get_entry("last_name"));
+	user_input.set_nick_name(get_entry("nick_name"));
+	user_input.set_phone_number(get_entry("phone_number"));
+	user_input.set_darkest_secret(get_entry("darkest_secret"));
+	if (check_add_phone(user_input))
+		std::cout << "one field is empty" << std::endl;
 	else
-		std::cout << "wrong index\n";
-}
-
-void	PhoneBook::print_left_padded(std::string str)
-{
-	std::cout << std::right << std::setfill(' ') << std::setw(25) << str;
-}
-
-void	PhoneBook::print_right_padded(std::string str)
-{
-	std::cout << std::left << std::setfill(' ') << std::setw(25) << str;
-}
-
-std::string	PhoneBook::get_entry(std::string name)
-{
-	std::string	line;
-
-	print_right_padded(name);
-	if (name == "darkest_secret")
-		std::cout << "🤫 ";
-	else
-		std::cout << "$ ";
-	std::getline(std::cin, line);
-	return (line);
+		add_phone_book_entry(user_input);
 }
 
 void	PhoneBook::add_phone_book_entry(Contact entry)
@@ -91,6 +65,63 @@ void	PhoneBook::add_phone_book_entry(Contact entry)
 	update_index();
 }
 
+void	PhoneBook::update_index(void)
+{
+	for (int i = 0; i < PHONE_BOOK_SIZE; i++)
+		this->phone_book[i].set_index(i + 1);
+}
+
+/*#END#__________________________<#_|SETTER|_#>_____________________________##*/
+
+/*#BEGIN#________________________>#_|GETTER|_#<_____________________________##*/
+
+void	PhoneBook::search_phone_book(void)
+{
+	std::string	line;
+	int			converted;
+	char		*ptr;
+
+	this->print_all_entry();
+	std::cout << "(1-8)> ";
+	getline(std::cin, line);
+	converted = strtol(line.c_str(), &ptr, 10);
+	if (!*ptr && converted > 0 && converted < PHONE_BOOK_SIZE)
+		this->phone_book[converted - 1].print_contact();
+	else
+		std::cout << "wrong index\n";
+}
+
+void	PhoneBook::print_all_entry(void)
+{
+	for (int i = 0; i < PHONE_BOOK_SIZE; i++)
+		this->phone_book[i].print_contact_formated(10);
+}
+
+void	PhoneBook::print_left_padded(std::string str)
+{
+	std::cout << std::right << std::setfill(' ') << std::setw(25) << str;
+}
+
+void	PhoneBook::print_right_padded(std::string str)
+{
+	std::cout << std::left << std::setfill(' ') << std::setw(25) << str;
+}
+
+/*#END#__________________________<#_|GETTER|_#>_____________________________##*/
+
+std::string	PhoneBook::get_entry(std::string name)
+{
+	std::string	line;
+
+	print_right_padded(name);
+	if (name == "darkest_secret")
+		std::cout << "🤫 ";
+	else
+		std::cout << "$ ";
+	std::getline(std::cin, line);
+	return (line);
+}
+
 bool	PhoneBook::check_add_phone(Contact user_input)
 {
 	if (!user_input.get_first_name().size())
@@ -106,20 +137,9 @@ bool	PhoneBook::check_add_phone(Contact user_input)
 	return (false);
 }
 
-void	PhoneBook::add_phone_book(void)
-{
-	Contact	user_input;
+/*#END#_________________________<#_|PRIVATE|_#>_____________________________##*/
 
-	user_input.set_first_name(get_entry("first_name"));
-	user_input.set_last_name(get_entry("last_name"));
-	user_input.set_nick_name(get_entry("nick_name"));
-	user_input.set_phone_number(get_entry("phone_number"));
-	user_input.set_darkest_secret(get_entry("darkest_secret"));
-	if (check_add_phone(user_input))
-		std::cout << "one field is empty" << std::endl;
-	else
-		add_phone_book_entry(user_input);
-}
+/*#BEGIN#________________________>#_|PUBLIC|_#<_____________________________##*/
 
 void	PhoneBook::main_loop(void)
 {
@@ -144,3 +164,5 @@ void	PhoneBook::main_loop(void)
 			std::cout << "wrong input" << std::endl;
 	}
 }
+
+/*#END#__________________________<#_|PUBLIC|_#>_____________________________##*/

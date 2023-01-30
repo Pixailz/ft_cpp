@@ -1,25 +1,42 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   Contact.hpp                                        :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: brda-sil <brda-sil@students.42angouleme    +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/08/29 20:18:07 by brda-sil          #+#    #+#             */
-/*   Updated: 2023/01/29 07:11:49 by brda-sil         ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
-#include <iostream>
-#include <iomanip>
-#include <string>
+/*#BEGIN#_________________________>#_|INFO|_#<______________________________##*/
+/*#                                                        ______ _         ##*/
+/*# DETAILS:                                               | ___ (_)        ##*/
+/*#- FILENAME		Contact.hpp                            | |_/ /___  __   ##*/
+/*#- PROJECT_NAME	CPP00                                  |  __/| \ \/ /   ##*/
+/*#- AUTHOR			Pixailz                                | |   | |>  <    ##*/
+/*#- CREATED		2023−01−29T23:02:00+0100               \_|   |_/_/\_\   ##*/
+/*#                                                                         ##*/
+/*#END#___________________________<#_|INFO|_#>______________________________##*/
 
 #ifndef CONTACT_CLASS
 # define CONTACT_CLASS
 
+/*#BEGIN#_____________________>#_|DEPENDENCIES|_#<__________________________##*/
+
+#include <iostream>
+/**
+ * <object>		std::cout
+ * <object>		std::endl
+ */
+
+#include <iomanip>
+/**
+ * <function>	std::setw()
+ * <function>	std::setfill()
+ */
+
+#include <string>
+/**
+ * <object>		std::string
+ * <function>	std::string::clear()
+ */
+
+/*#END#_______________________<#_|DEPENDENCIES|_#>__________________________##*/
+
 class Contact
 {
 	private:
+		// VAR(S)
 		int			index;
 		std::string	first_name;
 		std::string	last_name;
@@ -27,13 +44,14 @@ class Contact
 		std::string	phone_number;
 		std::string	darkest_secret;
 
-		std::string get_formated(std::string content, int length);
+		// INTERNAL FUNCTION(S)
+		std::string	get_formated(std::string content, int length);
 
 	public:
-		// CONSTRUCTOR
+		// CONSTRUCTOR(S)
 		Contact(void);
 
-		// DESTRUCTOR
+		// DESTRUCTOR(S)
 		~Contact(void);
 
 		// SETTERS
@@ -56,4 +74,4 @@ class Contact
 		void		print_contact_formated(int length);
 };
 
-# endif // CONTACT_CLASS
+#endif // CONTACT_CLASS

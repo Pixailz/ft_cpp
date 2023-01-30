@@ -6,7 +6,7 @@
 /*   By: brda-sil <brda-sil@students.42angouleme    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/29 09:26:23 by brda-sil          #+#    #+#             */
-/*   Updated: 2023/01/29 09:49:34 by brda-sil         ###   ########.fr       */
+/*   Updated: 2023/01/29 17:43:06 by brda-sil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,19 +15,19 @@
 Zombie::Zombie(void)
 {
 	this->name.clear();
-	// std::cout << "Zombie class created\n";
+	std::cout << "Zombie class created\n";
 }
 
 Zombie::Zombie(std::string name)
 {
 	this->name = name;
-	// std::cout << "Zombie class created with name (" << name << ")\n";
+	std::cout << "Zombie class created with name (" << name << ")\n";
 }
 
-Zombie::~Zombie(void) { }
-// {
-// 	std::cout << "Zombie class destructed\n";
-// }
+Zombie::~Zombie(void)
+{
+	std::cout << "Zombie class destructed\n";
+}
 
 void	Zombie::set_name(std::string name)
 {

@@ -6,12 +6,14 @@
 /*   By: brda-sil <brda-sil@students.42angouleme    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/29 09:24:09 by brda-sil          #+#    #+#             */
-/*   Updated: 2023/01/29 10:16:37 by brda-sil         ###   ########.fr       */
+/*   Updated: 2023/01/29 19:27:11 by brda-sil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef ZOMBIE_CLASS
 # define ZOMBIE_CLASS
+
+// DEPENDENCIES
 
 # include <string>
 /**

@@ -3,7 +3,7 @@
 ## DETAILS:                                                  | ___ (_)        ##
 ##- FILENAME		Makefile                                 | |_/ /___  __   ##
 ##- AUTHOR			Pixailz                                  |  __/| \ \/ /   ##
-##- CREATED			2023−01−30T11:15:26+0100                 | |   | |>  <    ##
+##- CREATED			2023−01−30T10:37:01+0100                 | |   | |>  <    ##
 ##                                                           \_|   |_/_/\_\   ##
 ## DESCRIPTION:                                                               ##
 ### None                                                                      ##
@@ -14,14 +14,14 @@
 
 ##BEGIN#_________________________>#_|CONFIG|_#<_______________________________##
 
-TARGET					:= megaphone
+TARGET					:= /(.*)//(.*)//downcase:prog_name:prog_name
 
 CC						:= g++
 CFLAGS					:= -Wall -Wextra --std=c++98
 
-SRC_DIR					:= .
+SRC_DIR					:= src
 OBJ_DIR					:= obj
-INC_DIR					:= .
+INC_DIR					:= inc
 
 CFLAGS					+= -I$(INC_DIR)
 
@@ -36,7 +36,8 @@ MKDIR					:= mkdir -p
 MAKE					:= make
 PRINTF					:= @printf
 
-SRC_CPP					:= megaphone.cpp
+SRC_CPP					:= main.cpp					\
+						   utils/ft_strlen.cpp
 
 OBJ_CPP					:= $(addprefix $(OBJ_DIR)/,$(SRC_CPP:%.cpp=%.o))
 SRC_CPP					:= $(addprefix $(SRC_DIR)/,$(SRC_CPP))

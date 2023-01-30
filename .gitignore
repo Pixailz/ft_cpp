@@ -1,6 +1,11 @@
 # compiled things
-*.o
+
+*obj/
+
 CPP00/ex00/megaphone
+CPP00/ex01/contact_app
+CPP01/ex00/brainz
+CPP01/ex01/brainz
 
 # vscode settings folder
 .vscode

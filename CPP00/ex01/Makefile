@@ -1,42 +1,76 @@
-# **************************************************************************** #
-#                                                                              #
-#                                                         :::      ::::::::    #
-#    Makefile                                           :+:      :+:    :+:    #
-#                                                     +:+ +:+         +:+      #
-#    By: brda-sil <brda-sil@students.42angouleme    +#+  +:+       +#+         #
-#                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2022/08/24 19:36:36 by brda-sil          #+#    #+#              #
-#    Updated: 2023/01/29 09:23:11 by brda-sil         ###   ########.fr        #
-#                                                                              #
-# **************************************************************************** #
+##BEGIN#__________________________>#_|INFO|_#<________________________________##
+##                                                           ______ _         ##
+## DETAILS:                                                  | ___ (_)        ##
+##- FILENAME		Makefile                                 | |_/ /___  __   ##
+##- AUTHOR			Pixailz                                  |  __/| \ \/ /   ##
+##- CREATED			2023−01−30T11:44:46+0100                 | |   | |>  <    ##
+##                                                           \_|   |_/_/\_\   ##
+## DESCRIPTION:                                                               ##
+### None                                                                      ##
+##                                                                            ##
+##                                                                            ##
+## VERSION:[ALPHA|BETA]_MAJOR.MINOR.PATCH                                     ##
+##END#____________________________<#_|INFO|_#>________________________________##
 
-TARGET			:= contact_app
-CC				:= c++
-CFLAGS			:= -Wall -Wextra --std=c++98
-RM				:= rm -rf
+##BEGIN#_________________________>#_|CONFIG|_#<_______________________________##
 
-SRC_CPP			:= Contact.cpp					\
-				   PhoneBook.cpp				\
-				   main.cpp
+TARGET					:= contact_app
 
-OBJ_CPP			:= $(SRC_CPP:%.cpp=%.o)
+CC						:= g++
+CFLAGS					:= -Wall -Wextra --std=c++98
+
+SRC_DIR					:= .
+OBJ_DIR					:= obj
+INC_DIR					:= .
+
+CFLAGS					+= -I$(INC_DIR)
 
 ifeq ($(DEBUG),1)
-CFLAGS			+= -g3
+CFLAGS					+= -g3
 else
-CFLAGS			+= -Werror
+CFLAGS					+= -Werror
 endif
 
-$(TARGET):		$(OBJ_CPP)
-	$(CC) $(OBJ_CPP) $(CFLAGS) -o $@
+RM						:= rm -rf
+MKDIR					:= mkdir -p
+MAKE					:= make
+PRINTF					:= @printf
 
-%.o				: %.cpp
-	$(CC) $(CFLAGS) -c $^ -o $@
+SRC_CPP					:= Contact.cpp			\
+						   PhoneBook.cpp		\
+						   main.cpp
+
+OBJ_CPP					:= $(addprefix $(OBJ_DIR)/,$(SRC_CPP:%.cpp=%.o))
+SRC_CPP					:= $(addprefix $(SRC_DIR)/,$(SRC_CPP))
+
+##END#___________________________<#_|CONFIG|_#>_______________________________##
+
+##BEGIN#__________________________>#_|RULES|_#<_______________________________##
+
+.DEFAULT:				$(TARGET)
+
+.PHONY:					clean
+.PHONY:					fclean
+.PHONY:					re
+
+all:					$(TARGET)
+
+# 1 MAKE TARGET
+$(TARGET):				$(OBJ_CPP)
+	$(CC) $(CFLAGS) $(OBJ_CPP) -o $(TARGET)
+
+# 2 BUILD OBJS
+$(OBJ_DIR)/%.o:			$(SRC_DIR)/%.cpp
+## check if obj dir parent folder exist, if not create it
+		$(shell [ -d $(@D) ] || $(MKDIR) $(@D))
+		$(CC) $(CFLAGS) -o $@ -c $^
 
 clean:
 	$(RM) $(OBJ_CPP)
 
-fclean:			clean
+fclean:					clean
 	$(RM) $(TARGET)
 
-re:	fclean $(TARGET)
+re:						fclean $(TARGET)
+
+##END#____________________________<#_|RULES|_#>_______________________________##

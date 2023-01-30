@@ -1,32 +1,67 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   Contact.cpp                                        :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: brda-sil <brda-sil@students.42angouleme    +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/08/29 20:18:07 by brda-sil          #+#    #+#             */
-/*   Updated: 2023/01/29 08:10:14 by brda-sil         ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
+/*#BEGIN#_________________________>#_|INFO|_#<_______________________________#*/
+/*#                                                         ______ _         #*/
+/*# DETAILS:                                                | ___ (_)        #*/
+/*#- FILENAME		Contact.cpp                             | |_/ /___  __   #*/
+/*#- PROJECT_NAME	CPP00                                   |  __/| \ \/ /   #*/
+/*#- AUTHOR			Pixailz                                 | |   | |>  <    #*/
+/*#- CREATED		2023−01−30T08:40:53+0100                \_|   |_/_/\_\   #*/
+/*#                                                                          #*/
+/*#END#___________________________<#_|INFO|_#>_______________________________#*/
 
 #include "Contact.hpp"
+
+/*#BEGIN#_____________________>#_|CONSTRUCTOR|_#<___________________________##*/
 
 Contact::Contact(void)
 {
 	this->index = 0;
-	this->first_name.clear();
-	this->last_name.clear();
-	this->nick_name.clear();
-	this->phone_number.clear();
-	this->darkest_secret.clear();
+	// this->first_name.clear();
+	// this->last_name.clear();
+	// this->nick_name.clear();
+	// this->phone_number.clear();
+	// this->darkest_secret.clear();
 	// std::cout << "Contact class created\n";
 }
+
+/*#END#_______________________<#_|CONSTRUCTOR|_#>___________________________##*/
+
+/*#BEGIN#______________________>#_|DESTRUCTOR|_#<___________________________##*/
 
 Contact::~Contact(void) { }
 // {
 // 	std::cout << "Contact class destructed\n";
 // }
+
+/*#END#________________________<#_|DESTRUCTOR|_#>___________________________##*/
+
+/*#BEGIN#_______________________>#_|PRIVATE|_#<_____________________________##*/
+
+void	Contact::print_contact(void)
+{
+	std::cout << this->index << std::endl
+			  << this->first_name << std::endl
+			  << this->last_name << std::endl
+			  << this->nick_name << std::endl
+			  << this->phone_number << std::endl
+			  << this->darkest_secret << std::endl;
+}
+
+void	Contact::print_contact_formated(int length)
+{
+	std::cout << std::setfill(' ') << std::setw(length) << this->index << '|'
+			  << get_formated(this->first_name, length) << '|'
+			  << get_formated(this->last_name, length) << '|'
+			  << get_formated(this->nick_name, length) << '|'
+			  << get_formated(this->phone_number, length) << std::endl;
+}
+
+/*#END#_________________________<#_|PRIVATE|_#>_____________________________##*/
+
+
+
+/*#BEGIN#________________________>#_|PUBLIC|_#<_____________________________##*/
+
+/*#BEGIN#________________________>#_|SETTER|_#<_____________________________##*/
 
 void	Contact::set_index(int index)
 {
@@ -57,6 +92,10 @@ void	Contact::set_darkest_secret(std::string darkest_secret)
 {
 	this->darkest_secret = darkest_secret;
 }
+
+/*#END#__________________________<#_|SETTER|_#>_____________________________##*/
+
+/*#BEGIN#________________________>#_|GETTER|_#<_____________________________##*/
 
 std::string	Contact::get_first_name(void)
 {
@@ -93,21 +132,6 @@ std::string	Contact::get_formated(std::string content, int length)
 		return (std::string(content, 0, length - 1) + '.');
 }
 
-void	Contact::print_contact(void)
-{
-	std::cout << this->index << std::endl
-			  << this->first_name << std::endl
-			  << this->last_name << std::endl
-			  << this->nick_name << std::endl
-			  << this->phone_number << std::endl
-			  << this->darkest_secret << std::endl;
-}
+/*#END#__________________________<#_|GETTER|_#>_____________________________##*/
 
-void	Contact::print_contact_formated(int length)
-{
-	std::cout << std::setfill(' ') << std::setw(length) << this->index << '|'
-			  << get_formated(this->first_name, length) << '|'
-			  << get_formated(this->last_name, length) << '|'
-			  << get_formated(this->nick_name, length) << '|'
-			  << get_formated(this->phone_number, length) << std::endl;
-}
+/*#END#__________________________<#_|PUBLIC|_#>_____________________________##*/
