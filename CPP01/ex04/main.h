@@ -32,7 +32,7 @@
 
 # include <iostream>
 /**
- * <object>		std::cout
+ * <object>		std::cerr
  * <object>		std::endl
  */
 

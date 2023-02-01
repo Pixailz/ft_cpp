@@ -67,11 +67,11 @@ int	sed_for_winner(std::string filename, std::string str1, std::string str2)
 int	have_error(int r_value)
 {
 	if (r_value == 1)
-		std::cout << "wrong number of arg" << std::endl;
+		std::cerr << "wrong number of arg" << std::endl;
 	else if (r_value == 2)
-		std::cout << "opening argv[1] for reading failed" << std::endl;
+		std::cerr << "opening argv[1] for reading failed" << std::endl;
 	else if (r_value == 3)
-		std::cout << "opening argv[1].replace for writing failed" << std::endl;
+		std::cerr << "opening argv[1].replace for writing failed" << std::endl;
 	return (r_value);
 }
 
