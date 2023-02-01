@@ -1,17 +1,29 @@
 /*#BEGIN#_________________________>#_|INFO|_#<______________________________##*/
 /*#                                                        ______ _         ##*/
 /*# DETAILS:                                               | ___ (_)        ##*/
-/*#- FILENAME		Weapon.cpp                             | |_/ /___  __   ##*/
+/*#- FILENAME		HumanA.cpp                             | |_/ /___  __   ##*/
 /*#- PROJECT_NAME	CPP01-ex03                             |  __/| \ \/ /   ##*/
 /*#- AUTHOR			Pixailz                                | |   | |>  <    ##*/
 /*#- CREATED		2023−01−29T23:02:00+0100               \_|   |_/_/\_\   ##*/
 /*#                                                                         ##*/
 /*#END#___________________________<#_|INFO|_#>______________________________##*/
 
-# include <Weapon.hpp>
+# include <HumanB.hpp>
+/****************
+ * <object>		object
+ * <function>	function()
+ */
 
 /*#BEGIN#_______________________>#_|PRIVATE|_#<_____________________________##*/
 
+/*#BEGIN#________________________>#_|GETTER|_#<_____________________________##*/
+
+std::string	HumanB::getName(void)
+{
+	return (_name);
+}
+
+/*#END#__________________________<#_|GETTER|_#>_____________________________##*/
 
 
 /*#END#_________________________<#_|PRIVATE|_#>_____________________________##*/
@@ -20,52 +32,51 @@
 
 /*#BEGIN#_____________________>#_|CONSTRUCTOR|_#<___________________________##*/
 
-
-Weapon::Weapon(void) { }
-//{
-//	std::cout << "Weapon class created\n";
-//}
-
-Weapon::Weapon(std::string type)
+HumanB::HumanB(std::string name) : _name(name)
 {
-	_type = type;
+	_weapon = NULL;
 }
-//{
-//	std::cout << "Weapon class created\n";
-//}
 
 /*#END#_______________________<#_|CONSTRUCTOR|_#>___________________________##*/
 
 /*#BEGIN#______________________>#_|DESTRUCTOR|_#<___________________________##*/
 
-Weapon::~Weapon(void) { }
+HumanB::~HumanB(void) { }
 //{
-//	std::cout << "Weapon class destructed\n";
+//	std::cout << "HumanB class destructed\n";
 //}
 
 /*#END#________________________<#_|DESTRUCTOR|_#>___________________________##*/
 
 /*#BEGIN#________________________>#_|SETTER|_#<_____________________________##*/
 
-void	Weapon::setType(std::string type)
+void	HumanB::setWeapon(Weapon &weapon)
 {
-	_type = type;
+	_weapon = &weapon;
 }
 
 /*#END#__________________________<#_|SETTER|_#>_____________________________##*/
 
 /*#BEGIN#________________________>#_|GETTER|_#<_____________________________##*/
 
-const std::string	&Weapon::getType(void)
-{
-	return (_type);
-}
-
 /*#END#__________________________<#_|GETTER|_#>_____________________________##*/
 
 /*#BEGIN#________________________>#_|OTHER|_#<______________________________##*/
 
+void	HumanB::attack(void)
+{
+	std::string	type;
 
+	type = _weapon->getType();
+
+	if (!type.size())
+		std::cout << getName()
+				  << " attacks with bare hand, because doesn't have weapon"
+				  << std::endl;
+	else
+		std::cout << getName() << " attacks with their " << type
+				  << std::endl;
+}
 
 /*#END#__________________________<#_|OTHER|_#>______________________________##*/
 

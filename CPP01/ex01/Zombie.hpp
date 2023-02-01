@@ -1,50 +1,54 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   Zombie.hpp                                         :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: brda-sil <brda-sil@students.42angouleme    +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/01/29 09:24:09 by brda-sil          #+#    #+#             */
-/*   Updated: 2023/01/29 19:27:11 by brda-sil         ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
+/*#BEGIN#_________________________>#_|INFO|_#<______________________________##*/
+/*#                                                        ______ _         ##*/
+/*# DETAILS:                                               | ___ (_)        ##*/
+/*#- FILENAME		Zombie.hpp                             | |_/ /___  __   ##*/
+/*#- PROJECT_NAME	CPP01-ex01                             |  __/| \ \/ /   ##*/
+/*#- AUTHOR			Pixailz                                | |   | |>  <    ##*/
+/*#- CREATED		2023−01−29T19:27:00+0100               \_|   |_/_/\_\   ##*/
+/*#                                                                         ##*/
+/*#END#___________________________<#_|INFO|_#>______________________________##*/
 
-#ifndef ZOMBIE_CLASS
-# define ZOMBIE_CLASS
-
-// DEPENDENCIES
+/*#BEGIN#_____________________>#_|DEPENDENCIES|_#<__________________________##*/
 
 # include <string>
 /**
- * std::string
+ * <object>	std::string
  */
+
 # include <iostream>
 /**
- * std::cout
- * std::endl
+ * <object>	std::cout
+ * <object>	std::endl
  */
+
+/*#END#_______________________<#_|DEPENDENCIES|_#>__________________________##*/
+
+#ifndef ZOMBIE_HPP
+# define ZOMBIE_HPP
 
 class Zombie
 {
 	private:
+		// VAR(S)
 		std::string	name;
 
+		// PRIVATE FUNCTION(S)
+
 	public:
-		// CONSTRUCTOR
+		// CONSTRUCTOR(S)
 		Zombie(void);
 		Zombie(std::string name);
 
-		// DESTRUCTOR
+		// DESTRUCTOR(S)
 		~Zombie(void);
 
-		// OTHERS
+		// SETTER(S)
 		void	set_name(std::string name);
+
+		// OTHERS(S)
 		void	announce(void);
 
 };
 
-Zombie	*zombieHorde(int size, std::string name);
-void	zombieHordeDelete(Zombie *horde);
 
 # endif // ZOMBIE_CLASS

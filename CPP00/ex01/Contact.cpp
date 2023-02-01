@@ -1,38 +1,14 @@
-/*#BEGIN#_________________________>#_|INFO|_#<_______________________________#*/
-/*#                                                         ______ _         #*/
-/*# DETAILS:                                                | ___ (_)        #*/
-/*#- FILENAME		Contact.cpp                             | |_/ /___  __   #*/
-/*#- PROJECT_NAME	CPP00                                   |  __/| \ \/ /   #*/
-/*#- AUTHOR			Pixailz                                 | |   | |>  <    #*/
-/*#- CREATED		2023−01−30T08:40:53+0100                \_|   |_/_/\_\   #*/
-/*#                                                                          #*/
-/*#END#___________________________<#_|INFO|_#>_______________________________#*/
+/*#BEGIN#_________________________>#_|INFO|_#<______________________________##*/
+/*#                                                        ______ _         ##*/
+/*# DETAILS:                                               | ___ (_)        ##*/
+/*#- FILENAME		Contact.cpp                            | |_/ /___  __   ##*/
+/*#- PROJECT_NAME	CPP00-ex01                             |  __/| \ \/ /   ##*/
+/*#- AUTHOR			Pixailz                                | |   | |>  <    ##*/
+/*#- CREATED		2023−01−30T08:40:53+0100               \_|   |_/_/\_\   ##*/
+/*#                                                                         ##*/
+/*#END#___________________________<#_|INFO|_#>______________________________##*/
 
 #include "Contact.hpp"
-
-/*#BEGIN#_____________________>#_|CONSTRUCTOR|_#<___________________________##*/
-
-Contact::Contact(void)
-{
-	this->index = 0;
-	// this->first_name.clear();
-	// this->last_name.clear();
-	// this->nick_name.clear();
-	// this->phone_number.clear();
-	// this->darkest_secret.clear();
-	// std::cout << "Contact class created\n";
-}
-
-/*#END#_______________________<#_|CONSTRUCTOR|_#>___________________________##*/
-
-/*#BEGIN#______________________>#_|DESTRUCTOR|_#<___________________________##*/
-
-Contact::~Contact(void) { }
-// {
-// 	std::cout << "Contact class destructed\n";
-// }
-
-/*#END#________________________<#_|DESTRUCTOR|_#>___________________________##*/
 
 /*#BEGIN#_______________________>#_|PRIVATE|_#<_____________________________##*/
 
@@ -57,9 +33,31 @@ void	Contact::print_contact_formated(int length)
 
 /*#END#_________________________<#_|PRIVATE|_#>_____________________________##*/
 
-
-
 /*#BEGIN#________________________>#_|PUBLIC|_#<_____________________________##*/
+
+/*#BEGIN#_____________________>#_|CONSTRUCTOR|_#<___________________________##*/
+
+Contact::Contact(void)
+{
+	this->index = 0;
+	// this->first_name.clear();
+	// this->last_name.clear();
+	// this->nick_name.clear();
+	// this->phone_number.clear();
+	// this->darkest_secret.clear();
+	// std::cout << "Contact class created\n";
+}
+
+/*#END#_______________________<#_|CONSTRUCTOR|_#>___________________________##*/
+
+/*#BEGIN#______________________>#_|DESTRUCTOR|_#<___________________________##*/
+
+Contact::~Contact(void) { }
+// {
+// 	std::cout << "Contact class destructed\n";
+// }
+
+/*#END#________________________<#_|DESTRUCTOR|_#>___________________________##*/
 
 /*#BEGIN#________________________>#_|SETTER|_#<_____________________________##*/
 

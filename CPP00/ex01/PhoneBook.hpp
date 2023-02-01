@@ -1,15 +1,11 @@
 /*#BEGIN#_________________________>#_|INFO|_#<______________________________##*/
 /*#                                                        ______ _         ##*/
 /*# DETAILS:                                               | ___ (_)        ##*/
-/*#- FILENAME		PhoneBook.hpp                               | |_/ /___  __   ##*/
-/*#- PROJECT_NAME	None                                   |  __/| \ \/ /   ##*/
+/*#- FILENAME		PhoneBook.hpp                          | |_/ /___  __   ##*/
+/*#- PROJECT_NAME	CPP00-ex01                             |  __/| \ \/ /   ##*/
 /*#- AUTHOR			Pixailz                                | |   | |>  <    ##*/
 /*#- CREATED		2023−01−29T23:02:00+0100               \_|   |_/_/\_\   ##*/
 /*#                                                                         ##*/
-/*# DESCRIPTION:                                                            ##*/
-/*## None                                                                   ##*/
-/*#                                                                         ##*/
-/*# VERSION:[ALPHA|BETA]_MAJOR.MINOR.PATCH                                  ##*/
 /*#END#___________________________<#_|INFO|_#>______________________________##*/
 
 #ifndef PHONEBOOK_CLASS
@@ -90,4 +86,4 @@ class PhoneBook
 		void		main_loop(void);
 };
 
-#endif // PHONEBOOK_CLASS
+# endif // PHONEBOOK_CLASS

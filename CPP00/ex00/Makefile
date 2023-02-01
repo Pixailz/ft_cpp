@@ -2,14 +2,10 @@
 ##                                                           ______ _         ##
 ## DETAILS:                                                  | ___ (_)        ##
 ##- FILENAME		Makefile                                 | |_/ /___  __   ##
-##- AUTHOR			Pixailz                                  |  __/| \ \/ /   ##
-##- CREATED			2023−01−30T11:15:26+0100                 | |   | |>  <    ##
-##                                                           \_|   |_/_/\_\   ##
-## DESCRIPTION:                                                               ##
-### None                                                                      ##
+##- PROJECT_NAME	CPP00-ex00                               |  __/| \ \/ /   ##
+##- AUTHOR			Pixailz                                  | |   | |>  <    ##
+##- CREATED			2023−02−01T02:15:27+0100                 \_|   |_/_/\_\   ##
 ##                                                                            ##
-##                                                                            ##
-## VERSION:[ALPHA|BETA]_MAJOR.MINOR.PATCH                                     ##
 ##END#____________________________<#_|INFO|_#>________________________________##
 
 ##BEGIN#_________________________>#_|CONFIG|_#<_______________________________##
@@ -68,7 +64,7 @@ $(OBJ_DIR)/%.o:			$(SRC_DIR)/%.cpp
 		$(CC) $(CFLAGS) -o $@ -c $^
 
 clean:
-	$(RM) $(OBJ_CPP)
+	$(RM) $(OBJ_DIR)
 
 fclean:					clean
 	$(RM) $(TARGET)

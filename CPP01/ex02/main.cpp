@@ -1,36 +1,41 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   main.cpp                                           :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: brda-sil <brda-sil@students.42angouleme    +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/01/28 13:10:48 by brda-sil          #+#    #+#             */
-/*   Updated: 2023/01/29 18:07:38 by brda-sil         ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
+/*#BEGIN#_________________________>#_|INFO|_#<______________________________##*/
+/*#                                                        ______ _         ##*/
+/*# DETAILS:                                               | ___ (_)        ##*/
+/*#- FILENAME		main.cpp                               | |_/ /___  __   ##*/
+/*#- PROJECT_NAME	CPP01-ex02                             |  __/| \ \/ /   ##*/
+/*#- AUTHOR			Pixailz                                | |   | |>  <    ##*/
+/*#- CREATED		2023−02−01T02:32:52+0100               \_|   |_/_/\_\   ##*/
+/*#                                                                         ##*/
+/*#END#___________________________<#_|INFO|_#>______________________________##*/
 
 #include <string>
+/**
+ * <object>	std::string
+ */
+
 #include <iostream>
+/**
+ * <object>	std::cout
+ */
 
 int	main(void)
 {
-	std::string	a_string_variable = std::string("HI THIS IS BRAIN");
-	std::string	*a_ptr_variable = &a_string_variable;
-	std::string	&a_ref_variable = a_string_variable;
+	std::string	string_variable = std::string("HI THIS IS BRAIN");
+	std::string	*ptr_variable = &string_variable;
+	std::string	&ref_variable = string_variable;
 
-	std::cout << "addresse of a_string_variable : " << &a_string_variable
+	std::cout << "addresse of string_variable : " << &string_variable
 			  << std::endl;
-	std::cout << "addresse of a_ptr_variable : " << &a_ptr_variable
+	std::cout << "addresse of ptr_variable : " << &ptr_variable
 			  << std::endl;
-	std::cout << "addresse of a_ref_variable : " << &a_ref_variable
+	std::cout << "addresse of ref_variable : " << &ref_variable
 			  << std::endl << std::endl;
 
-	std::cout << "value of a_string_variable : " << a_string_variable
+	std::cout << "value of string_variable : " << string_variable
 			  << std::endl;
-	std::cout << "value of a_ptr_variable : " << a_ptr_variable
+	std::cout << "value of ptr_variable : " << ptr_variable
 			  << std::endl;
-	std::cout << "value of a_ref_variable : " << a_ref_variable
+	std::cout << "value of ref_variable : " << ref_variable
 			  << std::endl;
 	return (0);
 }

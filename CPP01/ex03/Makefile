@@ -2,26 +2,22 @@
 ##                                                           ______ _         ##
 ## DETAILS:                                                  | ___ (_)        ##
 ##- FILENAME		Makefile                                 | |_/ /___  __   ##
-##- AUTHOR			Pixailz                                  |  __/| \ \/ /   ##
-##- CREATED			2023−01−30T10:37:01+0100                 | |   | |>  <    ##
-##                                                           \_|   |_/_/\_\   ##
-## DESCRIPTION:                                                               ##
-### None                                                                      ##
+##- PROJECT_NAME	CPP01-ex03                               |  __/| \ \/ /   ##
+##- AUTHOR			Pixailz                                  | |   | |>  <    ##
+##- CREATED			2023−02−01T02:36:30+0100                 \_|   |_/_/\_\   ##
 ##                                                                            ##
-##                                                                            ##
-## VERSION:[ALPHA|BETA]_MAJOR.MINOR.PATCH                                     ##
 ##END#____________________________<#_|INFO|_#>________________________________##
 
 ##BEGIN#_________________________>#_|CONFIG|_#<_______________________________##
 
-TARGET					:= /(.*)//(.*)//downcase:prog_name:prog_name
+TARGET					:= humanity
 
 CC						:= g++
 CFLAGS					:= -Wall -Wextra --std=c++98
 
-SRC_DIR					:= src
+SRC_DIR					:= .
 OBJ_DIR					:= obj
-INC_DIR					:= inc
+INC_DIR					:= .
 
 CFLAGS					+= -I$(INC_DIR)
 
@@ -36,19 +32,17 @@ MKDIR					:= mkdir -p
 MAKE					:= make
 PRINTF					:= @printf
 
-SRC_CPP					:= main.cpp					\
-						   utils/ft_strlen.cpp
+SRC_CPP					:= main.cpp		\
+						   HumanA.cpp	\
+						   HumanB.cpp	\
+						   Weapon.cpp
 
 OBJ_CPP					:= $(addprefix $(OBJ_DIR)/,$(SRC_CPP:%.cpp=%.o))
 SRC_CPP					:= $(addprefix $(SRC_DIR)/,$(SRC_CPP))
 
 ##END#___________________________<#_|CONFIG|_#>_______________________________##
 
-##BEGIN#________________________>#_|FUNCTION|_#<______________________________##
-
-##END#__________________________<#_|FUNCTION|_#>______________________________##
-
-##BEGIN#__________________________>#_|RULES|_#<_______________________________##
+##BEGIN#_________________________>#_|RULES|_#<________________________________##
 
 .DEFAULT:				$(TARGET)
 
@@ -63,17 +57,17 @@ $(TARGET):				$(OBJ_CPP)
 	$(CC) $(CFLAGS) $(OBJ_CPP) -o $(TARGET)
 
 # 2 BUILD OBJS
-$(OBJ_DIR)/%.o:			$(SRC_DIR)/%.cpp
+$(OBJ_CPP):				$(OBJ_DIR)/%.o:$(SRC_DIR)/%.cpp
 ## check if obj dir parent folder exist, if not create it
 		$(shell [ -d $(@D) ] || $(MKDIR) $(@D))
 		$(CC) $(CFLAGS) -o $@ -c $^
 
 clean:
-	$(RM) $(OBJ_CPP)
+	$(RM) $(OBJ_DIR)
 
 fclean:					clean
 	$(RM) $(TARGET)
 
 re:						fclean $(TARGET)
 
-##END#____________________________<#_|RULES|_#>_______________________________##
+##END#___________________________<#_|RULES|_#>________________________________##

@@ -1,42 +1,72 @@
-# **************************************************************************** #
-#                                                                              #
-#                                                         :::      ::::::::    #
-#    Makefile                                           :+:      :+:    :+:    #
-#                                                     +:+ +:+         +:+      #
-#    By: brda-sil <brda-sil@students.42angouleme    +#+  +:+       +#+         #
-#                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2022/08/24 19:36:36 by brda-sil          #+#    #+#              #
-#    Updated: 2023/01/29 17:37:17 by brda-sil         ###   ########.fr        #
-#                                                                              #
-# **************************************************************************** #
+##BEGIN#__________________________>#_|INFO|_#<________________________________##
+##                                                           ______ _         ##
+## DETAILS:                                                  | ___ (_)        ##
+##- FILENAME		Makefile                                 | |_/ /___  __   ##
+##- PROJECT_NAME	CPP01-ex01                               |  __/| \ \/ /   ##
+##- AUTHOR			Pixailz                                  | |   | |>  <    ##
+##- CREATED			2023−02−01T02:34:48+0100                 \_|   |_/_/\_\   ##
+##                                                                            ##
+##END#____________________________<#_|INFO|_#>________________________________##
 
-TARGET			:= brainz
-CC				:= c++
-CFLAGS			:= -Wall -Wextra --std=c++98
-RM				:= rm -rf
+##BEGIN#_________________________>#_|CONFIG|_#<_______________________________##
 
-SRC_C			:= Zombie.cpp				\
-				   zombieHorde.cpp			\
-				   main.cpp
+TARGET					:= more_brainz
 
-OBJ_C			:= $(SRC_C:%.cpp=%.o)
+CC						:= g++
+CFLAGS					:= -Wall -Wextra --std=c++98
+
+SRC_DIR					:= .
+OBJ_DIR					:= obj
+INC_DIR					:= .
+
+CFLAGS					+= -I$(INC_DIR)
 
 ifeq ($(DEBUG),1)
-CFLAGS			+= -g3
+CFLAGS					+= -g3
 else
-CFLAGS			+= -Werror
+CFLAGS					+= -Werror
 endif
 
-$(TARGET):		$(OBJ_C)
-	$(CC) $(OBJ_C) $(CFLAGS) -o $@
+RM						:= rm -rf
+MKDIR					:= mkdir -p
+MAKE					:= make
+PRINTF					:= @printf
 
-%.o				: %.cpp
-	$(CC) $(CFLAGS) -c $^ -o $@
+SRC_CPP					:= Zombie.cpp				\
+						   zombieHorde.cpp			\
+						   main.cpp
+
+OBJ_CPP					:= $(addprefix $(OBJ_DIR)/,$(SRC_CPP:%.cpp=%.o))
+SRC_CPP					:= $(addprefix $(SRC_DIR)/,$(SRC_CPP))
+
+##END#___________________________<#_|CONFIG|_#>_______________________________##
+
+##BEGIN#_________________________>#_|RULES|_#<________________________________##
+
+.DEFAULT:				$(TARGET)
+
+.PHONY:					clean
+.PHONY:					fclean
+.PHONY:					re
+
+all:					$(TARGET)
+
+# 1 MAKE TARGET
+$(TARGET):				$(OBJ_CPP)
+	$(CC) $(CFLAGS) $(OBJ_CPP) -o $(TARGET)
+
+# 2 BUILD OBJS
+$(OBJ_CPP):				$(OBJ_DIR)/%.o:$(SRC_DIR)/%.cpp
+## check if obj dir parent folder exist, if not create it
+		$(shell [ -d $(@D) ] || $(MKDIR) $(@D))
+		$(CC) $(CFLAGS) -o $@ -c $^
 
 clean:
-	$(RM) $(OBJ_C)
+	$(RM) $(OBJ_DIR)
 
-fclean:			clean
+fclean:					clean
 	$(RM) $(TARGET)
 
-re:	fclean $(TARGET)
+re:						fclean $(TARGET)
+
+##END#___________________________<#_|RULES|_#>________________________________##

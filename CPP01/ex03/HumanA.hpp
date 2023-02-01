@@ -1,21 +1,26 @@
 /*#BEGIN#_________________________>#_|INFO|_#<______________________________##*/
 /*#                                                        ______ _         ##*/
 /*# DETAILS:                                               | ___ (_)        ##*/
-/*#- FILENAME		Zombie.hpp                             | |_/ /___  __   ##*/
-/*#- PROJECT_NAME	CPP01-ex00                             |  __/| \ \/ /   ##*/
+/*#- FILENAME		HumanA.hpp                             | |_/ /___  __   ##*/
+/*#- PROJECT_NAME	CPP01-ex03                             |  __/| \ \/ /   ##*/
 /*#- AUTHOR			Pixailz                                | |   | |>  <    ##*/
 /*#- CREATED		2023−01−29T23:02:00+0100               \_|   |_/_/\_\   ##*/
 /*#                                                                         ##*/
 /*#END#___________________________<#_|INFO|_#>______________________________##*/
 
+#ifndef HUMANA_HPP
+# define HUMANA_HPP
+
 /*#BEGIN#_____________________>#_|DEPENDENCIES|_#<__________________________##*/
 
-# include <string>
+#include "Weapon.hpp"
+
+#include <string>
 /**
  * <object>	std::string
  */
 
-# include <iostream>
+#include <iostream>
 /**
  * <object>	std::cout
  * <object>	std::endl
@@ -23,32 +28,35 @@
 
 /*#END#_______________________<#_|DEPENDENCIES|_#>__________________________##*/
 
-#ifndef ZOMBIE_HPP
-# define ZOMBIE_HPP
-
-class Zombie
+class HumanA
 {
 	private:
 		// VAR(S)
-		std::string	name;
+		Weapon&		_weapon;
+		std::string	_name;
 
-		// PRIVATE FUNCTION(S)
+		// GETTER(S) FUNCTION
+		std::string	getName(void);
+
+		// OTHER(S) FUNCTION
 
 	public:
 		// CONSTRUCTOR(S)
-		Zombie(void);
-		Zombie(std::string name);
+		HumanA(std::string name, Weapon &weapon);
 
 		// DESTRUCTOR(S)
-		~Zombie(void);
+		~HumanA(void);
 
-		// SETTER(S)
-		void	set_name(std::string name);
-
-		// OTHERS(S)
-		void	announce(void);
-
+		// OTHER(S) FUNCTION
+		void	attack(void);
 };
 
+/*#BEGIN#________________________>#_|TYPEDEF|_#<____________________________##*/
 
-# endif // ZOMBIE_CLASS
+/*#END#__________________________<#_|TYPEDEF|_#>____________________________##*/
+
+/*#BEGIN#_____________________>#_|PROTOTYPE(S)|_#<__________________________##*/
+
+/*#END#_______________________<#_|PROTOTYPE(S)|_#>__________________________##*/
+
+#endif // HUMANA_CLASS

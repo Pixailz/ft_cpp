@@ -2,7 +2,7 @@
 /*#                                                        ______ _         ##*/
 /*# DETAILS:                                               | ___ (_)        ##*/
 /*#- FILENAME		Contact.hpp                            | |_/ /___  __   ##*/
-/*#- PROJECT_NAME	CPP00                                  |  __/| \ \/ /   ##*/
+/*#- PROJECT_NAME	CPP00-ex01                             |  __/| \ \/ /   ##*/
 /*#- AUTHOR			Pixailz                                | |   | |>  <    ##*/
 /*#- CREATED		2023−01−29T23:02:00+0100               \_|   |_/_/\_\   ##*/
 /*#                                                                         ##*/
@@ -74,4 +74,4 @@ class Contact
 		void		print_contact_formated(int length);
 };
 
-#endif // CONTACT_CLASS
+# endif // CONTACT_CLASS
