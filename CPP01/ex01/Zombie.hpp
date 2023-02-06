@@ -50,5 +50,8 @@ class Zombie
 
 };
 
+Zombie	*zombieHorde(int size, std::string name);
+
+void	zombieHordeDelete(Zombie *horde);
 
 # endif // ZOMBIE_CLASS

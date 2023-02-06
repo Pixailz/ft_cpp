@@ -1,29 +1,17 @@
 /*#BEGIN#_________________________>#_|INFO|_#<______________________________##*/
 /*#                                                        ______ _         ##*/
 /*# DETAILS:                                               | ___ (_)        ##*/
-/*#- FILENAME		HumanA.cpp                             | |_/ /___  __   ##*/
-/*#- PROJECT_NAME	CPP01-ex03                             |  __/| \ \/ /   ##*/
+/*#- FILENAME		Fixed.cpp                              | |_/ /___  __   ##*/
+/*#- PROJECT_NAME	CPP02-ex01                             |  __/| \ \/ /   ##*/
 /*#- AUTHOR			Pixailz                                | |   | |>  <    ##*/
 /*#- CREATED		2023−01−29T23:02:00+0100               \_|   |_/_/\_\   ##*/
 /*#                                                                         ##*/
 /*#END#___________________________<#_|INFO|_#>______________________________##*/
 
-# include <HumanB.hpp>
-/****************
- * <object>		object
- * <function>	function()
- */
+# include "Fixed.hpp"
 
 /*#BEGIN#_______________________>#_|PRIVATE|_#<_____________________________##*/
 
-/*#BEGIN#________________________>#_|GETTER|_#<_____________________________##*/
-
-std::string	HumanB::getName(void)
-{
-	return (_name);
-}
-
-/*#END#__________________________<#_|GETTER|_#>_____________________________##*/
 
 
 /*#END#_________________________<#_|PRIVATE|_#>_____________________________##*/
@@ -32,52 +20,88 @@ std::string	HumanB::getName(void)
 
 /*#BEGIN#_____________________>#_|CONSTRUCTOR|_#<___________________________##*/
 
-HumanB::HumanB(std::string name) : _name(name)
+Fixed::Fixed(void) : _raw_binary(0)
 {
-	_weapon = NULL;
+	std::cout << "Fixed class created (default)" << std::endl;
+}
+
+Fixed::Fixed(const Fixed &copy)
+{
+	std::cout << "Fixed class created (by copy)" << std::endl;
+	*this = copy;
+}
+
+Fixed::Fixed(const int raw_value)
+{
+	_raw_binary = raw_value << _binary_point_pos;
+	std::cout << "Fixed class created (with int)" << std::endl;
+}
+
+Fixed::Fixed(const float raw_value)
+{
+	_raw_binary = roundf(raw_value * (1 << _binary_point_pos));
+	std::cout << "Fixed class created (with float)" << std::endl;
 }
 
 /*#END#_______________________<#_|CONSTRUCTOR|_#>___________________________##*/
 
 /*#BEGIN#______________________>#_|DESTRUCTOR|_#<___________________________##*/
 
-HumanB::~HumanB(void) { }
-//{
-//	std::cout << "HumanB class destructed\n";
-//}
+Fixed::~Fixed(void)
+{
+	std::cout << "Fixed class destructed" << std::endl;
+}
 
 /*#END#________________________<#_|DESTRUCTOR|_#>___________________________##*/
 
 /*#BEGIN#________________________>#_|SETTER|_#<_____________________________##*/
 
-void	HumanB::setWeapon(Weapon &weapon)
+void	Fixed::setRawBits(int const raw)
 {
-	_weapon = &weapon;
+	std::cout << "setRawBits called" << std::endl;
+	_raw_binary = raw;
 }
 
 /*#END#__________________________<#_|SETTER|_#>_____________________________##*/
 
 /*#BEGIN#________________________>#_|GETTER|_#<_____________________________##*/
 
+int	Fixed::getRawBits(void) const
+{
+	std::cout << "getRawBits called" << std::endl;
+	return (_raw_binary);
+}
+
 /*#END#__________________________<#_|GETTER|_#>_____________________________##*/
+
+/*#BEGIN#_______________________>#_|OPERATOR|_#<____________________________##*/
+
+Fixed	&Fixed::operator=(const Fixed &src)
+{
+	std::cout << "Fixed operator '=' called" << std::endl;
+	if (this != &src)
+		_raw_binary = src.getRawBits();
+	return *this;
+}
+
+std::ostream	&operator<<(std::ostream &out_stream, const Fixed &src)
+{
+	out_stream << src.toFloat();
+	return (out_stream);
+}
+
+/*#END#_________________________<#_|OPERATOR|_#>____________________________##*/
 
 /*#BEGIN#________________________>#_|OTHER|_#<______________________________##*/
 
-void	HumanB::attack(void)
+int	Fixed::toInt(void) const
 {
-	std::string	type;
+	return (_raw_binary >> _binary_point_pos);
+}
 
-	if (!_weapon)
-		type = "";
-	else
-		type = _weapon->getType();
-	if (!type.size())
-		std::cout << getName()
-				  << " attacks with bare hand, because doesn't have weapon"
-				  << std::endl;
-	else
-		std::cout << getName() << " attacks with their " << type
-				  << std::endl;
+float	Fixed::toFloat(void) const
+{
+	return (static_cast<float>(this->getRawBits()) / (1 << _binary_point_pos));
 }
 
 /*#END#__________________________<#_|OTHER|_#>______________________________##*/

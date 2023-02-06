@@ -39,5 +39,3 @@ int	main(void)
 			  << std::endl;
 	return (0);
 }
-
-// g++ -Wall -Werror -Wextra --std=c++98 -g3 main.cpp -o prog && ./prog
