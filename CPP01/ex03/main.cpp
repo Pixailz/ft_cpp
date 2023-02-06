@@ -38,22 +38,3 @@ int	main(void)
 	}
 	return (0);
 }
-
-// #include <iostream>
-/**
- * <object>	std::cout
- * <object>	std::endl
- */
-
-// int	main(void)
-// {
-// 	Weapon		test;
-// 	std::string	&type_change = (std::string &)test.getType();
-// 	std::string	&type_print = (std::string &)test.getType();
-
-// 	test.setType("test");
-// 	std::cout << type_print << std::endl;
-// 	type_change = "test2";
-// 	std::cout << type_print << std::endl;
-// 	return (0);
-// }

@@ -75,12 +75,20 @@ int	have_error(int r_value)
 	return (r_value);
 }
 
+// int	main(int argc, char **argv)
+// {
+// 	int	r_value = 0;
+
+// 	if (argc != 4)
+// 		return (have_error(1));
+// 	r_value = sed_for_winner(argv[1], argv[2], argv[3]);
+// 	return (have_error(r_value));
+// }
+
 int	main(int argc, char **argv)
 {
-	int	r_value = 0;
+	std::string	string_variable = std::string("this is a test");
 
-	if (argc != 4)
-		return (have_error(1));
-	r_value = sed_for_winner(argv[1], argv[2], argv[3]);
-	return (have_error(r_value));
+	std::cout << string_variable.find("is") << std::endl;
+	std::cout << string_variable.find("is") << std::endl;
 }
