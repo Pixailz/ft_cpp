@@ -2,14 +2,10 @@
 ##                                                           ______ _         ##
 ## DETAILS:                                                  | ___ (_)        ##
 ##- FILENAME		Makefile                                 | |_/ /___  __   ##
-##- PROJECT_NAME	None                                     |  __/| \ \/ /   ##
+##- PROJECT_NAME	CPP02-ex00                               |  __/| \ \/ /   ##
 ##- AUTHOR			Pixailz                                  | |   | |>  <    ##
 ##- CREATED			2023−02−03T14:54:04+0100                 \_|   |_/_/\_\   ##
 ##                                                                            ##
-## DESCRIPTION:                                                               ##
-### None                                                                      ##
-##                                                                            ##
-## VERSION:[ALPHA|BETA]_MAJOR.MINOR.PATCH                                     ##
 ##END#____________________________<#_|INFO|_#>________________________________##
 
 ##BEGIN#_________________________>#_|CONFIG|_#<_______________________________##
@@ -36,7 +32,8 @@ MKDIR					:= mkdir -p
 MAKE					:= make
 PRINTF					:= @printf
 
-SRC_CPP					:= main.cpp
+SRC_CPP					:= main.cpp				\
+						   Fixed.cpp
 
 OBJ_CPP					:= $(addprefix $(OBJ_DIR)/,$(SRC_CPP:%.cpp=%.o))
 SRC_CPP					:= $(addprefix $(SRC_DIR)/,$(SRC_CPP))
