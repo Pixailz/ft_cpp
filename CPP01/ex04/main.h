@@ -17,6 +17,8 @@
  * <function>	std::size()
  * <function>	std::c_str()
  * <function>	std::getline()
+ * <function>	std::find()
+ * <object>		std::string::npos
  * <object>		std::string
  */
 

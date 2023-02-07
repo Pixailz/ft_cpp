@@ -13,32 +13,19 @@
 std::string	sed_replace_line(std::string line, std::string str1, std::string str2)
 {
 	std::string	replaced;
-	size_t		pos_line	= 0;
-	size_t		len_str_1	= str1.size();
-	size_t		len_str_2	= str2.size();
-	size_t		matching;
+	size_t		find_pos;
 
-	while (line[pos_line])
+	find_pos = line.find(str1);
+	if (find_pos == std::string::npos)
+		return (line);
+	while (find_pos != std::string::npos)
 	{
-		if (line[pos_line] == str1[0])
-		{
-			matching = 1;
-			for (size_t i = 1; i < len_str_1; i++)
-				if (line[pos_line + i] == str1[i])
-					matching++;
-			if (matching == len_str_1)
-			{
-				for (size_t i = 0; i < len_str_2; i++)
-					replaced += str2[i];
-				pos_line += len_str_1 - 1;
-			}
-			else
-				replaced += line[pos_line];
-		}
-		else
-			replaced += line[pos_line];
-		pos_line++;
+		replaced += line.substr(0, find_pos);
+		replaced += str2;
+		line = std::string(line, find_pos + str1.size());
+		find_pos = line.find(str1);
 	}
+	replaced += line;
 	return (replaced);
 }
 
@@ -75,20 +62,12 @@ int	have_error(int r_value)
 	return (r_value);
 }
 
-// int	main(int argc, char **argv)
-// {
-// 	int	r_value = 0;
-
-// 	if (argc != 4)
-// 		return (have_error(1));
-// 	r_value = sed_for_winner(argv[1], argv[2], argv[3]);
-// 	return (have_error(r_value));
-// }
-
 int	main(int argc, char **argv)
 {
-	std::string	string_variable = std::string("this is a test");
+	int	r_value = 0;
 
-	std::cout << string_variable.find("is") << std::endl;
-	std::cout << string_variable.find("is") << std::endl;
+	if (argc != 4)
+		return (have_error(1));
+	r_value = sed_for_winner(argv[1], argv[2], argv[3]);
+	return (have_error(r_value));
 }
