@@ -10,8 +10,6 @@
 
 #include "Contact.hpp"
 
-/*#BEGIN#_______________________>#_|PRIVATE|_#<_____________________________##*/
-
 void	Contact::print_contact(void)
 {
 	std::cout << this->index << std::endl
@@ -31,12 +29,6 @@ void	Contact::print_contact_formated(int length)
 			  << get_formated(this->phone_number, length) << std::endl;
 }
 
-/*#END#_________________________<#_|PRIVATE|_#>_____________________________##*/
-
-/*#BEGIN#________________________>#_|PUBLIC|_#<_____________________________##*/
-
-/*#BEGIN#_____________________>#_|CONSTRUCTOR|_#<___________________________##*/
-
 Contact::Contact(void)
 {
 	this->index = 0;
@@ -48,18 +40,10 @@ Contact::Contact(void)
 	// std::cout << "Contact class created\n";
 }
 
-/*#END#_______________________<#_|CONSTRUCTOR|_#>___________________________##*/
-
-/*#BEGIN#______________________>#_|DESTRUCTOR|_#<___________________________##*/
-
 Contact::~Contact(void) { }
 // {
 // 	std::cout << "Contact class destructed\n";
 // }
-
-/*#END#________________________<#_|DESTRUCTOR|_#>___________________________##*/
-
-/*#BEGIN#________________________>#_|SETTER|_#<_____________________________##*/
 
 void	Contact::set_index(int index)
 {
@@ -90,10 +74,6 @@ void	Contact::set_darkest_secret(std::string darkest_secret)
 {
 	this->darkest_secret = darkest_secret;
 }
-
-/*#END#__________________________<#_|SETTER|_#>_____________________________##*/
-
-/*#BEGIN#________________________>#_|GETTER|_#<_____________________________##*/
 
 std::string	Contact::get_first_name(void)
 {
@@ -129,7 +109,3 @@ std::string	Contact::get_formated(std::string content, int length)
 	else
 		return (std::string(content, 0, length - 1) + '.');
 }
-
-/*#END#__________________________<#_|GETTER|_#>_____________________________##*/
-
-/*#END#__________________________<#_|PUBLIC|_#>_____________________________##*/

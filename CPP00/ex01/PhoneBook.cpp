@@ -10,8 +10,6 @@
 
 #include "PhoneBook.hpp"
 
-/*#BEGIN#_____________________>#_|CONSTRUCTOR|_#<___________________________##*/
-
 PhoneBook::PhoneBook(void)
 {
 	nb_phone_book = 0;
@@ -19,20 +17,10 @@ PhoneBook::PhoneBook(void)
 	// std::cout << "PhoneBook class created\n";
 }
 
-/*#END#_______________________<#_|CONSTRUCTOR|_#>___________________________##*/
-
-/*#BEGIN#______________________>#_|DESTRUCTOR|_#<___________________________##*/
-
 PhoneBook::~PhoneBook(void) { }
 // {
 // 	std::cout << "PhoneBook class destructed\n";
 // }
-
-/*#END#________________________<#_|DESTRUCTOR|_#>___________________________##*/
-
-/*#BEGIN#_______________________>#_|PRIVATE|_#<_____________________________##*/
-
-/*#BEGIN#________________________>#_|SETTER|_#<_____________________________##*/
 
 void	PhoneBook::add_phone_book(void)
 {
@@ -71,10 +59,6 @@ void	PhoneBook::update_index(void)
 		this->phone_book[i].set_index(i + 1);
 }
 
-/*#END#__________________________<#_|SETTER|_#>_____________________________##*/
-
-/*#BEGIN#________________________>#_|GETTER|_#<_____________________________##*/
-
 void	PhoneBook::search_phone_book(void)
 {
 	std::string	line;
@@ -107,8 +91,6 @@ void	PhoneBook::print_right_padded(std::string str)
 	std::cout << std::left << std::setfill(' ') << std::setw(25) << str;
 }
 
-/*#END#__________________________<#_|GETTER|_#>_____________________________##*/
-
 std::string	PhoneBook::get_entry(std::string name)
 {
 	std::string	line;
@@ -137,10 +119,6 @@ bool	PhoneBook::check_add_phone(Contact user_input)
 	return (false);
 }
 
-/*#END#_________________________<#_|PRIVATE|_#>_____________________________##*/
-
-/*#BEGIN#________________________>#_|PUBLIC|_#<_____________________________##*/
-
 void	PhoneBook::main_loop(void)
 {
 	std::string	user_input;
@@ -164,5 +142,3 @@ void	PhoneBook::main_loop(void)
 			std::cout << "wrong input" << std::endl;
 	}
 }
-
-/*#END#__________________________<#_|PUBLIC|_#>_____________________________##*/

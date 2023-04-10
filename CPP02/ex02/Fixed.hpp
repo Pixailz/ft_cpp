@@ -12,8 +12,6 @@
 #ifndef FIXED_HPP
 # define FIXED_HPP
 
-/*#BEGIN#_____________________>#_|DEPENDENCIES|_#<__________________________##*/
-
 #include <iostream>
 /**
  * <object>		std::cout
@@ -25,8 +23,6 @@
 /**
  * <function>	roundf()
  */
-
-/*#END#_______________________<#_|DEPENDENCIES|_#>__________________________##*/
 
 # define FIXED_POINT_LEN			16
 
@@ -64,10 +60,6 @@ class Fixed
 		float	toFloat(void) const;
 };
 
-/*#BEGIN#_____________________>#_|PROTOTYPE(S)|_#<__________________________##*/
-
 std::ostream	&operator<<(std::ostream &out_stream, const Fixed &src);
-
-/*#END#_______________________<#_|PROTOTYPE(S)|_#>__________________________##*/
 
 #endif // FIXED_CLASS

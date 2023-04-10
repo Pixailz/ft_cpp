@@ -8,8 +8,6 @@
 /*#                                                                         ##*/
 /*#END#___________________________<#_|INFO|_#>______________________________##*/
 
-/*#BEGIN#_____________________>#_|DEPENDENCIES|_#<__________________________##*/
-
 # include <string>
 /**
  * <object>	std::string
@@ -20,8 +18,6 @@
  * <object>	std::cout
  * <object>	std::endl
  */
-
-/*#END#_______________________<#_|DEPENDENCIES|_#>__________________________##*/
 
 #ifndef ZOMBIE_HPP
 # define ZOMBIE_HPP
@@ -49,6 +45,5 @@ class Zombie
 		void	announce(void);
 
 };
-
 
 # endif // ZOMBIE_CLASS

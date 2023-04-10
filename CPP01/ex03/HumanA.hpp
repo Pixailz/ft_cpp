@@ -11,8 +11,6 @@
 #ifndef HUMANA_HPP
 # define HUMANA_HPP
 
-/*#BEGIN#_____________________>#_|DEPENDENCIES|_#<__________________________##*/
-
 #include "Weapon.hpp"
 
 #include <string>
@@ -25,8 +23,6 @@
  * <object>	std::cout
  * <object>	std::endl
  */
-
-/*#END#_______________________<#_|DEPENDENCIES|_#>__________________________##*/
 
 class HumanA
 {
@@ -50,13 +46,5 @@ class HumanA
 		// OTHER(S) FUNCTION
 		void	attack(void);
 };
-
-/*#BEGIN#________________________>#_|TYPEDEF|_#<____________________________##*/
-
-/*#END#__________________________<#_|TYPEDEF|_#>____________________________##*/
-
-/*#BEGIN#_____________________>#_|PROTOTYPE(S)|_#<__________________________##*/
-
-/*#END#_______________________<#_|PROTOTYPE(S)|_#>__________________________##*/
 
 #endif // HUMANA_CLASS

@@ -11,8 +11,6 @@
 #ifndef PHONEBOOK_CLASS
 # define PHONEBOOK_CLASS
 
-/*#BEGIN#_____________________>#_|DEPENDENCIES|_#<__________________________##*/
-
 # include "Contact.hpp"
 
 # include <cstdlib>
@@ -44,13 +42,7 @@
  * <function>	std::string::c_str()
  */
 
-/*#END#_______________________<#_|DEPENDENCIES|_#>__________________________##*/
-
-/*#BEGIN#________________________>#_|CONFIG|_#<_____________________________##*/
-
 # define PHONE_BOOK_SIZE		8
-
-/*#END#__________________________<#_|CONFIG|_#>_____________________________##*/
 
 class PhoneBook
 {

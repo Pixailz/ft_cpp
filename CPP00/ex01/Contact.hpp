@@ -11,8 +11,6 @@
 #ifndef CONTACT_CLASS
 # define CONTACT_CLASS
 
-/*#BEGIN#_____________________>#_|DEPENDENCIES|_#<__________________________##*/
-
 #include <iostream>
 /**
  * <object>		std::cout
@@ -30,8 +28,6 @@
  * <object>		std::string
  * <function>	std::string::clear()
  */
-
-/*#END#_______________________<#_|DEPENDENCIES|_#>__________________________##*/
 
 class Contact
 {

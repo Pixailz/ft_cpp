@@ -10,16 +10,6 @@
 
 # include "Fixed.hpp"
 
-/*#BEGIN#_______________________>#_|PRIVATE|_#<_____________________________##*/
-
-
-
-/*#END#_________________________<#_|PRIVATE|_#>_____________________________##*/
-
-/*#BEGIN#________________________>#_|PUBLIC|_#<_____________________________##*/
-
-/*#BEGIN#_____________________>#_|CONSTRUCTOR|_#<___________________________##*/
-
 Fixed::Fixed(void) : _raw_binary(0)
 {
 	std::cout << "Fixed class created (default)" << std::endl;
@@ -31,18 +21,10 @@ Fixed::Fixed(const Fixed &copy)
 	*this = copy;
 }
 
-/*#END#_______________________<#_|CONSTRUCTOR|_#>___________________________##*/
-
-/*#BEGIN#______________________>#_|DESTRUCTOR|_#<___________________________##*/
-
 Fixed::~Fixed(void)
 {
 	std::cout << "Fixed class destructed" << std::endl;
 }
-
-/*#END#________________________<#_|DESTRUCTOR|_#>___________________________##*/
-
-/*#BEGIN#________________________>#_|SETTER|_#<_____________________________##*/
 
 void	Fixed::setRawBits(int const raw)
 {
@@ -50,19 +32,11 @@ void	Fixed::setRawBits(int const raw)
 	_raw_binary = raw;
 }
 
-/*#END#__________________________<#_|SETTER|_#>_____________________________##*/
-
-/*#BEGIN#________________________>#_|GETTER|_#<_____________________________##*/
-
 int	Fixed::getRawBits(void) const
 {
 	std::cout << "getRawBits called" << std::endl;
 	return (_raw_binary);
 }
-
-/*#END#__________________________<#_|GETTER|_#>_____________________________##*/
-
-/*#BEGIN#_______________________>#_|OPERATOR|_#<____________________________##*/
 
 Fixed	&Fixed::operator=(const Fixed &src)
 {
@@ -71,13 +45,3 @@ Fixed	&Fixed::operator=(const Fixed &src)
 		_raw_binary = src.getRawBits();
 	return *this;
 }
-
-/*#END#_________________________<#_|OPERATOR|_#>____________________________##*/
-
-/*#BEGIN#________________________>#_|OTHER|_#<______________________________##*/
-
-
-
-/*#END#__________________________<#_|OTHER|_#>______________________________##*/
-
-/*#END#__________________________<#_|PUBLIC|_#>_____________________________##*/

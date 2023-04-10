@@ -10,10 +10,6 @@
 
 #include "Zombie.hpp"
 
-/*#BEGIN#________________________>#_|PUBLIC|_#<_____________________________##*/
-
-/*#BEGIN#_____________________>#_|CONSTRUCTOR|_#<___________________________##*/
-
 Zombie::Zombie(void)
 {
 	this->name.clear();
@@ -27,34 +23,18 @@ Zombie::Zombie(std::string name)
 			  << name << std::endl;
 }
 
-/*#END#_______________________<#_|CONSTRUCTOR|_#>___________________________##*/
-
-/*#BEGIN#______________________>#_|DESTRUCTOR|_#<___________________________##*/
-
 Zombie::~Zombie(void)
 {
 	std::cout << "Zombie class destroyed with name : "
 			  << this->name << std::endl;
 }
 
-/*#END#________________________<#_|DESTRUCTOR|_#>___________________________##*/
-
-/*#BEGIN#________________________>#_|SETTER|_#<_____________________________##*/
-
 void	Zombie::set_name(std::string name)
 {
 	this->name = name;
 }
 
-/*#END#__________________________<#_|SETTER|_#>_____________________________##*/
-
-/*#BEGIN#________________________>#_|OTHER|_#<______________________________##*/
-
 void	Zombie::announce(void)
 {
 	std::cout << this->name << ": BraiiiiiiinnnzzzZ..." << std::endl;
 }
-
-/*#END#__________________________<#_|OTHER|_#>______________________________##*/
-
-/*#END#__________________________<#_|PUBLIC|_#>_____________________________##*/
