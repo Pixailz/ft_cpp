@@ -10,49 +10,54 @@
 
 # include "Fixed.hpp"
 
+void	debug(std::string msg)
+{
+	std::cout << msg << std::endl;
+}
+
 Fixed::Fixed(void) : _raw_binary(0)
 {
-	std::cout << "Fixed class created (default)" << std::endl;
+	debug("Fixed class created (default)");
 }
 
 Fixed::Fixed(const Fixed &copy)
 {
-	std::cout << "Fixed class created (by copy)" << std::endl;
+	debug("Fixed class created (by copy)");
 	*this = copy;
 }
 
 Fixed::Fixed(const int raw_value)
 {
 	_raw_binary = raw_value << _binary_point_pos;
-	std::cout << "Fixed class created (with int)" << std::endl;
+	debug("Fixed class created (with int)");
 }
 
 Fixed::Fixed(const float raw_value)
 {
 	_raw_binary = roundf(raw_value * (1 << _binary_point_pos));
-	std::cout << "Fixed class created (with float)" << std::endl;
+	debug("Fixed class created (with float)");
 }
 
 Fixed::~Fixed(void)
 {
-	std::cout << "Fixed class destructed" << std::endl;
+	debug("Fixed class destructed");
 }
 
 void	Fixed::setRawBits(int const raw)
 {
-	std::cout << "setRawBits called" << std::endl;
+	debug("setRawBits called");
 	_raw_binary = raw;
 }
 
 int	Fixed::getRawBits(void) const
 {
-	std::cout << "getRawBits called" << std::endl;
+	debug("getRawBits called");
 	return (_raw_binary);
 }
 
 Fixed	&Fixed::operator=(const Fixed &src)
 {
-	std::cout << "Fixed operator '=' called" << std::endl;
+	debug("Fixed operator '=' called");
 	if (this != &src)
 		_raw_binary = src.getRawBits();
 	return *this;

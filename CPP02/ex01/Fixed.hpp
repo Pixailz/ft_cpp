@@ -24,7 +24,7 @@
  * <function>	roundf()
  */
 
-# define FIXED_POINT_LEN			16
+# define FIXED_POINT_LEN			8
 
 class Fixed
 {

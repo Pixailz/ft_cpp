@@ -24,6 +24,7 @@
  * <function>	roundf()
  */
 
+# define DEBUG						0
 # define FIXED_POINT_LEN			16
 
 class Fixed
@@ -45,19 +46,47 @@ class Fixed
 		// DESTRUCTOR(S)
 		~Fixed(void);
 
-		// OPERATOR(S)
-		Fixed	&operator=(const Fixed &src);
-		Fixed	&operator>=(const Fixed &Fixed1, const Fixed &Fixed2);
-
 		// SETTER(S) FUNCTION
-		void	setRawBits(const int raw_value);
+		void		setRawBits(const int raw_value);
 
 		// GETTER(S) FUNCTION
-		int		getRawBits(void) const;
+		int			getRawBits(void) const;
 
+		// OPERATOR(S)
+		Fixed				&operator=(const Fixed &src);
+		/*
+		BASE				(A>B)
+
+		COMPOSITE			==: !(A>B) && !(B>A)
+							>=:	A>B || A==B
+							<:	!(A>B) && !(A==B)
+							<=:	!(A>B)
+							!=:	!(A==B)
+		*/
+		bool				operator>(const Fixed &B) const;
+		bool				operator==(const Fixed &B) const;
+		bool				operator!=(const Fixed &B) const;
+		bool				operator>=(const Fixed &B) const;
+		bool				operator<(const Fixed &B) const;
+		bool				operator<=(const Fixed &B) const;
+
+		Fixed				operator+(const Fixed &B) const;
+		Fixed				operator-(const Fixed &B) const;
+		Fixed				operator*(const Fixed &B) const;
+		Fixed				operator/(const Fixed &B) const;
+
+		Fixed				&operator++(void);	// prefix
+		Fixed				operator++(int);	// postfix
+		Fixed				&operator--(void);	// prefix
+		Fixed				operator--(int);	// postfix
+
+		static Fixed		&min(Fixed &lhs, Fixed &rhs);
+		static const Fixed	&min(const Fixed &lhs, const Fixed &rhs);
+		static Fixed		&max(Fixed &lhs, Fixed &rhs);
+		static const Fixed	&max(const Fixed &lhs, const Fixed &rhs);
 		// OTHER(S) FUNCTION
-		int		toInt(void) const;
-		float	toFloat(void) const;
+		int					toInt(void) const;
+		float				toFloat(void) const;
 };
 
 std::ostream	&operator<<(std::ostream &out_stream, const Fixed &src);

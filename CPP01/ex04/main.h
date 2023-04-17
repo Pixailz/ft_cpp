@@ -10,7 +10,6 @@
 
 #ifndef MAIN_H
 # define MAIN_H
-/*#BEGIN#_____________________>#_|DEPENDENCIES|_#<__________________________##*/
 
 # include <string>
 /**
@@ -37,7 +36,5 @@
  * <object>		std::cerr
  * <object>		std::endl
  */
-
-/*#END#_______________________<#_|DEPENDENCIES|_#>__________________________##*/
 
 #endif // MAIN_H

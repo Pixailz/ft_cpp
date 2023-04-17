@@ -15,8 +15,6 @@
 #ifndef HARL_HPP
 # define HARL_HPP
 
-/*#BEGIN#_____________________>#_|DEPENDENCIES|_#<__________________________##*/
-
 # include <iostream>
 /**
  * <object>		std::cout
@@ -25,13 +23,7 @@
  * <object>		std::endl
  */
 
-/*#END#_______________________<#_|DEPENDENCIES|_#>__________________________##*/
-
-/*#BEGIN#________________________>#_|CONFIG|_#<_____________________________##*/
-
 # define	NB_FUNCTION					4
-
-/*#END#__________________________<#_|CONFIG|_#>_____________________________##*/
 
 class Harl
 {
