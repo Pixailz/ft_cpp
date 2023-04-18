@@ -1,7 +1,13 @@
-# compiled things
+# vscode settings folder
+.vscode
 
+# log file
+*.log
+
+# compiled things
 *obj/
 
+# all program name
 *megaphone
 *contact_app
 *brainz
@@ -12,6 +18,5 @@
 *harl
 *harlFilter
 *fixed
+*clap_trap
 
-# vscode settings folder
-.vscode
