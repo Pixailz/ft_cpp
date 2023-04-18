@@ -2,7 +2,7 @@
 /*#                                                        ______ _         ##*/
 /*# DETAILS:                                               | ___ (_)        ##*/
 /*#- FILENAME		main.cpp                               | |_/ /___  __   ##*/
-/*#- PROJECT_NAME	CPP02-ex01                             |  __/| \ \/ /   ##*/
+/*#- PROJECT_NAME	CPP02-ex02                             |  __/| \ \/ /   ##*/
 /*#- AUTHOR			Pixailz                                | |   | |>  <    ##*/
 /*#- CREATED		2023−02−03T19:51:24+0100               \_|   |_/_/\_\   ##*/
 /*#                                                                         ##*/

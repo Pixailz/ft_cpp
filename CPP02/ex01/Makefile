@@ -2,7 +2,7 @@
 ##                                                           ______ _         ##
 ## DETAILS:                                                  | ___ (_)        ##
 ##- FILENAME		Makefile                                 | |_/ /___  __   ##
-##- PROJECT_NAME	CPP02-ex00                               |  __/| \ \/ /   ##
+##- PROJECT_NAME	CPP02-ex01                               |  __/| \ \/ /   ##
 ##- AUTHOR			Pixailz                                  | |   | |>  <    ##
 ##- CREATED			2023−02−03T14:54:04+0100                 \_|   |_/_/\_\   ##
 ##                                                                            ##
