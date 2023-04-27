@@ -14,10 +14,12 @@
 
 ##BEGIN#_________________________>#_|CONFIG|_#<_______________________________##
 
-TARGET					:= clap_trap
+TARGET					:= animal
 
 CC						:= g++
 CFLAGS					:= -Wall -Wextra --std=c++98
+
+SHELL					:= /bin/bash
 
 SRC_DIR					:= .
 OBJ_DIR					:= obj
@@ -36,11 +38,15 @@ MKDIR					:= mkdir -p
 MAKE					:= make
 PRINTF					:= @printf
 
-SRC_CPP					:= main.cpp			\
-						   ClapTrap.cpp
+SRC_CPP					:= main.cpp				\
+						   Animal.cpp			\
+						   Cat.cpp				\
+						   Dog.cpp
 
 OBJ_CPP					:= $(addprefix $(OBJ_DIR)/,$(SRC_CPP:%.cpp=%.o))
 SRC_CPP					:= $(addprefix $(SRC_DIR)/,$(SRC_CPP))
+
+PRINT_ANSI				= printf "%b" $(1)
 
 ##END#___________________________<#_|CONFIG|_#>_______________________________##
 
@@ -73,6 +79,7 @@ fclean:					clean
 re:						fclean $(TARGET)
 
 run:						re
+	@$(call PRINT_ANSI,"\x1b[2J\x1b[H")
 	./$(TARGET)
 
 ##END#___________________________<#_|RULES|_#>________________________________##

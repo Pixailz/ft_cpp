@@ -24,7 +24,7 @@ void	debug(std::string msg)
 		std::cout << msg << std::endl;
 }
 
-ClapTrap::ClapTrap(std::string name) : _name(name), _hp(10), _mp(10), _dmg(1)
+ClapTrap::ClapTrap(std::string name) : _name(name), _hp(10), _mp(10), _dmg(0)
 {
 	debug("ClapTrap class created");
 }

@@ -22,7 +22,9 @@
  * <object>		std::endl
  */
 
-# define DEBUG		1
+# ifndef DEBUG
+#  define DEBUG		1
+# endif
 
 # define WRONG_UINT	((unsigned int)-1)
 

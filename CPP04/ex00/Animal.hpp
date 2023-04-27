@@ -1,7 +1,7 @@
 /*#BEGIN#_________________________>#_|INFO|_#<______________________________##*/
 /*#                                                        ______ _         ##*/
 /*# DETAILS:                                               | ___ (_)        ##*/
-/*#- FILENAME		ScavTrap.cpp                               | |_/ /___  __   ##*/
+/*#- FILENAME		Animal.hpp                             | |_/ /___  __   ##*/
 /*#- PROJECT_NAME	None                                   |  __/| \ \/ /   ##*/
 /*#- AUTHOR			Pixailz                                | |   | |>  <    ##*/
 /*#- CREATED		2023−01−29T23:02:00+0100               \_|   |_/_/\_\   ##*/
@@ -12,13 +12,8 @@
 /*# VERSION:[ALPHA|BETA]_MAJOR.MINOR.PATCH                                  ##*/
 /*#END#___________________________<#_|INFO|_#>______________________________##*/
 
-#ifndef SCAVTRAP_HPP
-# define SCAVTRAP_HPP
-
-#include <ClapTrap.hpp>
-/**
- * <class>		ClapTrap()
- */
+#ifndef ANIMAL_HPP
+# define ANIMAL_HPP
 
 #include <iostream>
 /**
@@ -26,28 +21,33 @@
  * <object>		std::endl
  */
 
-# ifndef DEBUG
-#  define DEBUG		1
-# endif
+# define DEBUG		1
+# define MSG_POS	20 // ANSI COL POS
 
-class ScavTrap : public ClapTrap
+class Animal
 {
+	protected:
+		std::string	_type;
+
 	private:
-		virtual void	i_identify_myself_as(void);
-		bool			_guard_gate_mode;
-
-		// SETTER
-		void	toggle_guard_gate_mode(void);
-
-		// GETTER
-		bool	get_guard_gate_mode(void);
+		virtual void	makeSound(void) const;
 
 	public:
-		// CONSTRUCTOR / DESTRUCTOR / COPY CONSTRUCTOR
-		ScavTrap(std::string name);
-		~ScavTrap(void);
-		void	guardGate(void);
-		void	attack(const std::string target);
+		// CONSTRUCTOR(S)
+		Animal(void);
+		Animal(std::string type);
+		Animal(const Animal &copy);
+
+		// DESTRUCTOR(S)
+		~Animal(void);
+
+		// OPERATOR(S) FUNCTION
+		Animal	&operator=(const Animal &src);
+
+		std::string		get_type(void) const;
+		void			set_type(std::string type);
+		void			debug(std::string msg);
+		void			introduce(void) const;
 };
 
-#endif // SCAVTRAP_CLASS
+#endif // ANIMAL_CLASS

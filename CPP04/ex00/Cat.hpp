@@ -1,7 +1,7 @@
 /*#BEGIN#_________________________>#_|INFO|_#<______________________________##*/
 /*#                                                        ______ _         ##*/
 /*# DETAILS:                                               | ___ (_)        ##*/
-/*#- FILENAME		ScavTrap.cpp                               | |_/ /___  __   ##*/
+/*#- FILENAME		Cat.hpp                                | |_/ /___  __   ##*/
 /*#- PROJECT_NAME	None                                   |  __/| \ \/ /   ##*/
 /*#- AUTHOR			Pixailz                                | |   | |>  <    ##*/
 /*#- CREATED		2023−01−29T23:02:00+0100               \_|   |_/_/\_\   ##*/
@@ -12,42 +12,23 @@
 /*# VERSION:[ALPHA|BETA]_MAJOR.MINOR.PATCH                                  ##*/
 /*#END#___________________________<#_|INFO|_#>______________________________##*/
 
-#ifndef SCAVTRAP_HPP
-# define SCAVTRAP_HPP
+#ifndef CAT_HPP
+# define CAT_HPP
 
-#include <ClapTrap.hpp>
-/**
- * <class>		ClapTrap()
- */
+# include <Animal.hpp>
 
-#include <iostream>
-/**
- * <object>		std::cout
- * <object>		std::endl
- */
-
-# ifndef DEBUG
-#  define DEBUG		1
-# endif
-
-class ScavTrap : public ClapTrap
+class Cat : public Animal
 {
 	private:
-		virtual void	i_identify_myself_as(void);
-		bool			_guard_gate_mode;
+		// VAR(S)
 
-		// SETTER
-		void	toggle_guard_gate_mode(void);
-
-		// GETTER
-		bool	get_guard_gate_mode(void);
+		// OTHER(S) FUNCTION
 
 	public:
-		// CONSTRUCTOR / DESTRUCTOR / COPY CONSTRUCTOR
-		ScavTrap(std::string name);
-		~ScavTrap(void);
-		void	guardGate(void);
-		void	attack(const std::string target);
+		// CONSTRUCTOR(S)
+		Cat(void);
+
+		void	makeSound(void);
 };
 
-#endif // SCAVTRAP_CLASS
+#endif // DOG_CLASS

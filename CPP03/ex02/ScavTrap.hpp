@@ -26,7 +26,9 @@
  * <object>		std::endl
  */
 
-# define DEBUG		1
+# ifndef DEBUG
+#  define DEBUG		1
+# endif
 
 class ScavTrap : public ClapTrap
 {
@@ -45,7 +47,7 @@ class ScavTrap : public ClapTrap
 		ScavTrap(std::string name);
 		~ScavTrap(void);
 		void	guardGate(void);
-
+		void	attack(const std::string target);
 };
 
 #endif // SCAVTRAP_CLASS

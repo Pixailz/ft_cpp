@@ -43,7 +43,6 @@ class Fixed
 
 		// GETTER(S) FUNCTION
 		int		getRawBits(void) const;
-		int		getRawBits_(void) const;
 
 		// OTHER(S) FUNCTION
 };

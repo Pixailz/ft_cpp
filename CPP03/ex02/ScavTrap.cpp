@@ -34,6 +34,12 @@ ScavTrap::~ScavTrap(void)
 	std::cout << "class destructed" << std::endl;
 }
 
+void	ScavTrap::attack(const std::string target)
+{
+	this->i_identify_myself_as();
+	this->baseAttack(target);
+}
+
 void	ScavTrap::i_identify_myself_as(void)
 {
 	std::cout << "ScavTrap (" << this->get_name() << ") : ";
