@@ -90,17 +90,22 @@ int	ClapTrap::get_mp(void)
 }
 
 
+void	ClapTrap::attack(const std::string &target)
+{
+	this->i_identify_myself_as();
+	this->attack(target);
+}
+
 void	ClapTrap::i_identify_myself_as(void)
 {
 	std::cout << "ClapTrap (" << this->get_name() << ") : ";
 }
 
-void	ClapTrap::attack(const std::string &target)
+void	ClapTrap::baseAttack(const std::string &target)
 {
 	int	curr_mp;
 
 	curr_mp = this->get_mp() - 1;
-	this->i_identify_myself_as();
 	if (curr_mp < 0)
 		std::cout << "can't attack because it have no mp left" << std::endl;
 	else

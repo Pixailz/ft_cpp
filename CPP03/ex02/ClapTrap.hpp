@@ -13,7 +13,7 @@
 /*#END#___________________________<#_|INFO|_#>______________________________##*/
 
 #ifndef CLAPTRAP_HPP
-# define CLAPTRAP_HPP
+#define CLAPTRAP_HPP
 
 #include <iostream>
 /**
@@ -22,21 +22,24 @@
  * <object>		std::endl
  */
 
-# define DEBUG		1
+# ifndef DEBUG
+#  define DEBUG		1
+# endif
 
-# define WRONG_UINT	((unsigned int)-1)
+#define WRONG_UINT ((unsigned int)-1)
 
 class ClapTrap
 {
-	private:
+	protected:
 		// VAR
-		std::string	_name;
-		int			_hp;	// health point
-		int			_mp;	// mana (energy)
-		int			_dmg;	// attack dammage
+		std::string _name;
+		int _hp;  // health point
+		int _mp;  // mana (energy)
+		int _dmg; // attack dammage
 
 		// OTHER FUNCTION
-		virtual void	i_identify_myself_as(void);			// to not prevent on child
+		virtual void i_identify_myself_as(void); // to not prevent on child
+		virtual void attack(const std::string &target);
 
 	public:
 		// CONSTRUCTOR
@@ -47,26 +50,26 @@ class ClapTrap
 		~ClapTrap(void);
 
 		// OPERATOR FUNCTION
-		ClapTrap	&operator=(const ClapTrap &src);
+		ClapTrap &operator=(const ClapTrap &src);
 
 		// SETTER
-		void			set_name(std::string name);
-		void			set_hp(int amount);
-		void			set_mp(int amount);
-		void			set_dmg(int amount);
+		void set_name(std::string name);
+		void set_hp(int amount);
+		void set_mp(int amount);
+		void set_dmg(int amount);
+
 		// GETTER
-		std::string		get_name(void);
-		int				get_hp(void);
-		int				get_mp(void);
-		int				get_dmg(void);
+		std::string get_name(void);
+		int get_hp(void);
+		int get_mp(void);
+		int get_dmg(void);
 
 		// OTHER FUNCTION
-
-		void			attack(const std::string &target);
-		void			takeDamage(unsigned int amount);
-		void			beRepaired(unsigned int amount);
+		void takeDamage(unsigned int amount);
+		void beRepaired(unsigned int amount);
+		void baseAttack(const std::string &target);
 };
 
-void	debug(std::string msg);
+void debug(std::string msg);
 
 #endif // CLAPTRAP_CLASS
