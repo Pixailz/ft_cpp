@@ -1,10 +1,10 @@
 /*#BEGIN#_________________________>#_|INFO|_#<______________________________##*/
 /*#                                                        ______ _         ##*/
 /*# DETAILS:                                               | ___ (_)        ##*/
-/*#- FILENAME		main.cpp                               | |_/ /___  __   ##*/
+/*#- FILENAME		Brain.hpp                              | |_/ /___  __   ##*/
 /*#- PROJECT_NAME	None                                   |  __/| \ \/ /   ##*/
 /*#- AUTHOR			Pixailz                                | |   | |>  <    ##*/
-/*#- CREATED		2023−04−18T00:20:29+0100               \_|   |_/_/\_\   ##*/
+/*#- CREATED		2023−01−29T23:02:00+0100               \_|   |_/_/\_\   ##*/
 /*#                                                                         ##*/
 /*# DESCRIPTION:                                                            ##*/
 /*## None                                                                   ##*/
@@ -12,32 +12,45 @@
 /*# VERSION:[ALPHA|BETA]_MAJOR.MINOR.PATCH                                  ##*/
 /*#END#___________________________<#_|INFO|_#>______________________________##*/
 
-#include <Dog.hpp>
-#include <Cat.hpp>
-#include <WrongCat.hpp>
+#ifndef BRAIN_HPP
+# define BRAIN_HPP
 
-int	main(void)
+#include <iostream>
+/**
+ * <object>		std::cout
+ * <object>		std::endl
+ */
+
+# ifndef DEBUG
+#  define DEBUG		1
+# endif
+# ifndef NB_IDEAS
+#  define NB_IDEAS	100
+# endif
+
+class Brain
 {
-	{		// BASE EXEMPLE
-		const Animal* j = new Dog();
-		const Animal* i = new Cat();
+	private:
+		// VAR(S)
+		std::string	*_ideas[100];
+		// OTHER(S) FUNCTION
 
-		delete j;
-		delete i;
-	}
-	{		// WRONG BASE EXEMPLE
-		const WrongAnimal* j = new WrongCat();
+	public:
+		// CONSTRUCTOR(S)
+		Brain(void);
+		Brain(const Brain &copy);
 
-		delete j;
-	}
-	{		// check if really no leaks
-		const Animal* animals[4] = { new Dog(), new Dog(), new Cat(), new Cat() };
+		// DESTRUCTOR(S)
+		~Brain(void);
 
-		for ( int i = 0; i < 4; i++ )
-		{
-			animals[i]->makeSound();
-			delete animals[i];
-		}
-	}
-	return (0);
-}
+		// OPERATOR(S) FUNCTION
+		Brain	&operator=(const Brain &src);
+
+		// SETTER(S)
+		void	set_ideas(std::string ideas[]);
+
+		// OTHER(S)
+		void	say_ideas(void);
+};
+
+#endif // BRAIN_CLASS

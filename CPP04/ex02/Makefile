@@ -38,12 +38,12 @@ MKDIR					:= mkdir -p
 MAKE					:= make
 PRINTF					:= @printf
 
-SRC_CPP					:= main.cpp						\
-						   Animal/Animal.cpp			\
-						   Animal/Cat.cpp				\
-						   Animal/Dog.cpp				\
-						   Animal/Brain.cpp				\
-						   WrongAnimal/WrongAnimal.cpp	\
+SRC_CPP					:= main.cpp							\
+						   Animal/Animal_a.cpp				\
+						   Animal/Cat.cpp					\
+						   Animal/Dog.cpp					\
+						   Animal/Brain.cpp					\
+						   WrongAnimal/WrongAnimal_a.cpp	\
 						   WrongAnimal/WrongCat.cpp
 
 OBJ_CPP					:= $(addprefix $(OBJ_DIR)/,$(SRC_CPP:%.cpp=%.o))

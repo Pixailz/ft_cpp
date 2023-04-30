@@ -1,10 +1,10 @@
 /*#BEGIN#_________________________>#_|INFO|_#<______________________________##*/
 /*#                                                        ______ _         ##*/
 /*# DETAILS:                                               | ___ (_)        ##*/
-/*#- FILENAME		main.cpp                               | |_/ /___  __   ##*/
+/*#- FILENAME		Dog.hpp                                | |_/ /___  __   ##*/
 /*#- PROJECT_NAME	None                                   |  __/| \ \/ /   ##*/
 /*#- AUTHOR			Pixailz                                | |   | |>  <    ##*/
-/*#- CREATED		2023−04−18T00:20:29+0100               \_|   |_/_/\_\   ##*/
+/*#- CREATED		2023−01−29T23:02:00+0100               \_|   |_/_/\_\   ##*/
 /*#                                                                         ##*/
 /*# DESCRIPTION:                                                            ##*/
 /*## None                                                                   ##*/
@@ -12,32 +12,23 @@
 /*# VERSION:[ALPHA|BETA]_MAJOR.MINOR.PATCH                                  ##*/
 /*#END#___________________________<#_|INFO|_#>______________________________##*/
 
-#include <Dog.hpp>
-#include <Cat.hpp>
-#include <WrongCat.hpp>
+#ifndef DOG_HPP
+# define DOG_HPP
 
-int	main(void)
+# include <Animal_a.hpp>
+
+class Dog : public Animal_a
 {
-	{		// BASE EXEMPLE
-		const Animal* j = new Dog();
-		const Animal* i = new Cat();
+	private:
+		// VAR(S)
 
-		delete j;
-		delete i;
-	}
-	{		// WRONG BASE EXEMPLE
-		const WrongAnimal* j = new WrongCat();
+		// OTHER(S) FUNCTION
 
-		delete j;
-	}
-	{		// check if really no leaks
-		const Animal* animals[4] = { new Dog(), new Dog(), new Cat(), new Cat() };
+	public:
+		// CONSTRUCTOR(S)
+		Dog(void);
 
-		for ( int i = 0; i < 4; i++ )
-		{
-			animals[i]->makeSound();
-			delete animals[i];
-		}
-	}
-	return (0);
-}
+		void	makeSound(void) const;
+};
+
+#endif // DOG_CLASS

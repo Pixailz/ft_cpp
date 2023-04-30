@@ -1,7 +1,7 @@
 /*#BEGIN#_________________________>#_|INFO|_#<______________________________##*/
 /*#                                                        ______ _         ##*/
 /*# DETAILS:                                               | ___ (_)        ##*/
-/*#- FILENAME		Animal.cpp                             | |_/ /___  __   ##*/
+/*#- FILENAME		WrongAnimal_a.cpp                        | |_/ /___  __   ##*/
 /*#- PROJECT_NAME	None                                   |  __/| \ \/ /   ##*/
 /*#- AUTHOR			Pixailz                                | |   | |>  <    ##*/
 /*#- CREATED		2023−01−29T23:02:00+0100               \_|   |_/_/\_\   ##*/
@@ -12,13 +12,13 @@
 /*# VERSION:[ALPHA|BETA]_MAJOR.MINOR.PATCH                                  ##*/
 /*#END#___________________________<#_|INFO|_#>______________________________##*/
 
-# include <Animal.hpp>
+# include <WrongAnimal_a.hpp>
 /**
  * <object>		object
  * <function>	function()
  */
 
-void	Animal::debug(std::string msg)
+void	WrongAnimal_a::debug(std::string msg)
 {
 	if (DEBUG == 1)
 	{
@@ -27,51 +27,51 @@ void	Animal::debug(std::string msg)
 	}
 }
 
-Animal::Animal(void) : _type("Animol")
+WrongAnimal_a::WrongAnimal_a(void) : _type("WrongAnimol")
 {
-	Animal::debug("Animal class created");
+	WrongAnimal_a::debug("WrongAnimal_a class created");
 }
 
-Animal::Animal(std::string type) : _type(type)
+WrongAnimal_a::WrongAnimal_a(std::string type) : _type(type)
 {
-	Animal::debug("Animal class created (with string)");
+	WrongAnimal_a::debug("WrongAnimal_a class created (with string)");
 }
 
-Animal::Animal(const Animal &copy)
+WrongAnimal_a::WrongAnimal_a(const WrongAnimal_a &copy)
 {
 	*this = copy;
-	Animal::debug("Animal class created (by copy)");
+	WrongAnimal_a::debug("WrongAnimal_a class created (by copy)");
 }
 
-Animal::~Animal(void)
+WrongAnimal_a::~WrongAnimal_a(void)
 {
-	Animal::debug("Animal class destructed");
+	WrongAnimal_a::debug("WrongAnimal_a class destructed");
 }
 
-Animal	&Animal::operator=(const Animal &src)
+WrongAnimal_a	&WrongAnimal_a::operator=(const WrongAnimal_a &src)
 {
 	_type = src.get_type();
-	Animal::debug("Animal operator '=' called");
+	WrongAnimal_a::debug("WrongAnimal_a operator '=' called");
 	return (*this);
 }
 
-void Animal::set_type(std::string type)
+void WrongAnimal_a::set_type(std::string type)
 {
 	this->_type = type;
 }
 
-std::string Animal::get_type(void) const
+std::string WrongAnimal_a::get_type(void) const
 {
 	return (this->_type);
 }
 
-void	Animal::introduce(void) const
+void	WrongAnimal_a::introduce(void) const
 {
 	std::cout << "(" << get_type() << ")";
 	std::cout << "\x1b[" << MSG_POS << "G" << ": ";
 }
 
-void	Animal::makeSound(void) const
+void	WrongAnimal_a::makeSound(void) const
 {
 	introduce();
 	std::cout << "**a little bit confused on what sound is should make**" << std::endl;
