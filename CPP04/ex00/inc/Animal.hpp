@@ -1,7 +1,7 @@
 /*#BEGIN#_________________________>#_|INFO|_#<______________________________##*/
 /*#                                                        ______ _         ##*/
 /*# DETAILS:                                               | ___ (_)        ##*/
-/*#- FILENAME		Cat.hpp                                | |_/ /___  __   ##*/
+/*#- FILENAME		Animal.hpp                             | |_/ /___  __   ##*/
 /*#- PROJECT_NAME	None                                   |  __/| \ \/ /   ##*/
 /*#- AUTHOR			Pixailz                                | |   | |>  <    ##*/
 /*#- CREATED		2023−01−29T23:02:00+0100               \_|   |_/_/\_\   ##*/
@@ -12,23 +12,45 @@
 /*# VERSION:[ALPHA|BETA]_MAJOR.MINOR.PATCH                                  ##*/
 /*#END#___________________________<#_|INFO|_#>______________________________##*/
 
-#ifndef CAT_HPP
-# define CAT_HPP
+#ifndef ANIMAL_HPP
+# define ANIMAL_HPP
 
-# include <Animal.hpp>
+#include <iostream>
+/**
+ * <object>		std::cout
+ * <object>		std::endl
+ */
 
-class Cat : public Animal
+# ifndef DEBUG
+#  define DEBUG		1
+# endif
+# ifndef MSG_POS
+#  define MSG_POS	20	//ansi pos col (for pretty messages)
+# endif
+
+class Animal
 {
-	private:
-		// VAR(S)
-
-		// OTHER(S) FUNCTION
+	protected:
+		std::string	_type;
 
 	public:
 		// CONSTRUCTOR(S)
-		Cat(void);
+		Animal(void);
+		Animal(std::string type);
+		Animal(const Animal &copy);
 
-		void	makeSound(void);
+		// DESTRUCTOR(S)
+		// Should be virtual or an error message occur
+		virtual	~Animal(void);
+
+		// OPERATOR(S) FUNCTION
+		Animal	&operator=(const Animal &src);
+
+		std::string		get_type(void) const;
+		void			set_type(std::string type);
+		void			debug(std::string msg);
+		void			introduce(void) const;
+		virtual void	makeSound(void) const;
 };
 
-#endif // DOG_CLASS
+#endif // ANIMAL_CLASS

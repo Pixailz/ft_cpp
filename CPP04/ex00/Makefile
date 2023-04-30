@@ -21,9 +21,9 @@ CFLAGS					:= -Wall -Wextra --std=c++98
 
 SHELL					:= /bin/bash
 
-SRC_DIR					:= .
+SRC_DIR					:= ./src
 OBJ_DIR					:= obj
-INC_DIR					:= .
+INC_DIR					:= ./inc
 
 CFLAGS					+= -I$(INC_DIR)
 
@@ -38,10 +38,12 @@ MKDIR					:= mkdir -p
 MAKE					:= make
 PRINTF					:= @printf
 
-SRC_CPP					:= main.cpp				\
-						   Animal.cpp			\
-						   Cat.cpp				\
-						   Dog.cpp
+SRC_CPP					:= main.cpp						\
+						   Animal/Animal.cpp			\
+						   Animal/Cat.cpp				\
+						   Animal/Dog.cpp				\
+						   WrongAnimal/WrongAnimal.cpp	\
+						   WrongAnimal/WrongCat.cpp
 
 OBJ_CPP					:= $(addprefix $(OBJ_DIR)/,$(SRC_CPP:%.cpp=%.o))
 SRC_CPP					:= $(addprefix $(SRC_DIR)/,$(SRC_CPP))

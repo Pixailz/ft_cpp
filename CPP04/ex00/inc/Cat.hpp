@@ -1,7 +1,7 @@
 /*#BEGIN#_________________________>#_|INFO|_#<______________________________##*/
 /*#                                                        ______ _         ##*/
 /*# DETAILS:                                               | ___ (_)        ##*/
-/*#- FILENAME		Cat.cpp                                | |_/ /___  __   ##*/
+/*#- FILENAME		Cat.hpp                                | |_/ /___  __   ##*/
 /*#- PROJECT_NAME	None                                   |  __/| \ \/ /   ##*/
 /*#- AUTHOR			Pixailz                                | |   | |>  <    ##*/
 /*#- CREATED		2023−01−29T23:02:00+0100               \_|   |_/_/\_\   ##*/
@@ -12,19 +12,23 @@
 /*# VERSION:[ALPHA|BETA]_MAJOR.MINOR.PATCH                                  ##*/
 /*#END#___________________________<#_|INFO|_#>______________________________##*/
 
-# include <Cat.hpp>
-/**
- * <object>		object
- * <function>	function()
- */
+#ifndef CAT_HPP
+# define CAT_HPP
 
-Cat::Cat(void) : Animal("Cat")
-{
-	Animal::debug("Cat class created");
-}
+# include <Animal.hpp>
 
-void	Cat::makeSound(void)
+class Cat : public Animal
 {
-	Animal::introduce();
-	std::cout << "**MEOW**" << std::endl;
-}
+	private:
+		// VAR(S)
+
+		// OTHER(S) FUNCTION
+
+	public:
+		// CONSTRUCTOR(S)
+		Cat(void);
+
+		void	makeSound(void) const;
+};
+
+#endif // DOG_CLASS
