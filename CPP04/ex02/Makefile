@@ -14,7 +14,7 @@
 
 ##BEGIN#_________________________>#_|CONFIG|_#<_______________________________##
 
-TARGET					:= animal
+TARGET					:= animol
 
 CC						:= g++
 CFLAGS					:= -Wall -Wextra --std=c++98
