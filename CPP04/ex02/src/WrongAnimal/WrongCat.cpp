@@ -18,13 +18,21 @@
  * <function>	function()
  */
 
-WrongCat::WrongCat(void) : WrongAnimal_a("WrongCat")
+WrongCat::WrongCat(void) : WrongAnimal("WrongCat")
 {
-	WrongAnimal_a::debug("WrongCat class created");
+	_my_brain = new Brain();
+	WrongAnimal::debug("WrongCat class created");
+}
+
+WrongCat::~WrongCat(void)
+{
+	if (_my_brain)
+		delete _my_brain;
+	WrongAnimal::debug("WrongCat class destructed");
 }
 
 void	WrongCat::makeSound(void) const
 {
-	WrongAnimal_a::introduce();
+	WrongAnimal::introduce();
 	std::cout << "**WRONGMEOW**" << std::endl;
 }

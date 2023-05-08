@@ -1,7 +1,7 @@
 /*#BEGIN#_________________________>#_|INFO|_#<______________________________##*/
 /*#                                                        ______ _         ##*/
 /*# DETAILS:                                               | ___ (_)        ##*/
-/*#- FILENAME		WrongAnimal.hpp                        | |_/ /___  __   ##*/
+/*#- FILENAME		Animal.hpp                             | |_/ /___  __   ##*/
 /*#- PROJECT_NAME	None                                   |  __/| \ \/ /   ##*/
 /*#- AUTHOR			Pixailz                                | |   | |>  <    ##*/
 /*#- CREATED		2023−01−29T23:02:00+0100               \_|   |_/_/\_\   ##*/
@@ -12,8 +12,8 @@
 /*# VERSION:[ALPHA|BETA]_MAJOR.MINOR.PATCH                                  ##*/
 /*#END#___________________________<#_|INFO|_#>______________________________##*/
 
-#ifndef WRONGANIMAL_A_HPP
-# define WRONGANIMAL_A_HPP
+#ifndef ANIMAL_HPP
+# define ANIMAL_HPP
 
 #include <iostream>
 /**
@@ -28,23 +28,24 @@
 #  define MSG_POS	20	//ansi pos col (for pretty messages)
 # endif
 
-class WrongAnimal_a
+
+class Animal
 {
 	protected:
 		std::string	_type;
 
 	public:
 		// CONSTRUCTOR(S)
-		WrongAnimal_a(void);
-		WrongAnimal_a(std::string type);
-		WrongAnimal_a(const WrongAnimal_a &copy);
+		Animal(void);
+		Animal(std::string type);
+		Animal(const Animal &copy);
 
 		// DESTRUCTOR(S)
 		// Should be virtual or an error message occur
-		virtual	~WrongAnimal_a(void);
+		virtual	~Animal(void);
 
 		// OPERATOR(S) FUNCTION
-		WrongAnimal_a	&operator=(const WrongAnimal_a &src);
+		Animal	&operator=(const Animal &src);
 
 		std::string		get_type(void) const;
 		void			set_type(std::string type);
@@ -53,4 +54,4 @@ class WrongAnimal_a
 		virtual void	makeSound(void) const = 0;
 };
 
-#endif // WRONGANIMAL_CLASS
+#endif // ANIMAL_CLASS

@@ -15,16 +15,18 @@
 #ifndef DOG_HPP
 # define DOG_HPP
 
-# include <Animal_a.hpp>
+# include <Animal.hpp>
+# include <Brain.hpp>
 
-class Dog : public Animal_a
+class Dog : public Animal
 {
 	private:
 		// VAR(S)
-
+		Brain		*_my_brain;
 		// OTHER(S) FUNCTION
 
 	public:
+		virtual	~Dog(void);
 		// CONSTRUCTOR(S)
 		Dog(void);
 

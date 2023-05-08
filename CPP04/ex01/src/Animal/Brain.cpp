@@ -26,11 +26,6 @@ void	debug(std::string msg)
 
 Brain::Brain(void)
 {
-	std::string *new_ideas;
-
-	new_ideas = new std::string[NB_IDEAS];
-
-	this->set_ideas(new_ideas);
 	debug("Brain class created");
 }
 
@@ -43,11 +38,6 @@ Brain::Brain(const Brain &copy)
 {
 	debug("Brain class created (by copy)");
 	*this = copy;
-}
-
-void	Brain::set_ideas(std::string ideas[])
-{
-	*this->_ideas = ideas;
 }
 
 void	Brain::say_ideas(void)

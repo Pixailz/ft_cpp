@@ -15,10 +15,10 @@
 #ifndef WRONGCAT_HPP
 # define WRONGCAT_HPP
 
-# include <WrongAnimal_a.hpp>
+# include <WrongAnimal.hpp>
 # include <Brain.hpp>
 
-class WrongCat : public WrongAnimal_a
+class WrongCat : public WrongAnimal
 {
 	private:
 		// VAR(S)
@@ -27,6 +27,7 @@ class WrongCat : public WrongAnimal_a
 		// OTHER(S) FUNCTION
 
 	public:
+		virtual	~WrongCat(void);
 		// CONSTRUCTOR(S)
 		WrongCat(void);
 

@@ -26,6 +26,7 @@ class Cat : public Animal
 		// OTHER(S) FUNCTION
 
 	public:
+		virtual	~Cat(void);
 		// CONSTRUCTOR(S)
 		Cat(void);
 

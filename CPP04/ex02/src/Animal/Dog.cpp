@@ -18,13 +18,21 @@
  * <function>	function()
  */
 
-Dog::Dog(void) : Animal_a("Dog")
+Dog::Dog(void) : Animal("Dog")
 {
-	Animal_a::debug("Dog class created");
+	_my_brain = new Brain();
+	Animal::debug("Dog class created");
+}
+
+Dog::~Dog(void)
+{
+	if (_my_brain)
+		delete _my_brain;
+	Animal::debug("Dog class destructed");
 }
 
 void	Dog::makeSound(void) const
 {
-	Animal_a::introduce();
+	Animal::introduce();
 	std::cout << "**WOUF**" << std::endl;
 }

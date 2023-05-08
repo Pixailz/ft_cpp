@@ -17,7 +17,7 @@
 TARGET					:= animol
 
 CC						:= g++
-CFLAGS					:= -Wall -Wextra --std=c++98
+CFLAGS					:= -Wall -Wextra --std=c++98 -g3
 
 SHELL					:= /bin/bash
 

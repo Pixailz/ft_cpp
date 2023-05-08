@@ -20,7 +20,15 @@
 
 WrongCat::WrongCat(void) : WrongAnimal("WrongCat")
 {
+	_my_brain = new Brain();
 	WrongAnimal::debug("WrongCat class created");
+}
+
+WrongCat::~WrongCat(void)
+{
+	if (_my_brain)
+		delete _my_brain;
+	WrongAnimal::debug("WrongCat class destructed");
 }
 
 void	WrongCat::makeSound(void) const

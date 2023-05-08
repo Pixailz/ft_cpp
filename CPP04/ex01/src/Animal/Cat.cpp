@@ -20,7 +20,15 @@
 
 Cat::Cat(void) : Animal("Cat")
 {
+	_my_brain = new Brain();
 	Animal::debug("Cat class created");
+}
+
+Cat::~Cat(void)
+{
+	if (_my_brain)
+		delete _my_brain;
+	Animal::debug("Cat class destructed");
 }
 
 void	Cat::makeSound(void) const

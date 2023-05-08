@@ -15,10 +15,10 @@
 #ifndef CAT_HPP
 # define CAT_HPP
 
-# include <Animal_a.hpp>
+# include <Animal.hpp>
 # include <Brain.hpp>
 
-class Cat : public Animal_a
+class Cat : public Animal
 {
 	private:
 		// VAR(S)
@@ -26,6 +26,7 @@ class Cat : public Animal_a
 		// OTHER(S) FUNCTION
 
 	public:
+		virtual	~Cat(void);
 		// CONSTRUCTOR(S)
 		Cat(void);
 

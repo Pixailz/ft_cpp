@@ -18,13 +18,21 @@
  * <function>	function()
  */
 
-Cat::Cat(void) : Animal_a("Cat")
+Cat::Cat(void) : Animal("Cat")
 {
-	Animal_a::debug("Cat class created");
+	_my_brain = new Brain();
+	Animal::debug("Cat class created");
+}
+
+Cat::~Cat(void)
+{
+	if (_my_brain)
+		delete _my_brain;
+	Animal::debug("Cat class destructed");
 }
 
 void	Cat::makeSound(void) const
 {
-	Animal_a::introduce();
+	Animal::introduce();
 	std::cout << "**MEOW**" << std::endl;
 }

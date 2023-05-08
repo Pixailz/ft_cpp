@@ -32,7 +32,7 @@ class Brain
 {
 	private:
 		// VAR(S)
-		std::string	*_ideas[100];
+		std::string	_ideas[100];
 		// OTHER(S) FUNCTION
 
 	public:
@@ -44,13 +44,13 @@ class Brain
 		~Brain(void);
 
 		// OPERATOR(S) FUNCTION
-		Brain	&operator=(const Brain &src);
+		Brain		&operator=(const Brain &src);
 
 		// SETTER(S)
-		void	set_ideas(std::string ideas[]);
+		void		set_ideas(std::string ideas[]);
 
 		// OTHER(S)
-		void	say_ideas(void);
+		void		say_ideas(void);
 };
 
 #endif // BRAIN_CLASS

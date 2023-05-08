@@ -20,7 +20,15 @@
 
 Dog::Dog(void) : Animal("Dog")
 {
+	_my_brain = new Brain();
 	Animal::debug("Dog class created");
+}
+
+Dog::~Dog(void)
+{
+	if (_my_brain)
+		delete _my_brain;
+	Animal::debug("Dog class destructed");
 }
 
 void	Dog::makeSound(void) const

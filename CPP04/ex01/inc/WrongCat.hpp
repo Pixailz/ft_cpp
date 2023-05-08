@@ -27,6 +27,7 @@ class WrongCat : public WrongAnimal
 		// OTHER(S) FUNCTION
 
 	public:
+		virtual	~WrongCat(void);
 		// CONSTRUCTOR(S)
 		WrongCat(void);
 
