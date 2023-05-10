@@ -18,7 +18,17 @@
 
 int	main(void)
 {
-	{		// BASE EXEMPLE
+	{
+		Cat cat_basic;
+		{
+			Cat tmp = cat_basic;
+		}
+		Dog dog_basic;
+		{
+			Dog tmp = dog_basic;
+		}
+	}
+		{		// BASE EXEMPLE
 		const Animal* j = new Dog();
 		const Animal* i = new Cat();
 
@@ -38,6 +48,9 @@ int	main(void)
 			animals[i]->makeSound();
 			delete animals[i];
 		}
+	}
+	{// should not work
+		// Animal error_1 = Animal();
 	}
 	return (0);
 }

@@ -50,7 +50,7 @@ Animal::~Animal(void)
 
 Animal	&Animal::operator=(const Animal &src)
 {
-	_type = src.get_type();
+	this->set_type(src.get_type());
 	Animal::debug("Animal operator '=' called");
 	return (*this);
 }

@@ -18,6 +18,16 @@
 
 int	main(void)
 {
+	{
+		Cat cat_basic;
+		{
+			Cat tmp = cat_basic;
+		}
+		Dog dog_basic;
+		{
+			Dog tmp = dog_basic;
+		}
+	}
 	{		// BASE EXEMPLE
 		const Animal* j = new Dog();
 		const Animal* i = new Cat();
@@ -27,7 +37,10 @@ int	main(void)
 	}
 	{		// WRONG BASE EXEMPLE
 		const WrongAnimal* j = new WrongCat();
-
+		WrongCat wrong_cat_basic;
+		{
+			WrongCat tmp = wrong_cat_basic;
+		}
 		delete j;
 	}
 	{		// check if really no leaks

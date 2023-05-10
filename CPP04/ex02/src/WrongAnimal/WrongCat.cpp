@@ -21,18 +21,31 @@
 WrongCat::WrongCat(void) : WrongAnimal("WrongCat")
 {
 	_my_brain = new Brain();
-	WrongAnimal::debug("WrongCat class created");
+	WrongCat::debug("WrongCat class created");
 }
 
 WrongCat::~WrongCat(void)
 {
-	if (_my_brain)
-		delete _my_brain;
-	WrongAnimal::debug("WrongCat class destructed");
+	WrongCat::debug("WrongCat class destructed");
+	delete this->_my_brain;
+}
+
+WrongCat::WrongCat(const WrongCat &copy) : WrongAnimal(copy)
+{
+	*this = copy;
+	WrongCat::debug("WrongCat class created (by copy)");
+}
+
+WrongCat	&WrongCat::operator=(const WrongCat &src)
+{
+	this->set_type(src.get_type());
+	this->_my_brain = new Brain(*src._my_brain);
+	WrongCat::debug("WrongCat operator '=' called");
+	return (*this);
 }
 
 void	WrongCat::makeSound(void) const
 {
-	WrongAnimal::introduce();
-	std::cout << "**WRONGMEOW**" << std::endl;
+	WrongCat::introduce();
+	std::cout << "**MEOW**" << std::endl;
 }

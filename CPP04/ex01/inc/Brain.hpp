@@ -46,9 +46,6 @@ class Brain
 		// OPERATOR(S) FUNCTION
 		Brain		&operator=(const Brain &src);
 
-		// SETTER(S)
-		void		set_ideas(std::string ideas[]);
-
 		// OTHER(S)
 		void		say_ideas(void);
 };

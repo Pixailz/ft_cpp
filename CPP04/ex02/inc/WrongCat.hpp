@@ -23,15 +23,19 @@ class WrongCat : public WrongAnimal
 	private:
 		// VAR(S)
 		Brain		*_my_brain;
-
 		// OTHER(S) FUNCTION
 
 	public:
-		virtual	~WrongCat(void);
 		// CONSTRUCTOR(S)
 		WrongCat(void);
 
-		void	makeSound(void) const;
+		WrongCat(const WrongCat& copy);
+
+		~WrongCat(void);
+
+		WrongCat	&operator=(const WrongCat &src);
+
+		void		makeSound(void) const;
 };
 
-#endif // DOG_CLASS
+#endif // WRONGCAT_CLASS

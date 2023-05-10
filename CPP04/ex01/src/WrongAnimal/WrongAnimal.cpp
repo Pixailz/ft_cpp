@@ -50,7 +50,7 @@ WrongAnimal::~WrongAnimal(void)
 
 WrongAnimal	&WrongAnimal::operator=(const WrongAnimal &src)
 {
-	_type = src.get_type();
+	this->set_type(src.get_type());
 	WrongAnimal::debug("WrongAnimal operator '=' called");
 	return (*this);
 }

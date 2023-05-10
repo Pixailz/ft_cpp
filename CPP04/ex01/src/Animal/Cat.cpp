@@ -21,18 +21,31 @@
 Cat::Cat(void) : Animal("Cat")
 {
 	_my_brain = new Brain();
-	Animal::debug("Cat class created");
+	Cat::debug("Cat class created");
 }
 
 Cat::~Cat(void)
 {
-	if (_my_brain)
-		delete _my_brain;
-	Animal::debug("Cat class destructed");
+	Cat::debug("Cat class destructed");
+	delete this->_my_brain;
+}
+
+Cat::Cat(const Cat &copy) : Animal(copy)
+{
+	*this = copy;
+	Cat::debug("Cat class created (by copy)");
+}
+
+Cat	&Cat::operator=(const Cat &src)
+{
+	this->set_type(src.get_type());
+	this->_my_brain = new Brain(*src._my_brain);
+	Cat::debug("Cat operator '=' called");
+	return (*this);
 }
 
 void	Cat::makeSound(void) const
 {
-	Animal::introduce();
+	Cat::introduce();
 	std::cout << "**MEOW**" << std::endl;
 }

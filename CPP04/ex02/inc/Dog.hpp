@@ -26,9 +26,14 @@ class Dog : public Animal
 		// OTHER(S) FUNCTION
 
 	public:
-		virtual	~Dog(void);
 		// CONSTRUCTOR(S)
 		Dog(void);
+
+		Dog(const Dog& copy);
+
+		~Dog(void);
+
+		Dog	&operator=(const Dog &src);
 
 		void	makeSound(void) const;
 };

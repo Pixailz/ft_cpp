@@ -26,9 +26,14 @@ class Cat : public Animal
 		// OTHER(S) FUNCTION
 
 	public:
-		virtual	~Cat(void);
 		// CONSTRUCTOR(S)
 		Cat(void);
+
+		Cat(const Cat& copy);
+
+		~Cat(void);
+
+		Cat	&operator=(const Cat &src);
 
 		void	makeSound(void) const;
 };

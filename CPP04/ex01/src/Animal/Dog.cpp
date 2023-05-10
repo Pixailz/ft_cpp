@@ -21,18 +21,31 @@
 Dog::Dog(void) : Animal("Dog")
 {
 	_my_brain = new Brain();
-	Animal::debug("Dog class created");
+	Dog::debug("Dog class created");
 }
 
 Dog::~Dog(void)
 {
-	if (_my_brain)
-		delete _my_brain;
-	Animal::debug("Dog class destructed");
+	Dog::debug("Dog class destructed");
+	delete this->_my_brain;
+}
+
+Dog::Dog(const Dog &copy) : Animal(copy)
+{
+	*this = copy;
+	Dog::debug("Dog class created (by copy)");
+}
+
+Dog	&Dog::operator=(const Dog &src)
+{
+	this->set_type(src.get_type());
+	this->_my_brain = new Brain(*src._my_brain);
+	Dog::debug("Dog operator '=' called");
+	return (*this);
 }
 
 void	Dog::makeSound(void) const
 {
-	Animal::introduce();
+	Dog::introduce();
 	std::cout << "**WOUF**" << std::endl;
 }
