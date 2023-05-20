@@ -8,17 +8,18 @@
 *obj/
 
 # all program name
-*megaphone
-*contact_app
-*brainz
-*more_brainz
-*ref
-*humanity
-*sed_for_looser
-*harl
-*harlFilter
-*fixed
-*clap_trap
-*scav_trap
-*frag_trap
-*animol
+megaphone
+contact_app
+brainz
+more_brainz
+ref
+humanity
+sed_for_looser
+harl
+harlFilter
+fixed
+clap_trap
+scav_trap
+frag_trap
+animol
+bureaucrat
