@@ -50,7 +50,7 @@ class WrongAnimal
 		void			set_type(std::string type);
 		void			debug(std::string msg);
 		void			introduce(void) const;
-		virtual void	makeSound(void) const;
+		void			makeSound(void) const;
 };
 
 #endif // WRONGANIMAL_CLASS
