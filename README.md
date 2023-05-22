@@ -2,6 +2,15 @@
 
 CPP modules
 
+## USEFULL COMMAND
+
+> clean all modules
+```bash
+for file in $(find . -type f ! -path "./TEMPLATE/*" -name "Makefile" -print | sort); do
+	make -C "${file%\/*}" fclean
+done
+```
+
 ## PDF
 
 - [CPP_00](./PDF/CPP00.en.subject.pdf)
