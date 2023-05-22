@@ -13,6 +13,7 @@
 /*#END#___________________________<#_|INFO|_#>______________________________##*/
 
 #include "Bureaucrat.hpp"
+#include "Form.hpp"
 
 void	debug(std::string msg)
 {
@@ -28,70 +29,70 @@ void	debug_print_bureaucrat(Bureaucrat *tmp)
 
 void	test_exception(void)
 {
-	try {			// EMPTY NAME
-		Bureaucrat exception_00("");
+	try {			// TOO HIGH GRADE
+		Form exception_00("test_exception", 0, 150);
 	}
 	catch (std::exception &e) {
 		std::cout << e.what() << std::endl;
 	}
-
-	try {			// this one will not fail, but as it's in the try scope
-					// it will not be available outside
-		Bureaucrat exception_01("SomeName", 99);
-	}
-	catch (std::exception &e) {
-		std::cout << e.what() << std::endl;
-	}
-
 	try {			// TOO LOW GRADE
-		Bureaucrat	exception_00("Random Name", -1);
+		Form exception_00("test_exception", 1, 151);
 	}
 	catch (std::exception &e) {
 		std::cout << e.what() << std::endl;
 	}
-
-	try {			// TO HIGH GRADE
-		Bureaucrat	exception_00("Random Name", 151);
+	try {			// EMPTY NAME
+		Form exception_00("", 1, 150);
 	}
 	catch (std::exception &e) {
 		std::cout << e.what() << std::endl;
 	}
+	// try {			// BUREAUCRATE CAN'T SIGN
+	// 	Form		exception_00("documents", 1, 150);
+	// 	Bureaucrat	cadre_01("Pix", 75);
 
-	try {			// DEC TOO LOW GRADE
-		Bureaucrat	exception_00("Random Name", 150);
-
-		exception_00.dec_grade();
-	}
-	catch (std::exception &e) {
-		std::cout << e.what() << std::endl;
-	}
-
-	try {			// INC TOO HIGH GRADE
-		Bureaucrat	exception_00("Random Name", 1);
-
-		exception_00.inc_grade();
-	}
-	catch (std::exception &e) {
-		std::cout << e.what() << std::endl;
-	}
+	// 	exception_00.be_signed(cadre_01);
+	// }
+	// catch (std::exception &e) {
+	// 	std::cout << e.what() << std::endl;
+	// }
+	return ;
 }
 
 int	main(void)
 {
-	{	// BASIC TEST
-		Bureaucrat	cadre_01("Sebastien");
-		Bureaucrat	cadre_02("Phillipe", 1);
-
-		debug_print_bureaucrat(&cadre_01);
-		debug_print_bureaucrat(&cadre_02);
-		cadre_01.inc_grade();
-		cadre_02.dec_grade();
-
-		std::cout << cadre_01 << std::endl;
-		std::cout << cadre_02 << std::endl;
-	}
-	{	// EXCEPTION TEST
+	{		// EXCEPTION TEST
 		test_exception();
 	}
+	{		// BASIC TEST
+		Bureaucrat	cadre_01("Pix", 30);
+		Form		form_01("Test_01", 149, 150);
+		Form		form_02(form_01);
+		Form 		form_03("test_03", 20, 20);
+
+		std::cout << form_01 << std::endl;
+		std::cout << form_02 << std::endl;
+
+		form_01.be_signed(cadre_01);
+		std::cout << form_01 << std::endl;
+		std::cout << form_02 << std::endl;
+
+		form_02 = form_01;
+		std::cout << form_01 << std::endl;
+		std::cout << form_02 << std::endl;
+		cadre_01.sign_form(&form_03);
+		cadre_01.sign_form(&form_01);
+		std::cout << form_02 << std::endl;
+		std::cout << form_03 << std::endl;
+	}
+	// {		// BASIC TEST
+	// 	Bureaucrat	cadre_01("Pix", 30);
+	// 	Form		form_01("Test_01", 149, 150);
+
+	// 	std::cout << form_01 << std::endl;
+
+	// 	cadre_01.sign_form(&form_01);
+	// 	std::cout << form_01 << std::endl;
+	// }
 	return (0);
 }

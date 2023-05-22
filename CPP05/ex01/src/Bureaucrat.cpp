@@ -83,6 +83,19 @@ void	Bureaucrat::dec_grade(void)
 	this->_grade = current_grade;
 }
 
+void	Bureaucrat::sign_form(Form *to_sign)
+{
+	try {
+		to_sign->be_signed(*this);
+		std::cout << this->get_name() << " signed " << to_sign->get_name() << std::endl;
+	}
+	catch (std::exception &e)
+	{
+		std::cout << this->get_name() << " couldn't sign " << to_sign->get_name() << " because " \
+			<< e.what() << std::endl;
+	}
+}
+
 std::ostream	&operator<<(std::ostream &out_stream, const Bureaucrat &src)
 {
 	out_stream << "Hi, i'm " << R << src.get_name() << RST \

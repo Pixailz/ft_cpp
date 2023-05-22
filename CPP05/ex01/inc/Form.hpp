@@ -1,7 +1,7 @@
 /*#BEGIN#_________________________>#_|INFO|_#<______________________________##*/
 /*#                                                        ______ _         ##*/
 /*# DETAILS:                                               | ___ (_)        ##*/
-/*#- FILENAME		Bureaucrat.hpp                               | |_/ /___  __   ##*/
+/*#- FILENAME		Form.hpp                               | |_/ /___  __   ##*/
 /*#- PROJECT_NAME	None                                   |  __/| \ \/ /   ##*/
 /*#- AUTHOR			Pixailz                                | |   | |>  <    ##*/
 /*#- CREATED		2023−01−29T23:02:00+0100               \_|   |_/_/\_\   ##*/
@@ -12,8 +12,8 @@
 /*# VERSION:[ALPHA|BETA]_MAJOR.MINOR.PATCH                                  ##*/
 /*#END#___________________________<#_|INFO|_#>______________________________##*/
 
-#ifndef BUREAUCRAT_HPP
-# define BUREAUCRAT_HPP
+#ifndef FORM_HPP
+# define FORM_HPP
 
 #include <iostream>
 /**
@@ -21,16 +21,20 @@
  * <object>		std::endl
  */
 
-# ifndef	DEBUG
-#  define	DEBUG					1
+# include "Bureaucrat.hpp"
+
+class Bureaucrat;
+
+# ifndef DEBUG
+#  define DEBUG					1
 # endif
 
-# ifndef	DEBUG_FD
-#  define	DEBUG_FD				420
+# ifndef DEBUG_FD
+#  define DEBUG_FD				420
 # endif
 
-# ifndef	VERBOSE
-#  define	VERBOSE					1
+# ifndef VERBOSE
+#  define VERBOSE				1
 # endif
 
 # define	ANSI_ESC				"\x1b["
@@ -40,70 +44,79 @@
 # define	COL_INFO				ANSI_ESC "11G"
 # define	RST						ANSI_ESC "0m"
 
-# define	H_CLASS					"[" G "CLASS" RST "] →" COL_INFO
-# define	H_DEBUG					"[" B "DEBUG" RST "] →" COL_INFO
-# define	H_ERROR					"[" R "ERROR" RST "] →" COL_INFO
-
-# define	DEFAULT_GRADE			150
+# define	H_CLASS					"[" G "CLASS" RST "] → "
+# define	H_DEBUG					"[" B "DEBUG" RST "] → "
+# define	H_ERROR					"[" R "ERROR" RST "] → "
 
 void	debug(std::string msg);
 
-class Bureaucrat
+class Form
 {
 	private:
 		// VAR(S)
+		bool				_signed;
 		const std::string	_name;
-		int					_grade;
+		const int			_sign_req_grade;
+		const int			_exec_req_grade;
 
 		// OTHER(S) FUNCTION
 
 	public:
 		// CONSTRUCTOR(S)
-		Bureaucrat(std::string name);
-		Bureaucrat(std::string name, int grade);
-		Bureaucrat(const Bureaucrat &copy);
+		Form(std::string name, int sign_grade, int exec_grade);
+		Form(const Form &copy);
 
 		// DESTRUCTOR(S)
-		~Bureaucrat(void);
+		~Form(void);
 
 		// OPERATOR(S) FUNCTION
-		Bureaucrat	&operator=(const Bureaucrat &src);
-		Bureaucrat	&operator<<(const Bureaucrat &src);
+		Form		&operator=(const Form &src);
+
 
 		// GETTER(S)
+		int			get_grade_sign(void) const;
+		int			get_grade_exec(void) const;
 		std::string	get_name(void) const;
-		int			get_grade(void) const;
+		bool		get_is_signed(void) const;
 
-		void		inc_grade(void);
-		void		dec_grade(void);
+		// OTHER(S)
+		void		check_exception(void);
+		void		be_signed(Bureaucrat signatory);
 
-		// EXCEPTION(S) CLASS
-		class	EmptyNameException : public std::exception
-		{
-			public:
-				virtual const char*	what() const throw()
-				{
-					return (H_ERROR "Name cannot be empty");
-				}
-		};
 		class	GradeTooHighException : public std::exception
 		{
 			public:
-				virtual const char*	what() const throw()
+				virtual const char* what() const throw()
 				{
-					return (H_ERROR "Grade to high");
+					return (H_ERROR "Grade too high");
 				}
 		};
 		class	GradeTooLowException : public std::exception
 		{
 			public:
-				virtual const char*	what() const throw()
+				virtual const char* what() const throw()
 				{
-					return (H_ERROR "Grade to low");
+					return (H_ERROR "Grade too low");
+				}
+		};
+		class	EmptyNameException : public std::exception
+		{
+			public:
+				virtual const char* what() const throw()
+				{
+					return (H_ERROR "Name cannot be empty");
+				}
+		};
+		class	AlreadySigned : public std::exception
+		{
+			public:
+				virtual const char* what() const throw()
+				{
+					return (H_ERROR "Form cannot be signed twice");
 				}
 		};
 };
 
-std::ostream	&operator<<(std::ostream &out_stream, const Bureaucrat &src);
+std::ostream	&operator<<(std::ostream &out_stream, const Form &src);
 
-#endif // BUREAUCRAT_CLASS
+#endif // FORM_CLASS

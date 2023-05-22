@@ -21,6 +21,10 @@
  * <object>		std::endl
  */
 
+# include "Form.hpp"
+
+class Form;
+
 # ifndef	DEBUG
 #  define	DEBUG					1
 # endif
@@ -40,9 +44,9 @@
 # define	COL_INFO				ANSI_ESC "11G"
 # define	RST						ANSI_ESC "0m"
 
-# define	H_CLASS					"[" G "CLASS" RST "] →" COL_INFO
-# define	H_DEBUG					"[" B "DEBUG" RST "] →" COL_INFO
-# define	H_ERROR					"[" R "ERROR" RST "] →" COL_INFO
+# define	H_CLASS					"[" G "CLASS" RST "] → "
+# define	H_DEBUG					"[" B "DEBUG" RST "] → "
+# define	H_ERROR					"[" R "ERROR" RST "] → "
 
 # define	DEFAULT_GRADE			150
 
@@ -74,8 +78,10 @@ class Bureaucrat
 		std::string	get_name(void) const;
 		int			get_grade(void) const;
 
+		// OTHER(S)
 		void		inc_grade(void);
 		void		dec_grade(void);
+		void		sign_form(Form *to_sign);
 
 		// EXCEPTION(S) CLASS
 		class	EmptyNameException : public std::exception
