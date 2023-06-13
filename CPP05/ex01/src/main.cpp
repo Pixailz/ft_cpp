@@ -21,12 +21,6 @@ void	debug(std::string msg)
 		std::cout << H_CLASS << msg << std::endl;
 }
 
-void	debug_print_bureaucrat(Bureaucrat *tmp)
-{
-	std::cout << H_DEBUG << "My Name is  " << tmp->get_name() << std::endl;
-	std::cout << H_DEBUG << "My Grade is " << tmp->get_grade() << std::endl;
-}
-
 void	test_exception(void)
 {
 	try {			// TOO HIGH GRADE

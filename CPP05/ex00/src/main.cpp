@@ -20,12 +20,6 @@ void	debug(std::string msg)
 		std::cout << H_CLASS << msg << std::endl;
 }
 
-void	debug_print_bureaucrat(Bureaucrat *tmp)
-{
-	std::cout << H_DEBUG << "My Name is  " << tmp->get_name() << std::endl;
-	std::cout << H_DEBUG << "My Grade is " << tmp->get_grade() << std::endl;
-}
-
 void	test_exception(void)
 {
 	try {			// EMPTY NAME
@@ -82,8 +76,6 @@ int	main(void)
 		Bureaucrat	cadre_01("Sebastien");
 		Bureaucrat	cadre_02("Phillipe", 1);
 
-		debug_print_bureaucrat(&cadre_01);
-		debug_print_bureaucrat(&cadre_02);
 		cadre_01.inc_grade();
 		cadre_02.dec_grade();
 
