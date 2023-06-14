@@ -24,18 +24,6 @@ PresidentialPardonForm::PresidentialPardonForm(std::string target) : AForm("Pres
 	debug("PresidentialPardonForm class created");
 }
 
-PresidentialPardonForm::~PresidentialPardonForm(void)
-{
-	debug("PresidentialPardonForm class destructed");
-}
-
-PresidentialPardonForm	&PresidentialPardonForm::operator=(const PresidentialPardonForm &src)
-{
-	*this = src;
-	debug("PresidentialPardonForm operator '=' called");
-	return (*this);
-}
-
 void	PresidentialPardonForm::execute_specific(Bureaucrat const &executor)
 {
 	std::cout << this->get_target() << " has been pardoned by Zaphod Beeblebrox, executed by " \

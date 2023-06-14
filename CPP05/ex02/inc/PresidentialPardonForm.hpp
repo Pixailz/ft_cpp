@@ -46,12 +46,6 @@ class PresidentialPardonForm : public AForm
 		PresidentialPardonForm(std::string target);
 		PresidentialPardonForm(const PresidentialPardonForm &copy);
 
-		// DESTRUCTOR(S)
-		~PresidentialPardonForm(void);
-
-		// OPERATOR(S) FUNCTION
-		PresidentialPardonForm	&operator=(const PresidentialPardonForm &src);
-
 		void				execute_specific(Bureaucrat const & executor);
 };
 

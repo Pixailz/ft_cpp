@@ -24,18 +24,6 @@ RobotomyRequestForm::RobotomyRequestForm(std::string target) : AForm("Robotomy",
 	debug("RobotomyRequestForm class created");
 }
 
-RobotomyRequestForm::~RobotomyRequestForm(void)
-{
-	debug("RobotomyRequestForm class destructed");
-}
-
-RobotomyRequestForm	&RobotomyRequestForm::operator=(const RobotomyRequestForm &src)
-{
-	*this = src;
-	debug("RobotomyRequestForm operator '=' called");
-	return (*this);
-}
-
 void	RobotomyRequestForm::execute_specific(Bureaucrat const &executor)
 {
 	std::ifstream	infile("/dev/urandom");

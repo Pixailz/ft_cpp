@@ -18,30 +18,61 @@
  * <function>	function()
  */
 
-
+// Constructor (void)
 Intern::Intern(void)
 {
+	this->_id = 0;
 	debug("Intern class created");
 }
 
-Intern::~Intern(void)
+// Constructor (int)
+Intern::Intern(int id)
 {
-	debug("Intern class destructed");
+	this->_id = id;
+	debug("Intern class created");
 }
 
+// Copy constructor
 Intern::Intern(const Intern &copy)
 {
 	debug("Intern class created (by copy)");
 	*this = copy;
 }
 
+// Destructor
+Intern::~Intern(void)
+{
+	debug("Intern class destructed");
+}
+
+// '=' operator
 Intern	&Intern::operator=(const Intern &src)
 {
-	*this = src;
+	this->_id = src._id;
 	debug("Intern operator '=' called");
 	return (*this);
 }
 
+// exception
+
+const char*	Intern::CannotCreatForm::what() const throw()
+{
+	return (H_ERROR "Intern cannot create not found form");
+}
+
+// Setter
+void	Intern::set_id(int id)
+{
+	this->_id = id;
+}
+
+// Getter
+int		Intern::get_id(void)
+{
+	return (this->_id);
+}
+
+// Others
 AForm *create_shruberry(std::string const & target)
 {
 	return (new ShruberryCreationForm(target));
@@ -67,7 +98,11 @@ AForm *Intern::make_form(std::string name, std::string target)
 
 	for (int i = 0; i < 3; i++) {
 		if (name_available[i].name == name)
+		{
+			std::cout << "Intern, id " << this->get_id() << " can create form "
+				<< name << " (" << target << ")" << std::endl;
 			return (name_available[i].func(target));
+		}
 	}
 	throw Intern::CannotCreatForm();
 }

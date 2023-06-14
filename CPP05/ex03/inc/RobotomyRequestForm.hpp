@@ -48,10 +48,6 @@ class RobotomyRequestForm : public AForm
 	public:
 		// CONSTRUCTOR(S)
 		RobotomyRequestForm(std::string target);
-		RobotomyRequestForm(const RobotomyRequestForm &copy);
-
-		// DESTRUCTOR(S)
-		~RobotomyRequestForm(void);
 
 		// OPERATOR(S) FUNCTION
 		RobotomyRequestForm	&operator=(const RobotomyRequestForm &src);

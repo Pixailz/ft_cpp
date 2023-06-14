@@ -84,29 +84,17 @@ class Bureaucrat
 		void		sign_form(Form *to_sign);
 
 		// EXCEPTION(S) CLASS
-		class	EmptyNameException : public std::exception
-		{
+		class	EmptyNameException : public std::exception {
 			public:
-				virtual const char*	what() const throw()
-				{
-					return (H_ERROR "Name cannot be empty");
-				}
+				virtual const char*	what() const throw();
 		};
-		class	GradeTooHighException : public std::exception
-		{
+		class	GradeTooHighException : public std::exception {
 			public:
-				virtual const char*	what() const throw()
-				{
-					return (H_ERROR "Grade to high");
-				}
+				virtual const char*	what() const throw();
 		};
-		class	GradeTooLowException : public std::exception
-		{
+		class	GradeTooLowException : public std::exception {
 			public:
-				virtual const char*	what() const throw()
-				{
-					return (H_ERROR "Grade to low");
-				}
+				virtual const char*	what() const throw();
 		};
 };
 

@@ -19,15 +19,15 @@
 void	debug(std::string msg)
 {
 	if (DEBUG == 1)
-		std::cout << H_CLASS << msg << std::endl;
+		std::cout << H_DEBUG << msg << std::endl;
 }
 
 int	main(void)
 {
 	{
 		Bureaucrat	cadre_01("test", 1);
-		Intern someRandomIntern;
-		AForm *rrf;
+		Intern		someRandomIntern;
+		AForm		*rrf;
 
 
 		for (int i = 0; i < 10; i++)

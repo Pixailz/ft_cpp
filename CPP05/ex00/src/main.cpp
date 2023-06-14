@@ -17,7 +17,7 @@
 void	debug(std::string msg)
 {
 	if (DEBUG == 1)
-		std::cout << H_CLASS << msg << std::endl;
+		std::cout << H_DEBUG << msg << std::endl;
 }
 
 void	test_exception(void)

@@ -1,7 +1,7 @@
 /*#BEGIN#_________________________>#_|INFO|_#<______________________________##*/
 /*#                                                        ______ _         ##*/
 /*# DETAILS:                                               | ___ (_)        ##*/
-/*#- FILENAME		Bureaucrat.hpp                               | |_/ /___  __   ##*/
+/*#- FILENAME		Bureaucrat.hpp                         | |_/ /___  __   ##*/
 /*#- PROJECT_NAME	None                                   |  __/| \ \/ /   ##*/
 /*#- AUTHOR			Pixailz                                | |   | |>  <    ##*/
 /*#- CREATED		2023−01−29T23:02:00+0100               \_|   |_/_/\_\   ##*/
@@ -85,29 +85,17 @@ class Bureaucrat
 		void		execute_form(AForm *to_sign);
 
 		// EXCEPTION(S) CLASS
-		class	EmptyNameException : public std::exception
-		{
+		class	EmptyNameException : public std::exception {
 			public:
-				virtual const char*	what() const throw()
-				{
-					return (H_ERROR "Name cannot be empty");
-				}
+				virtual const char*	what() const throw();
 		};
-		class	GradeTooHighException : public std::exception
-		{
+		class	GradeTooHighException : public std::exception {
 			public:
-				virtual const char*	what() const throw()
-				{
-					return (H_ERROR "Grade to high");
-				}
+				virtual const char*	what() const throw();
 		};
-		class	GradeTooLowException : public std::exception
-		{
+		class	GradeTooLowException : public std::exception {
 			public:
-				virtual const char*	what() const throw()
-				{
-					return (H_ERROR "Grade to low");
-				}
+				virtual const char*	what() const throw();
 		};
 };
 

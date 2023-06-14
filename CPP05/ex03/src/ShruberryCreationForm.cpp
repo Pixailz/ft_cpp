@@ -24,19 +24,6 @@ ShruberryCreationForm::ShruberryCreationForm(std::string target) : AForm("Shrubz
 	debug("ShruberryCreationForm class created");
 }
 
-ShruberryCreationForm::~ShruberryCreationForm(void)
-{
-	debug("ShruberryCreationForm class destructed");
-}
-
-ShruberryCreationForm	&ShruberryCreationForm::operator=(const ShruberryCreationForm &src)
-{
-	this->set_target(src.get_target());
-	debug("ShruberryCreationForm operator '=' called");
-	return (*this);
-}
-
-
 void	ShruberryCreationForm::execute_specific(Bureaucrat const &executor)
 {
 	std::string		target_name = AForm::get_target() + "_shruberry";

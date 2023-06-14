@@ -18,6 +18,7 @@
  * <function>	function()
  */
 
+// Constructor (std::string)
 Bureaucrat::Bureaucrat(std::string name) : _name(name)
 {
 	this->_grade = DEFAULT_GRADE;
@@ -26,6 +27,7 @@ Bureaucrat::Bureaucrat(std::string name) : _name(name)
 	debug("Bureaucrat class created");
 }
 
+// Constructor (std::string, int)
 Bureaucrat::Bureaucrat(std::string name, int grade) : _name(name), _grade(grade)
 {
 	if (name.length() == 0)
@@ -37,17 +39,20 @@ Bureaucrat::Bureaucrat(std::string name, int grade) : _name(name), _grade(grade)
 	debug("Bureaucrat class created, with grade");
 }
 
+// Destructor
 Bureaucrat::~Bureaucrat(void)
 {
 	debug("Bureaucrat class destructed");
 }
 
+// Copy Constructor
 Bureaucrat::Bureaucrat(const Bureaucrat &copy)
 {
 	debug("Bureaucrat class created (by copy)");
 	*this = copy;
 }
 
+// '=' operator
 Bureaucrat	&Bureaucrat::operator=(const Bureaucrat &src)
 {
 	this->_grade = src._grade;
@@ -55,6 +60,33 @@ Bureaucrat	&Bureaucrat::operator=(const Bureaucrat &src)
 	return (*this);
 }
 
+// '<<' operator
+std::ostream	&operator<<(std::ostream &out_stream, const Bureaucrat &src)
+{
+	out_stream << "Hi, i'm " << R << src.get_name() << RST \
+		" and my grade is " << G << src.get_grade() << RST \
+		" but sorry i " << R << "don't" RST << " have the time for " << \
+		G << "you" << RST;
+	return (out_stream);
+}
+
+// exceptions
+const char*	Bureaucrat::EmptyNameException::what() const throw()
+{
+	return (H_ERROR "Name cannot be empty");
+}
+
+const char*	Bureaucrat::GradeTooHighException::what() const throw()
+{
+	return (H_ERROR "Grade to high");
+}
+
+const char*	Bureaucrat::GradeTooLowException::what() const throw()
+{
+	return (H_ERROR "Grade to low");
+}
+
+// Getters
 std::string	Bureaucrat::get_name(void) const
 {
 	return (this->_name);
@@ -65,6 +97,7 @@ int	Bureaucrat::get_grade(void) const
 	return (this->_grade);
 }
 
+// Others function
 void	Bureaucrat::inc_grade(void)
 {
 	int	current_grade = this->get_grade() - 1;
@@ -91,16 +124,7 @@ void	Bureaucrat::sign_form(Form *to_sign)
 	}
 	catch (std::exception &e)
 	{
-		std::cout << this->get_name() << " couldn't sign " << to_sign->get_name() << " because " \
-			<< e.what() << std::endl;
+		std::cout << e.what() << ": " << this->get_name() << " couldn't sign "
+			<< to_sign->get_name() << std::endl;
 	}
-}
-
-std::ostream	&operator<<(std::ostream &out_stream, const Bureaucrat &src)
-{
-	out_stream << "Hi, i'm " << R << src.get_name() << RST \
-		" and my grade is " << G << src.get_grade() << RST \
-		" but sorry i " << R << "don't" RST << " have the time for " << \
-		G << "you" << RST;
-	return (out_stream);
 }

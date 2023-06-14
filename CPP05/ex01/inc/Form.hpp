@@ -86,34 +86,22 @@ class Form
 		class	GradeTooHighException : public std::exception
 		{
 			public:
-				virtual const char* what() const throw()
-				{
-					return (H_ERROR "Grade too high");
-				}
+				virtual const char* what() const throw();
 		};
 		class	GradeTooLowException : public std::exception
 		{
 			public:
-				virtual const char* what() const throw()
-				{
-					return (H_ERROR "Grade too low");
-				}
+				virtual const char* what() const throw();
 		};
 		class	EmptyNameException : public std::exception
 		{
 			public:
-				virtual const char* what() const throw()
-				{
-					return (H_ERROR "Name cannot be empty");
-				}
+				virtual const char* what() const throw();
 		};
 		class	AlreadySigned : public std::exception
 		{
 			public:
-				virtual const char* what() const throw()
-				{
-					return (H_ERROR "Form cannot be signed twice");
-				}
+				virtual const char* what() const throw();
 		};
 };
 

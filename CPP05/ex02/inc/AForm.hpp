@@ -61,6 +61,7 @@ class AForm
 		std::string			_target;
 
 		// OTHER(S) FUNCTION
+		virtual void	execute_specific(Bureaucrat const & executor) = 0;
 
 	public:
 		// CONSTRUCTOR(S)
@@ -68,7 +69,7 @@ class AForm
 		AForm(const AForm &copy);
 
 		// DESTRUCTOR(S)
-		~AForm(void);
+		virtual ~AForm(void);
 
 		// OPERATOR(S) FUNCTION
 		AForm			&operator=(const AForm &src);
@@ -87,56 +88,37 @@ class AForm
 		void			check_exception(void);
 		void			be_signed(Bureaucrat signatory);
 		void			execute(Bureaucrat const & excutor);
-		virtual void	execute_specific(Bureaucrat const & executor) = 0;
 
 		// EXCEPTION
 		class	GradeTooHighException : public std::exception
 		{
 			public:
-				virtual const char* what() const throw()
-				{
-					return (H_ERROR "Grade too high");
-				}
+				virtual const char* what() const throw();
 		};
 		class	GradeTooLowException : public std::exception
 		{
 			public:
-				virtual const char* what() const throw()
-				{
-					return (H_ERROR "Grade too low");
-				}
+				virtual const char* what() const throw();
 		};
 		class	EmptyNameException : public std::exception
 		{
 			public:
-				virtual const char* what() const throw()
-				{
-					return (H_ERROR "Name cannot be empty");
-				}
+				virtual const char* what() const throw();
 		};
 		class	EmptyTargetException : public std::exception
 		{
 			public:
-				virtual const char*	what() const throw()
-				{
-					return (H_ERROR "target cannot by empty");
-				}
+				virtual const char*	what() const throw();
 		};
 		class	AlreadySigned : public std::exception
 		{
 			public:
-				virtual const char* what() const throw()
-				{
-					return (H_ERROR "AForm cannot be signed twice");
-				}
+				virtual const char* what() const throw();
 		};
 		class	NotSigned : public std::exception
 		{
 			public:
-				virtual const char* what() const throw()
-				{
-					return (H_ERROR "AForm cannot be executed while not signed");
-				}
+				virtual const char* what() const throw();
 		};
 };
 

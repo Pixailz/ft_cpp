@@ -52,10 +52,6 @@ class ShruberryCreationForm : public AForm
 	public:
 		// CONSTRUCTOR(S)
 		ShruberryCreationForm(std::string target);
-		ShruberryCreationForm(const ShruberryCreationForm &copy);
-
-		// DESTRUCTOR(S)
-		~ShruberryCreationForm(void);
 
 		// OPERATOR(S) FUNCTION
 		ShruberryCreationForm	&operator=(const ShruberryCreationForm &src);

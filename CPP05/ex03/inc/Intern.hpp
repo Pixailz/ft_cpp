@@ -48,11 +48,13 @@ class Intern
 {
 	private:
 		// VAR(S)
+		int		_id;
 		// OTHER(S) FUNCTION
 
 	public:
 		// CONSTRUCTOR(S)
 		Intern(void);
+		Intern(int id);
 		Intern(const Intern &copy);
 
 		// DESTRUCTOR(S)
@@ -61,15 +63,18 @@ class Intern
 		// OPERATOR(S) FUNCTION
 		Intern	&operator=(const Intern &src);
 
+		// SETTER(S)
+		void	set_id(int id);
+
+		// GETTER(S)
+		int		get_id(void);
+
 		AForm*	make_form(std::string name, std::string target);
 
 		class	CannotCreatForm : public std::exception
 		{
 			public:
-				virtual const char*	what() const throw()
-				{
-					return (H_ERROR "Intern cannot create not found form");
-				}
+				virtual const char*	what() const throw();
 		};
 };
 

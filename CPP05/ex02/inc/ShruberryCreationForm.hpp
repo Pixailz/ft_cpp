@@ -54,12 +54,6 @@ class ShruberryCreationForm : public AForm
 		ShruberryCreationForm(std::string target);
 		ShruberryCreationForm(const ShruberryCreationForm &copy);
 
-		// DESTRUCTOR(S)
-		~ShruberryCreationForm(void);
-
-		// OPERATOR(S) FUNCTION
-		ShruberryCreationForm	&operator=(const ShruberryCreationForm &src);
-
 		void					execute_specific(Bureaucrat const & executor);
 };
 
