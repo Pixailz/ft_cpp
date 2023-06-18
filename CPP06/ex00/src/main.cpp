@@ -31,6 +31,7 @@ void	test_char(void)
 	u.convert("\"a\"");
 	u.convert("'\x90'");
 	u.convert("'\xef'");
+	u.convert("'\xff'");
 
 	// BAD
 	u.convert("'a");
@@ -75,13 +76,14 @@ void	test_float(void)
 	u.convert("+inff");
 	u.convert("-inff");
 	u.convert("nanf");
+	u.convert("1234.f");
 
 	// BAD
+	u.convert("1234..f");
 	u.convert("1234.0a");
 	u.convert("++1234.0f");
 	u.convert("+-1234.0f");
 	u.convert("A1234.0f");
-	u.convert("1234.f");
 }
 
 void	test_double(void)
@@ -99,12 +101,13 @@ void	test_double(void)
 	u.convert("+inf");
 	u.convert("-inf");
 	u.convert("nan");
+	u.convert("1234.");
 
 	// BAD
+	u.convert("1234..");
 	u.convert("++1234.0");
 	u.convert("+-1234.0");
 	u.convert("A1234.0");
-	u.convert("1234.");
 }
 
 void	test_basic(void)
@@ -129,6 +132,7 @@ void	all_test(void)
 
 int	main(int ac, char **av)
 {
+	// all_test();
 	if (ac == 2)
 	{
 		ScalarConverter	u;

@@ -23,34 +23,12 @@
  * <object>		std::endl
  */
 
-#include <cstring>
-/**
- * <function >	strchr
- */
-
-#include <sstream>
-/**
- * <object>		std::hex
- * <object>		std::stringstream
- */
-
-#include <iomanip>
-/**
- * <function>	std::setfill
- * <function>	std::setw
- */
-
-#include <limits>
-/**
- * <template>	std::numeric_limits
- */
-
-# ifndef	DEBUG
-#  define	DEBUG				1
+# ifndef DEBUG
+#  define	DEBUG					1
 # endif
 
-# ifndef	DEBUG_FD
-#  define	DEBUG_FD			420
+# ifndef DEBUG_FD
+#  define	DEBUG_FD				420
 # endif
 
 # ifndef	VERBOSE
@@ -64,18 +42,8 @@
 # define	COL_INFO			ANSI_ESC "11G"
 # define	RST					ANSI_ESC "0m"
 
-# define	H_SEP				" → "
-
-# define	H_CLASS				"[" G "CLASS" RST "]" H_SEP
-# define	H_DEBUG				"[" B "DEBUG" RST "]" H_SEP
-# define	H_ERROR				"[" R "ERROR" RST "]" H_SEP
-
-# define	H_CHAR				"[" G "CHAR " RST "]" H_SEP
-# define	H_INT				"[" G "INT  " RST "]" H_SEP
-# define	H_FLOAT				"[" G "FLOAT" RST "]" H_SEP
-# define	H_DOUBLE			"[" G "DOUBL" RST "]" H_SEP
-# define	H_UNKNOWN			"[" R "UNKNO" RST "]" H_SEP
-
-void	debug(std::string msg);
+# define	H_CLASS				"[" G "CLASS" RST "] → "
+# define	H_DEBUG				"[" B "DEBUG" RST "] → "
+# define	H_ERROR				"[" R "ERROR" RST "] → "
 
 #endif // MAIN_H

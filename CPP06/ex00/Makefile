@@ -74,6 +74,6 @@ re:						fclean $(TARGET)
 
 run:						re
 	@$(call PRINT_ANSI,\x1b[2J\x1b[H)
-	./$(TARGET)
+	./$(TARGET) $(ARGS)
 
 ##END#___________________________<#_|RULES|_#>________________________________##

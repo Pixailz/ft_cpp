@@ -15,28 +15,21 @@
 #ifndef SCALARCONVERTER_HPP
 # define SCALARCONVERTER_HPP
 
-# include "main.h"
+#include <main.h>
 
-enum	e_type
+typedef enum e_type
 {
-	UNKNOW	= 0,
+	UNKNOWN	= 0,
 	CHAR	= 1U << 0,
 	INT		= 1U << 1,
 	FLOAT	= 1U << 2,
 	DOUBLE	= 1U << 3
-};
+}	t_type;
 
 class ScalarConverter
 {
 	private:
 		// VAR
-		std::string	_input;
-		t_uint8		_input_char;
-		int			_input_int;
-		float		_input_float;
-		double		_input_double;
-		t_uint8		_status;
-		t_uint8		_type;
 
 		// OTHER FUNCTION
 
@@ -62,44 +55,28 @@ class ScalarConverter
 				virtual const char*	what() const throw();
 		};
 
-		// SETTER
-		void			set_input(std::string input, bool prot);
-		void			set_input_char(t_uint8 input);
-		void			set_input_int(int input);
-		void			set_input_float(float input);
-		void			set_input_double(double input);
-		void			set_status(t_uint8 type);
-		void			set_type(t_uint8 type);
-
-		// GETTER
-		std::string		get_input(void) const;
-		std::string		get_input_char_hex(void) const;
-		t_uint8			get_input_char(void) const;
-		int				get_input_int(void) const;
-		float			get_input_float(void) const;
-		double			get_input_double(void) const;
-		t_uint8			get_status(void) const;
-		t_uint8			get_type(void) const;
-		std::string		get_type_str(void);
-
 		// OTHER
-		void			clear(void);
-		void			convert(std::string s);
-		bool			is_char(std::string in);
-		bool			is_int(std::string in);
-		bool			is_float(std::string in);
-		bool			is_double(std::string in);
-		void			check_type(void);
-		void			translate_char(t_uint8 in);
-		void			translate_int(std::string in);
-		void			translate_float(std::string in);
-		void			translate_double(std::string in);
-		void			translate(void);
-		void			print_char(void);
-		void			print_int(void);
-		void			print_float(void);
-		void			print_double(void);
-		void			print(void);
+		static	void		convert(std::string in);
+		static	void		convert_char(std::string in);
+		static	void		convert_int(std::string in);
+		static	void		convert_float(std::string in);
+		static	void		convert_double(std::string in);
+		static	std::string	convert_hex(unsigned char c);
+
+		static	t_type		get_type(std::string in);
+		static	std::string	get_type_str(t_type type);
+		static	bool		is_char(std::string in);
+		static	bool		is_int(std::string in);
+		static	bool		is_float(std::string in);
+		static	bool		is_decimal(std::string in);
+
+		static	void		print_char(char c, bool possible);
+		static	void		print_int(int i, bool possible);
+		static	void		print_float(float f, bool possible);
+		static	void		print_float(std::string f);
+		static	void		print_double(double d, bool possible);
+		static	void		print_double(std::string d);
+
 };
 
-#endif // SCALARCONVERTER_CLASS
+#endif // SCALARCONVERT_CLASS
