@@ -32,14 +32,14 @@ int	main(void)
 	// 	RobotomyRequestForm		Robot_01("roboto");
 	// 	PresidentialPardonForm	Pardon_01("pardon");
 
-	// 	std::cout << Shrub_01 << std::endl;
+	// 	std::cerr << Shrub_01 << std::endl;
 
 	// 	cadre_01.sign_form(&Shrub_01);
 	// 	cadre_01.sign_form(&Robot_01);
 	// 	cadre_01.sign_form(&Pardon_01);
-	// 	std::cout << Shrub_01 << std::endl;
-	// 	std::cout << Robot_01 << std::endl;
-	// 	std::cout << Pardon_01 << std::endl;
+	// 	std::cerr << Shrub_01 << std::endl;
+	// 	std::cerr << Robot_01 << std::endl;
+	// 	std::cerr << Pardon_01 << std::endl;
 	// 	cadre_01.execute_form(&Shrub_01);
 	// 	cadre_01.execute_form(&Robot_01);
 	// 	cadre_01.execute_form(&Pardon_01);

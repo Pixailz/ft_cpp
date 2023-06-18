@@ -27,19 +27,19 @@ void	test_exception(void)
 		Form exception_00("test_exception", 0, 150);
 	}
 	catch (std::exception &e) {
-		std::cout << e.what() << std::endl;
+		std::cerr << e.what() << std::endl;
 	}
 	try {			// TOO LOW GRADE
 		Form exception_00("test_exception", 1, 151);
 	}
 	catch (std::exception &e) {
-		std::cout << e.what() << std::endl;
+		std::cerr << e.what() << std::endl;
 	}
 	try {			// EMPTY NAME
 		Form exception_00("", 1, 150);
 	}
 	catch (std::exception &e) {
-		std::cout << e.what() << std::endl;
+		std::cerr << e.what() << std::endl;
 	}
 	// try {			// BUREAUCRATE CAN'T SIGN
 	// 	Form		exception_00("documents", 1, 150);
@@ -48,7 +48,7 @@ void	test_exception(void)
 	// 	exception_00.be_signed(cadre_01);
 	// }
 	// catch (std::exception &e) {
-	// 	std::cout << e.what() << std::endl;
+	// 	std::cerr << e.what() << std::endl;
 	// }
 	return ;
 }

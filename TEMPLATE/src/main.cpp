@@ -4,7 +4,7 @@
 /*#- FILENAME		main.cpp                               | |_/ /___  __   ##*/
 /*#- PROJECT_NAME	None                                   |  __/| \ \/ /   ##*/
 /*#- AUTHOR			Pixailz                                | |   | |>  <    ##*/
-/*#- CREATED		2023−04−18T00:20:29+0100               \_|   |_/_/\_\   ##*/
+/*#- CREATED		2023−06−18T05:56:28+0100               \_|   |_/_/\_\   ##*/
 /*#                                                                         ##*/
 /*# DESCRIPTION:                                                            ##*/
 /*## None                                                                   ##*/
@@ -12,10 +12,17 @@
 /*# VERSION:[ALPHA|BETA]_MAJOR.MINOR.PATCH                                  ##*/
 /*#END#___________________________<#_|INFO|_#>______________________________##*/
 
-#include <iostream>
+#include <not_a_library>
 
-int	main(void)
+void	debug(std::string msg)
 {
-	std::cout << "Hello World" << std::endl;
+	if (DEBUG == 1)
+		std::cout << msg << std::endl;
+}
+
+int	main(int argc, char **argv, char **envp)
+{
+	if (argc != 2)
+		return (1);
 	return (0);
 }

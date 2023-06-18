@@ -26,7 +26,7 @@ void	test_exception(void)
 		Bureaucrat exception_00("");
 	}
 	catch (std::exception &e) {
-		std::cout << e.what() << std::endl;
+		std::cerr << e.what() << std::endl;
 	}
 
 	try {			// this one will not fail, but as it's in the try scope
@@ -34,21 +34,21 @@ void	test_exception(void)
 		Bureaucrat exception_01("SomeName", 99);
 	}
 	catch (std::exception &e) {
-		std::cout << e.what() << std::endl;
+		std::cerr << e.what() << std::endl;
 	}
 
 	try {			// TOO LOW GRADE
 		Bureaucrat	exception_00("Random Name", -1);
 	}
 	catch (std::exception &e) {
-		std::cout << e.what() << std::endl;
+		std::cerr << e.what() << std::endl;
 	}
 
 	try {			// TO HIGH GRADE
 		Bureaucrat	exception_00("Random Name", 151);
 	}
 	catch (std::exception &e) {
-		std::cout << e.what() << std::endl;
+		std::cerr << e.what() << std::endl;
 	}
 
 	try {			// DEC TOO LOW GRADE
@@ -57,7 +57,7 @@ void	test_exception(void)
 		exception_00.dec_grade();
 	}
 	catch (std::exception &e) {
-		std::cout << e.what() << std::endl;
+		std::cerr << e.what() << std::endl;
 	}
 
 	try {			// INC TOO HIGH GRADE
@@ -66,7 +66,7 @@ void	test_exception(void)
 		exception_00.inc_grade();
 	}
 	catch (std::exception &e) {
-		std::cout << e.what() << std::endl;
+		std::cerr << e.what() << std::endl;
 	}
 }
 
