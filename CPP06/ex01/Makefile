@@ -10,7 +10,7 @@
 
 ##BEGIN#_________________________>#_|CONFIG|_#<_______________________________##
 
-TARGET					:= temp
+TARGET					:= serialize
 
 CC						:= g++
 CFLAGS					:= -Wall -Wextra --std=c++98 -g3
@@ -34,7 +34,8 @@ MKDIR					:= mkdir -p
 MAKE					:= make
 PRINTF					:= @printf
 
-SRC_CPP					:= main.cpp
+SRC_CPP					:= main.cpp \
+						   Serializer.cpp
 
 OBJ_CPP					:= $(addprefix $(OBJ_DIR)/,$(SRC_CPP:%.cpp=%.o))
 SRC_CPP					:= $(addprefix $(SRC_DIR)/,$(SRC_CPP))
