@@ -38,6 +38,7 @@ Base	*generate(void)
 
 void	identify(Base *p)
 {
+	std::cout << "[" OR "*" RST "]";
 	if (dynamic_cast<A*>(p))
 		std::cout << H_A;
 	else if (dynamic_cast<B*>(p))
@@ -50,37 +51,44 @@ void	identify(Base *p)
 
 void	identify(Base &p)
 {
-	if (dynamic_cast<A*>(&p))
+	try {
+		dynamic_cast<A&>(p);
 		std::cout << H_A;
-	else if (dynamic_cast<B*>(&p))
+	}
+	catch (std::exception &e) {
+	try {
+		dynamic_cast<B&>(p);
 		std::cout << H_B;
-	else if (dynamic_cast<C*>(&p))
+	}
+	catch (std::exception &e) {
+	try {
+		dynamic_cast<C&>(p);
 		std::cout << H_C;
-	else
+	}
+	catch (std::exception &e) {
 		std::cout << H_U;
-	std::cout << std::endl;
+	}}}
+	std::cout << "[" OR "&" RST "]";
 }
 
 int	main(void)
 {
 	Base	*tmp;
 
-	for (int i = 0; i < 1000; i++)
+	for (int i = 0; i < 10000; i++)
 	{
-		std::cout << "[" OR "*" RST "]" << "[" OR "&" RST "]" << std::endl;
-		tmp = generate();
-		identify(tmp);
-		identify(*tmp);
-		delete tmp;
+		for (int j = 0; j < 15; j++)
+		{
+			tmp = generate();
+			identify(tmp);
+			identify(*tmp);
+			delete tmp;
+		}
+		std::cout << std::endl;
 	}
 	return (0);
 }
 
-
-// real	0m0.029s
-// user	0m0.004s
-// sys	0m0.025s
-
-// real	0m0.027s
-// user	0m0.000s
-// sys	0m0.027s
+// real	0m5.288s
+// user	0m0.575s
+// sys	0m3.244s
