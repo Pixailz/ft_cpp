@@ -53,11 +53,11 @@ class Serializer
 		// VAR
 
 		// OTHER FUNCTION
+		Serializer(void);
+		Serializer(const Serializer &copy);
 
 	public:
 		// CONSTRUCTOR
-		Serializer(void);
-		Serializer(const Serializer &copy);
 
 		// DESTRUCTOR
 		~Serializer(void);

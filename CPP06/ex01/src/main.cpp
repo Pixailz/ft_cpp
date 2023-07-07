@@ -36,18 +36,19 @@ int	main(void)
 	Data		*src = new Data;
 	Data		*dst = NULL;
 	uintptr_t	serialized;
-	Serializer	serializer;
 
 	src->a_string = "test";
 	src->a_number = 1;
 	src->a_char = 'c';
 
-	serialized = serializer.serialize(src);
+	print_data(src);
+
+	serialized = Serializer::serialize(src);
 
 	std::cout << "serialized" << COL_INFO;
 	std::cout << "0x" << std::hex << serialized << std::endl;
 
-	dst = serializer.deserialize(serialized);
+	dst = Serializer::deserialize(serialized);
 
 	print_data(dst);
 

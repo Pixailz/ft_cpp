@@ -155,38 +155,40 @@ bool	ScalarConverter::is_decimal(std::string in)
 			continue;
 		return (false);
 	}
-	// if (just_have_dot)
-	// 	return (false);
 	return (true);
 }
 
 void	ScalarConverter::convert_char(std::string in)
 {
-	unsigned	out = static_cast<unsigned char>(in[1]);
+	short	out = static_cast<char>(in[1]);
+	bool	is_convertible = false;
 
-	ScalarConverter::print_char(out, true);
-	ScalarConverter::print_int(static_cast<int>(out), true);
-	ScalarConverter::print_float(static_cast<float>(out), true);
-	ScalarConverter::print_double(static_cast<double>(out), true);
+	if (out <= std::numeric_limits<char>::max()
+	&&	out >= std::numeric_limits<char>::min())
+		is_convertible = true;
+	ScalarConverter::print_char(out, is_convertible);
+	ScalarConverter::print_int(static_cast<int>(out), is_convertible);
+	ScalarConverter::print_float(static_cast<float>(out), is_convertible);
+	ScalarConverter::print_double(static_cast<double>(out), is_convertible);
 }
 
 void	ScalarConverter::convert_int(std::string in)
 {
-	long long int	out;
+	long int	out;
+	bool		is_convertible = false;
+	bool		is_convertible_char = false;
 	std::stringstream(in) >> out;
 
-	if (out <= std::numeric_limits<char>::max()
-	&&	out >= std::numeric_limits<char>::min())
-		ScalarConverter::print_char(static_cast<char>(out), true);
-	else
-		ScalarConverter::print_char(static_cast<char>(out), false);
 	if (out <= std::numeric_limits<int>::max()
 	&&	out >= std::numeric_limits<int>::min())
-		ScalarConverter::print_int(static_cast<int>(out), true);
-	else
-		ScalarConverter::print_int(static_cast<int>(out), false);
-	ScalarConverter::print_float(static_cast<float>(out), true);
-	ScalarConverter::print_double(static_cast<double>(out), true);
+		is_convertible = true;
+	if (is_convertible && out <= std::numeric_limits<char>::max()
+	&&	out >= std::numeric_limits<char>::min())
+		is_convertible_char = true;
+	ScalarConverter::print_char(static_cast<char>(out), is_convertible_char);
+	ScalarConverter::print_int(static_cast<int>(out), is_convertible);
+	ScalarConverter::print_float(static_cast<float>(out), is_convertible);
+	ScalarConverter::print_double(static_cast<double>(out), is_convertible);
 }
 
 void	ScalarConverter::convert_float(std::string in)
@@ -210,16 +212,21 @@ void	ScalarConverter::convert_float(std::string in)
 		else
 			ScalarConverter::print_char(static_cast<char>(out), false);
 		if (out <= std::numeric_limits<int>::max()
-		&&	out >= std::numeric_limits<int>::min())
+		&&	out >= -std::numeric_limits<int>::max())
 			ScalarConverter::print_int(static_cast<int>(out), true);
 		else
 			ScalarConverter::print_int(static_cast<int>(out), false);
 		if (out <= std::numeric_limits<float>::max()
-		&&	out >= std::numeric_limits<float>::min())
+		&&	out >= -std::numeric_limits<float>::max())
+		{
 			ScalarConverter::print_float(static_cast<float>(out), true);
+			ScalarConverter::print_double(static_cast<double>(out), true);
+		}
 		else
+		{
 			ScalarConverter::print_float(static_cast<float>(out), false);
-		ScalarConverter::print_double(static_cast<double>(out), true);
+			ScalarConverter::print_double(static_cast<double>(out), false);
+		}
 	}
 }
 
@@ -248,12 +255,12 @@ void	ScalarConverter::convert_double(std::string in)
 		else
 			ScalarConverter::print_int(static_cast<int>(out), false);
 		if (out <= std::numeric_limits<float>::max()
-		&&	out >= std::numeric_limits<float>::min())
+		&&	out >= -std::numeric_limits<float>::max())
 			ScalarConverter::print_float(static_cast<float>(out), true);
 		else
 			ScalarConverter::print_float(static_cast<float>(out), false);
-		if (out <= std::numeric_limits<float>::max()
-		&&	out >= std::numeric_limits<float>::min())
+		if (out <= std::numeric_limits<double>::max()
+		&&	out >= -std::numeric_limits<double>::max())
 			ScalarConverter::print_double(static_cast<double>(out), true);
 		else
 			ScalarConverter::print_double(static_cast<double>(out), false);
@@ -335,6 +342,6 @@ std::string	ScalarConverter::convert_hex(unsigned char c)
 	std::stringstream	ss;
 
 	ss << "0x" << std::setfill('0') << std::setw(2) << std::hex
-		<< static_cast<short >(c);
+		<< static_cast<short>(c);
 	return (ss.str());
 }
