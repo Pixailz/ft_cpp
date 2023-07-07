@@ -22,102 +22,92 @@ void	debug(std::string msg)
 
 void	test_char(void)
 {
-	ScalarConverter	u;
-
 	std::cout << std::endl << "CHARACTER" << std::endl;
 
 	// GOOD
-	u.convert("'a'");
-	u.convert("\"a\"");
-	u.convert("'\x90'");
-	u.convert("'\xef'");
-	u.convert("'\xff'");
+	ScalarConverter::convert("'a'");
+	ScalarConverter::convert("\"a\"");
+	ScalarConverter::convert("'\x90'");
+	ScalarConverter::convert("'\xef'");
+	ScalarConverter::convert("'\xff'");
 
 	// BAD
-	u.convert("'a");
-	u.convert("a'");
-	u.convert("\"a");
-	u.convert("a\"");
-	u.convert("'a\"");
-	u.convert("\"a'");
-	u.convert("a");
+	ScalarConverter::convert("'a");
+	ScalarConverter::convert("a'");
+	ScalarConverter::convert("\"a");
+	ScalarConverter::convert("a\"");
+	ScalarConverter::convert("'a\"");
+	ScalarConverter::convert("\"a'");
+	ScalarConverter::convert("a");
 }
 
 void	test_int(void)
 {
-	ScalarConverter	u;
-
 	std::cout << std::endl << "INTEGER" << std::endl;
 
 	// GOOD
-	u.convert("1234");
-	u.convert("-1234");
-	u.convert("+1234");
-	u.convert("01234");
+	ScalarConverter::convert("1234");
+	ScalarConverter::convert("-1234");
+	ScalarConverter::convert("+1234");
+	ScalarConverter::convert("01234");
 
 	// BAD
-	u.convert("++1234");
-	u.convert("+-1234");
-	u.convert("A1234");
+	ScalarConverter::convert("++1234");
+	ScalarConverter::convert("+-1234");
+	ScalarConverter::convert("A1234");
 }
 
 void	test_float(void)
 {
-	ScalarConverter	u;
-
 	std::cout << std::endl << "FLOAT" << std::endl;
 
 	// GOOD
-	u.convert("1234.0f");
-	u.convert("-1234.0f");
-	u.convert("+1234.0f");
-	u.convert("01234.0f");
-	u.convert(".01234f");
-	u.convert("+inff");
-	u.convert("-inff");
-	u.convert("nanf");
-	u.convert("1234.f");
+	ScalarConverter::convert("1234.0f");
+	ScalarConverter::convert("-1234.0f");
+	ScalarConverter::convert("+1234.0f");
+	ScalarConverter::convert("01234.0f");
+	ScalarConverter::convert(".01234f");
+	ScalarConverter::convert("+inff");
+	ScalarConverter::convert("-inff");
+	ScalarConverter::convert("nanf");
+	ScalarConverter::convert("1234.f");
 
 	// BAD
-	u.convert("1234..f");
-	u.convert("1234.0a");
-	u.convert("++1234.0f");
-	u.convert("+-1234.0f");
-	u.convert("A1234.0f");
+	ScalarConverter::convert("1234..f");
+	ScalarConverter::convert("1234.0a");
+	ScalarConverter::convert("++1234.0f");
+	ScalarConverter::convert("+-1234.0f");
+	ScalarConverter::convert("A1234.0f");
 }
 
 void	test_double(void)
 {
-	ScalarConverter	u;
-
 	std::cout << std::endl << "DOUBLE" << std::endl;
 
 	// GOOD
-	u.convert("1234.0");
-	u.convert("-1234.0");
-	u.convert("+1234.0");
-	u.convert("01234.0");
-	u.convert(".01234");
-	u.convert("+inf");
-	u.convert("-inf");
-	u.convert("nan");
-	u.convert("1234.");
+	ScalarConverter::convert("1234.0");
+	ScalarConverter::convert("-1234.0");
+	ScalarConverter::convert("+1234.0");
+	ScalarConverter::convert("01234.0");
+	ScalarConverter::convert(".01234");
+	ScalarConverter::convert("+inf");
+	ScalarConverter::convert("-inf");
+	ScalarConverter::convert("nan");
+	ScalarConverter::convert("1234.");
 
 	// BAD
-	u.convert("1234..");
-	u.convert("++1234.0");
-	u.convert("+-1234.0");
-	u.convert("A1234.0");
+	ScalarConverter::convert("1234..");
+	ScalarConverter::convert("++1234.0");
+	ScalarConverter::convert("+-1234.0");
+	ScalarConverter::convert("A1234.0");
 }
 
 void	test_basic(void)
 {
-	ScalarConverter	u;
-
-	u.convert("'a'");
-	u.convert("1234");
-	u.convert("1234.5678f");
-	u.convert("1234.5678");
+	ScalarConverter::convert("'a'");
+	ScalarConverter::convert("1234");
+	ScalarConverter::convert("1234.5678f");
+	ScalarConverter::convert("1234.5678");
 
 }
 
@@ -134,11 +124,7 @@ int	main(int ac, char **av)
 {
 	// all_test();
 	if (ac == 2)
-	{
-		ScalarConverter	u;
-
-		u.convert(av[1]);
-	}
+		ScalarConverter::convert(av[1]);
 	else
 		std::cerr << "Wrong args number" << std::endl;
 	return (0);

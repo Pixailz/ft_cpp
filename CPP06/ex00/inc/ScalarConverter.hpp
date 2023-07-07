@@ -32,11 +32,11 @@ class ScalarConverter
 		// VAR
 
 		// OTHER FUNCTION
+		ScalarConverter(void);
+		ScalarConverter(const ScalarConverter &copy);
 
 	public:
 		// CONSTRUCTOR
-		ScalarConverter(void);
-		ScalarConverter(const ScalarConverter &copy);
 
 		// DESTRUCTOR
 		~ScalarConverter(void);
