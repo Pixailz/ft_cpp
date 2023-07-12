@@ -46,4 +46,15 @@
 # define	H_DEBUG				"[" B "DEBUG" RST "] → "
 # define	H_ERROR				"[" R "ERROR" RST "] → "
 
+template <typename Type>
+void	iter(
+	Type	*array,
+	size_t		size,
+	void		(*f)(Type&)
+)
+{
+	for (size_t i = 0; i < size; i++)
+		f(array[i]);
+}
+
 #endif // MAIN_H

@@ -10,7 +10,7 @@
 
 ##BEGIN#_________________________>#_|CONFIG|_#<_______________________________##
 
-TARGET					:= temp
+TARGET					:= iter
 
 CC						:= g++
 CFLAGS					:= -Wall -Wextra --std=c++98 -g3
