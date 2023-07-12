@@ -12,17 +12,12 @@
 /*# VERSION:[ALPHA|BETA]_MAJOR.MINOR.PATCH                                  ##*/
 /*#END#___________________________<#_|INFO|_#>______________________________##*/
 
-#include <not_a_library>
-
-void	debug(std::string msg)
-{
-	if (DEBUG == 1)
-		std::cout << msg << std::endl;
-}
+#include <Array.h>
 
 int	main(int argc, char **argv, char **envp)
 {
-	if (argc != 2)
-		return (1);
+	int *a = new int();
+
+	std::cout << *a << std::endl;
 	return (0);
-}
+ }
