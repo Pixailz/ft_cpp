@@ -57,4 +57,15 @@ void	iter(
 		f(array[i]);
 }
 
+template <typename Type>
+void	iter(
+	Type	*array,
+	size_t		size,
+	void		(*f)(Type const &)
+)
+{
+	for (size_t i = 0; i < size; i++)
+		f(array[i]);
+}
+
 #endif // MAIN_H
