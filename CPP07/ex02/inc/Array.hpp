@@ -46,4 +46,74 @@
 # define	H_DEBUG				"[" B "DEBUG" RST "] → "
 # define	H_ERROR				"[" R "ERROR" RST "] → "
 
+void	debug(std::string msg);
+
+typedef unsigned int t_size;
+
+template <typename T>
+class Array
+{
+	private:
+		t_size	_len;
+		T		*_content;
+
+	public:
+		Array(void) : _len(0), _content(NULL)
+		{};
+
+		Array(t_size len) : _len(len)
+		{
+			this->_content = new T[len];
+		};
+
+		Array(const Array &src) : _content(NULL)
+		{
+			*this = src;
+		};
+
+		~Array(void)
+		{
+			if (!this->_content)
+				return ;
+			delete [] this->_content;
+		};
+
+		Array &operator=(const Array &src)
+		{
+			t_size len = src.size();
+
+			if (this->_content)
+				delete [] this->_content;
+			this->_content = new T [len];
+			this->_len = len;
+			for (t_size i = 0; i < len; i++)
+				this->_content[i] = src._content[i];
+			return (*this);
+		};
+
+		t_size size(void) const
+		{
+			return (this->_len);
+		};
+
+		T &operator[](int index)
+		{
+			if (index < 0)
+				throw Array::OutOfBound();
+			if (!this->_len)
+				throw Array::OutOfBound();
+			if (static_cast<t_size>(index) > this->_len - 1)
+				throw Array::OutOfBound();
+			return (this->_content[index]);
+		}
+
+		class OutOfBound: public std::exception
+		{
+			virtual const char*	what() const throw()
+			{
+				return (H_ERROR "Out of bound");
+			}
+		};
+};
+
 #endif // MAIN_H
