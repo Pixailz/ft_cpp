@@ -7,7 +7,7 @@ CPP modules
 > clean all modules
 ```bash
 for file in $(find . -type f ! -path "./TEMPLATE/*" -name "Makefile" -print | sort); do
-	make -C "${file%\/*}" fclean
+	make -sC "${file%\/*}" fclean
 done
 ```
 
