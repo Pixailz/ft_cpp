@@ -49,8 +49,8 @@
 template <typename Type>
 void	iter(
 	Type	*array,
-	size_t		size,
-	void		(*f)(Type&)
+	size_t	size,
+	void	(*f)(Type&)
 )
 {
 	for (size_t i = 0; i < size; i++)
@@ -59,9 +59,9 @@ void	iter(
 
 template <typename Type>
 void	iter(
-	Type	*array,
-	size_t		size,
-	void		(*f)(Type const &)
+	Type	array,
+	size_t	size,
+	void	(*f)(Type const &)
 )
 {
 	for (size_t i = 0; i < size; i++)
