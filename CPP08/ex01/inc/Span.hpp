@@ -1,7 +1,7 @@
 /*#BEGIN#_________________________>#_|INFO|_#<______________________________##*/
 /*#                                                        ______ _         ##*/
 /*# DETAILS:                                               | ___ (_)        ##*/
-/*#- FILENAME		main.h                                 | |_/ /___  __   ##*/
+/*#- FILENAME		Span.hpp                               | |_/ /___  __   ##*/
 /*#- PROJECT_NAME	None                                   |  __/| \ \/ /   ##*/
 /*#- AUTHOR			Pixailz                                | |   | |>  <    ##*/
 /*#- CREATED		2023−01−29T23:02:00+0100               \_|   |_/_/\_\   ##*/
@@ -12,9 +12,8 @@
 /*# VERSION:[ALPHA|BETA]_MAJOR.MINOR.PATCH                                  ##*/
 /*#END#___________________________<#_|INFO|_#>______________________________##*/
 
-#ifndef MAIN_H
-# define MAIN_H
-/*#BEGIN#_____________________>#_|DEPENDENCIES|_#<__________________________##*/
+#ifndef SPAN_HPP
+# define SPAN_HPP
 
 # include <iostream>
 /**
@@ -22,9 +21,29 @@
  * <object>		std::cerr
  * <object>		std::endl
  */
+#include <limits>
+/**
+ * <template>	std::numeric_limits
+ */
+#include <cstdlib>
+/**
+ * <object>		abs
+ */
+#include <fstream>
+/**
+ * <object>		ifstream
+ * <function>	is_open
+ * <function>	open
+ * <function>	close
+ */
+# include <exception>
+/**
+ * std::out_of_range()
+ */
+# include <list>
 
 # ifndef DEBUG
-#  define	DEBUG				1
+#  define	DEBUG				0
 # endif
 
 # ifndef DEBUG_FD
@@ -46,4 +65,34 @@
 # define	H_DEBUG				"[" B "DEBUG" RST "] → "
 # define	H_ERROR				"[" R "ERROR" RST "] → "
 
-#endif // MAIN_H
+void	debug(std::string msg);
+
+class Span
+{
+	private:
+		// VAR
+		size_t	_len;
+		std::list<int>	_list;
+
+		// OTHER FUNCTION
+
+	public:
+		// CONSTRUCTOR
+		Span(size_t);
+		Span(const Span &copy);
+
+		// DESTRUCTOR
+		~Span(void);
+
+		// OPERATOR
+		Span	&operator=(const Span &src);
+
+		// EXCEPTION
+
+		// OTHER
+		void	addNumber(int n);
+		size_t	shortestSpan(void);
+		size_t	longestSpan(void);
+};
+
+#endif // SPAN_CLASS

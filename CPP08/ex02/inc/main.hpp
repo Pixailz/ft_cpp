@@ -22,6 +22,26 @@
  * <object>		std::cerr
  * <object>		std::endl
  */
+#include <limits>
+/**
+ * <template>	std::numeric_limits
+ */
+#include <cstdlib>
+/**
+ * <object>		abs
+ */
+#include <fstream>
+/**
+ * <object>		ifstream
+ * <function>	is_open
+ * <function>	open
+ * <function>	close
+ */
+# include <exception>
+/**
+ * std::out_of_range()
+ */
+# include <list>
 
 # ifndef DEBUG
 #  define	DEBUG				1

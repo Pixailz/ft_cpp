@@ -12,8 +12,8 @@
 /*# VERSION:[ALPHA|BETA]_MAJOR.MINOR.PATCH                                  ##*/
 /*#END#___________________________<#_|INFO|_#>______________________________##*/
 
-#ifndef MAIN_H
-# define MAIN_H
+#ifndef MUTANT_STACK_HPP
+# define MUTANT_STACK_HPP
 /*#BEGIN#_____________________>#_|DEPENDENCIES|_#<__________________________##*/
 
 # include <iostream>
@@ -22,6 +22,8 @@
  * <object>		std::cerr
  * <object>		std::endl
  */
+#include <string>
+# include <stack>
 
 # ifndef DEBUG
 #  define	DEBUG				1
@@ -46,4 +48,53 @@
 # define	H_DEBUG				"[" B "DEBUG" RST "] → "
 # define	H_ERROR				"[" R "ERROR" RST "] → "
 
-#endif // MAIN_H
+template<typename T>
+class MutantStack: public std::stack<T>
+{
+	public:
+		MutantStack() : std::stack<T>() {};
+		MutantStack( MutantStack const & src )
+		{
+			*this = src;
+		};
+		virtual ~MutantStack() {};
+		MutantStack<T> &operator=( MutantStack<T> const & copy )
+		{
+			if (*this != copy)
+				*this = copy;
+			return (*this);
+		};
+
+		typedef typename std::stack<T>::container_type::iterator iterator;
+		typedef typename std::stack<T>::container_type::const_iterator const_iterator;
+		typedef typename std::stack<T>::container_type::reverse_iterator reverse_iterator;
+		typedef typename std::stack<T>::container_type::const_reverse_iterator const_reverse_iterator;
+
+		iterator				begin() {
+			return this->c.begin();
+		};
+		iterator				end() {
+			return this->c.end();
+		};
+		const_iterator			cbegin() const {
+			return this->c.cbegin();
+		};
+		const_iterator			cend() const {
+			return this->c.cend();
+		};
+		reverse_iterator		rbegin() {
+			return this->c.rbegin();
+		};
+		reverse_iterator		rend() {
+			return this->c.rend();
+		};
+		const_reverse_iterator	crbegin() const {
+			return this->c.crbegin();
+		};
+		const_reverse_iterator	crend() const {
+			return this->c.crend();
+		};
+	private:
+};
+
+#endif // MUTANT_STACK_HPP

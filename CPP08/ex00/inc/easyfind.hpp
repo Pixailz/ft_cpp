@@ -12,8 +12,8 @@
 /*# VERSION:[ALPHA|BETA]_MAJOR.MINOR.PATCH                                  ##*/
 /*#END#___________________________<#_|INFO|_#>______________________________##*/
 
-#ifndef MAIN_H
-# define MAIN_H
+#ifndef EASYFIND_H
+# define EASYFIND_H
 /*#BEGIN#_____________________>#_|DEPENDENCIES|_#<__________________________##*/
 
 # include <iostream>
@@ -22,28 +22,21 @@
  * <object>		std::cerr
  * <object>		std::endl
  */
+#include <algorithm>
+#include <exception>
+#include <vector>
+#include <deque>
+#include <list>
 
-# ifndef DEBUG
-#  define	DEBUG				1
-# endif
+template<typename T>
+typename T::iterator easyfind(T & container, int toFind)
+{
+	typename T::iterator	it;
 
-# ifndef DEBUG_FD
-#  define	DEBUG_FD			420
-# endif
+	it = std::find(container.begin(), container.end(), toFind);
+	if (it == container.end())
+		throw (std::out_of_range("iterator not found"));
+	return (it);
+}
 
-# ifndef	VERBOSE
-#  define	VERBOSE				1
-# endif
-
-# define	ANSI_ESC			"\x1b["
-# define	R					ANSI_ESC "38:2::192:0:0m"
-# define	G					ANSI_ESC "38:2::0:192:0m"
-# define	B					ANSI_ESC "38:2::0:64:192m"
-# define	COL_INFO			ANSI_ESC "11G"
-# define	RST					ANSI_ESC "0m"
-
-# define	H_CLASS				"[" G "CLASS" RST "] → "
-# define	H_DEBUG				"[" B "DEBUG" RST "] → "
-# define	H_ERROR				"[" R "ERROR" RST "] → "
-
-#endif // MAIN_H
+#endif // EASYFIND_H
