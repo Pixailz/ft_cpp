@@ -71,7 +71,7 @@ class Span
 {
 	private:
 		// VAR
-		size_t	_len;
+		size_t			_len;
 		std::list<int>	_list;
 
 		// OTHER FUNCTION

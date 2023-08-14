@@ -73,7 +73,7 @@ int	get_random_int(void)
 			random_int = random_int + (infile.get() << i * 8);
 		infile.close();
 	}
-	return (static_cast<int>(random_int));
+	return (random_int);
 }
 
 void	print_list(std::list<int> list)
@@ -94,35 +94,38 @@ void	test_intensive(size_t len, size_t nb_test)
 {
 	std::list<int>	random_list;
 	std::ofstream	outfile("result");
-	size_t			j = 0;
 
+	if (len < 2)
+	{
+		std::cout << "len too small" << std::endl;
+		return ;
+	}
 	for (size_t i = 0; i < nb_test; i++)
 	{
-		j = i + i;
 		{
-			Span span = Span(len);
+			Span	span = Span(len);
 			size_t	ite = 0;
 			size_t	shortest;
 			size_t	longest;
 
 			random_list.clear();
-			std::cout << "[" << j << "] " << "generating random number" << std::endl;
-			for (int i = len; i > 0; i--)
+			std::cout << "[" << i << "] " << "generating random number" << std::endl;
+			for (int j = len; j > 0; j--)
 				random_list.push_back(get_random_int());
-			std::cout << "[" << j << "] " << "adding number to span" << std::endl;
+			std::cout << "[" << i << "] " << "adding number to span" << std::endl;
 			for (std::list<int>::iterator it = random_list.begin(); it != random_list.end(); it++)
 				span.addNumber(*it);
-			std::cout << "[" << j << "] " << "starting shortest" << std::endl;
+			std::cout << "[" << i << "] " << "starting shortest" << std::endl;
 			shortest = span.shortestSpan();
-			std::cout << "[" << j << "] " << "starting longest" << std::endl;
+			std::cout << "[" << i << "] " << "starting longest" << std::endl;
 			longest = span.longestSpan();
-			std::cout << H_DEBUG << "[" << j << "] Shortest span " << shortest << std::endl;
-			std::cout << H_DEBUG << "[" << j << "] Longest span  " << longest << std::endl;
+			std::cout << H_DEBUG << "[" << i << "] Shortest span " << shortest << std::endl;
+			std::cout << H_DEBUG << "[" << i << "] Longest span  " << longest << std::endl;
 			random_list.sort(compare_int);
 			for (std::list<int>::iterator it = random_list.begin(); it != random_list.end(); it++)
-				outfile << "[" << j << "][" << ++ite << "] " << *it << std::endl;
-			outfile << "[" << j << "] Shortest span " << shortest << std::endl;
-			outfile << "[" << j << "] Longest span  " << longest << std::endl;
+				outfile << "[" << i << "][" << ++ite << "] " << *it << std::endl;
+			outfile << "[" << i << "] Shortest span " << shortest << std::endl;
+			outfile << "[" << i << "] Longest span  " << longest << std::endl;
 			outfile << std::endl;
 		}
 	}

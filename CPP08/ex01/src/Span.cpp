@@ -22,10 +22,7 @@
 Span::Span(size_t len) : _len(len)
 {
 	debug("Span class created");
-
-	if (this->_list.size())
-		for (int i = this->_list.size(); i > 0; i--)
-			this->_list.pop_front();
+	this->_list.clear();
 }
 
 // Destructor
@@ -68,13 +65,13 @@ void	Span::addNumber(int n)
 
 size_t	Span::shortestSpan(void)
 {
-	if (this->_list.size() < 2)
-		throw std::length_error(H_ERROR "Span is not long enought");
-	this->_list.sort(compare_int);
 	size_t	gap = std::numeric_limits<size_t>::max();
 	int		previous = -std::numeric_limits<size_t>::max();
 	size_t	current_gap;
 
+	if (this->_list.size() < 2)
+		throw std::length_error(H_ERROR "Span is not long enought");
+	this->_list.sort(compare_int);
 	for (	std::list<int>::iterator it = this->_list.begin();
 			it != this->_list.end(); it++)
 	{
