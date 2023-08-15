@@ -25,11 +25,11 @@
 #include <string>
 # include <stack>
 
-# ifndef DEBUG
+# ifndef	DEBUG
 #  define	DEBUG				1
 # endif
 
-# ifndef DEBUG_FD
+# ifndef	DEBUG_FD
 #  define	DEBUG_FD			420
 # endif
 
