@@ -12,13 +12,7 @@
 /*# VERSION:[ALPHA|BETA]_MAJOR.MINOR.PATCH                                  ##*/
 /*#END#___________________________<#_|INFO|_#>______________________________##*/
 
-#include "main.h"
-
-enum err {
-	ERR_NOT_ENOUGHT_ARG = 1,
-	ERR_ARG_NOT_GOOD_FILE,
-	ERR_CSV_NOT_GOOD_FILE,
-};
+#include "BitcoinExchange.hpp"
 
 void	debug(std::string msg)
 {
@@ -35,20 +29,37 @@ bool is_not_a_good_file(std::string filename)
 	return (!is_open);
 }
 
+void	err(std::string msg)
+{
+	std::cerr << "Error: " << msg << std::endl;
+}
+
+void	err(std::string title, std::string msg)
+{
+	std::cerr << "Error: " << title << " " << msg << std::endl;
+}
+
+void	err(std::string title, std::string msg, int nb_line)
+{
+	std::cerr << "Error: " << title << " " << msg << " " << nb_line << std::endl;
+}
+
 int	main(int ac, char **av)
 {
 	if (ac != 2) {
-		std::cerr << "Not enought args" << std::endl;
+		err("Not enought args");
 		return (ERR_NOT_ENOUGHT_ARG);
 	}
 	if (is_not_a_good_file(av[1])) {
-		std::cerr << av[1] << " is not a good file" << std::endl;
+		err(av[1], "isn't a good file");
 		return (ERR_ARG_NOT_GOOD_FILE);
 	}
-	if (is_not_a_good_file("data.csv")) {
-		std::cerr << "data.csv not found or is not a good file" << std::endl;
-		return (ERR_CSV_NOT_GOOD_FILE);
+	if (is_not_a_good_file(DATA_FILE)) {
+		err(DATA_FILE, "isn't a good file");
+		return (ERR_DATA_NOT_GOOD_FILE);
 	}
+	BitcoinExchange test(av[1]);
 
 	return (0);
 }
+

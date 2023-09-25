@@ -34,7 +34,8 @@ MKDIR					:= mkdir -p
 MAKE					:= make
 PRINTF					:= @printf
 
-SRC_CPP					:= main.cpp
+SRC_CPP					:=	main.cpp \
+							BitcoinExchange.cpp
 
 OBJ_CPP					:= $(addprefix $(OBJ_DIR)/,$(SRC_CPP:%.cpp=%.o))
 SRC_CPP					:= $(addprefix $(SRC_DIR)/,$(SRC_CPP))
@@ -73,6 +74,6 @@ re:						fclean $(TARGET)
 
 run:						re
 	@$(call PRINT_ANSI,\x1b[2J\x1b[H)
-	./$(TARGET) $(ARGS)
+	./$(TARGET) ./input.txt
 
 ##END#___________________________<#_|RULES|_#>________________________________##
