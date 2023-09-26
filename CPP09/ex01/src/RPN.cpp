@@ -18,6 +18,28 @@
  * <function>	function()
  */
 
+std::string to_string(int value)
+{
+	std::ostringstream oss;
+	oss << value;
+	return oss.str();
+}
+
+bool	is_good_number(char n)
+{
+	return (n >= '0' && n <= '9');
+}
+
+bool	is_good_operator(char n)
+{
+	return (AVAILABLE_OPERATOR.find(n) != std::string::npos);
+}
+
+bool	is_good_char(char n)
+{
+	return (is_good_number(n) || is_good_operator(n));
+}
+
 void	print_stack(st sta)
 {
 	(void)sta;
@@ -38,7 +60,7 @@ RPN::RPN(void)
 	debug("RPN class created");
 }
 
-RPN::RPN(std::string expr): _expr(trim(expr))
+RPN::RPN(std::string expr): _expr(expr)
 {
 	debug("RPN class created with the following expression: " + this->_expr);
 }
@@ -64,13 +86,6 @@ RPN	&RPN::operator=(const RPN &src)
 	return (*this);
 }
 
-std::string to_string(int value)
-{
-	std::ostringstream oss;
-	oss << value;
-	return oss.str();
-}
-
 // Exception
 const char *RPN::WrongExpression::what() const throw()
 {
@@ -91,21 +106,6 @@ const char *RPN::UnexpectedCharAt::what() const throw()
 
 // Other
 
-bool	is_good_number(char n)
-{
-	return (n >= '0' && n <= '9');
-}
-
-bool	is_good_operator(char n)
-{
-	return (AVAILABLE_OPERATOR.find(n) != std::string::npos);
-}
-
-bool	is_good_char(char n)
-{
-	return (is_good_number(n) || is_good_operator(n));
-}
-
 void	RPN::process_number(const char *c)
 {
 	this->_stack.push(std::atoi(c));
@@ -118,21 +118,25 @@ void	RPN::process_operator(char c)
 
 void	RPN::calculate(void)
 {
-	int	len_expr = (int)this->_expr.length();
-	int	i = 0;
-	char c;
+	int		len_expr = (int)this->_expr.length();
+	int		i = 0;
+	int		i_1 = 0;
+	char	c;
 
 	while (this->_expr[i])
 	{
+		while (this->_expr[i] == ' ')
+			i++;
 		c = this->_expr[i];
-		if (is_good_number(c))
+		i_1 = i + 1;
+		if (this->_expr[i_1] && this->_expr[i_1] != ' ')
+			throw UnexpectedCharAt(i + 2);
+		else if (is_good_number(c))
 			this->process_number(&c);
 		else if(is_good_operator(c))
 			this->process_operator(c);
 		else
-			throw UnexpectedCharAt(i);
+			throw UnexpectedCharAt(i + 1);
 		i++;
-		while (this->_expr[i] == ' ')
-			i++;
 	}
 }
