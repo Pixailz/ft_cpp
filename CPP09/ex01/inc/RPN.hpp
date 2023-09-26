@@ -19,6 +19,8 @@
 
 #include <stack>
 #include <exception>
+#include <cstdlib>
+#include <sstream>
 
 enum err {
 	ERR_ARG = 1,
@@ -31,14 +33,15 @@ void	err(std::string title, int char_pos);
 
 const std::string AVAILABLE_OPERATOR = "*/+-";
 
-typedef std::stack<int> istack;
+typedef int					sttype;
+typedef std::stack<sttype>	st;
 
 class RPN
 {
 	private:
 		// VAR
-		std::string		_expr;
-		std::stack<int>	_stack;
+		std::string	_expr;
+		st			_stack;
 
 		// OTHER FUNCTION
 		RPN(void);
@@ -46,23 +49,25 @@ class RPN
 
 		RPN	&operator=(const RPN &src);
 
-		void process_number(char c);
+		void process_number(const char *c);
 		void process_operator(char c);
 
+
+	public:
 		// EXCEPTION
 		class WrongExpression : public std::exception {
 			public:
 				virtual const char *what() const throw();
 		};
+
 		class UnexpectedCharAt : public std::exception {
 			private:
-				int _at;
+				std::string	_msg;
 			public:
 				UnexpectedCharAt(int i);
+				virtual ~UnexpectedCharAt() throw();
 				virtual const char *what() const throw();
 		};
-
-	public:
 		// CONSTRUCTOR
 		RPN(std::string expr);
 

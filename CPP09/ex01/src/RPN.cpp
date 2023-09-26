@@ -18,6 +18,11 @@
  * <function>	function()
  */
 
+void	print_stack(st sta)
+{
+	(void)sta;
+}
+
 std::string trim(std::string str)
 {
 	size_t first = str.find_first_not_of(' ');
@@ -59,17 +64,29 @@ RPN	&RPN::operator=(const RPN &src)
 	return (*this);
 }
 
+std::string to_string(int value)
+{
+	std::ostringstream oss;
+	oss << value;
+	return oss.str();
+}
+
 // Exception
 const char *RPN::WrongExpression::what() const throw()
 {
-	return (H_ERROR "Wrong expresion");
+	return ("Wrong expresion");
 }
 
-RPN::UnexpectedCharAt::UnexpectedCharAt(int i): _at(i) {};
+RPN::UnexpectedCharAt::UnexpectedCharAt(int i)
+	: _msg(std::string("Unexpected char at position ") + to_string(i))
+{ };
+
+RPN::UnexpectedCharAt::~UnexpectedCharAt() throw()
+{ };
 
 const char *RPN::UnexpectedCharAt::what() const throw()
 {
-	return (H_ERROR "Wrong expresion");
+	return (this->_msg.c_str());
 }
 
 // Other
@@ -89,7 +106,7 @@ bool	is_good_char(char n)
 	return (is_good_number(n) || is_good_operator(n));
 }
 
-void	RPN::process_number(char c)
+void	RPN::process_number(const char *c)
 {
 	this->_stack.push(std::atoi(c));
 }
@@ -109,14 +126,11 @@ void	RPN::calculate(void)
 	{
 		c = this->_expr[i];
 		if (is_good_number(c))
-			this->process_number(c);
+			this->process_number(&c);
 		else if(is_good_operator(c))
 			this->process_operator(c);
 		else
-		{
-			err("Unexpected char at pos", i);
-			break ;
-		}
+			throw UnexpectedCharAt(i);
 		i++;
 		while (this->_expr[i] == ' ')
 			i++;

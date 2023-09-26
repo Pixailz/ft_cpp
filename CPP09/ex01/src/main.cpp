@@ -22,17 +22,17 @@ void	debug(std::string msg)
 
 void	err(std::string msg)
 {
-	std::cerr << "Error: " << msg << std::endl;
+	std::cerr << H_ERROR << msg << std::endl;
 }
 
 void	err(std::string title, std::string msg)
 {
-	std::cerr << "Error: " << title << " " << msg << std::endl;
+	std::cerr << H_ERROR << title << " " << msg << std::endl;
 }
 
 void	err(std::string title, int char_pos)
 {
-	std::cerr << "Error: " << title << " " << char_pos << std::endl;
+	std::cerr << H_ERROR << title << " " << char_pos << std::endl;
 }
 
 int	main(int ac, char **av)
@@ -44,6 +44,11 @@ int	main(int ac, char **av)
 	}
 	RPN	test(av[1]);
 
-	test.calculate();
+	try {
+		test.calculate();
+	}
+	catch (std::exception &e) {
+		err(e.what());
+	}
 	return (0);
 }
