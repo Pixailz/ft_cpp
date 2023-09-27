@@ -42,7 +42,16 @@ bool	is_good_char(char n)
 
 void	print_stack(st sta)
 {
-	(void)sta;
+	st	copy(sta);
+
+	if (copy.empty())
+		std::cout << "empty stack";
+	while (!copy.empty())
+	{
+		std::cout << copy.top() << " ";
+		copy.pop();
+	}
+	std::cout << std::endl;
 }
 
 std::string trim(std::string str)
@@ -62,7 +71,7 @@ RPN::RPN(void)
 
 RPN::RPN(std::string expr): _expr(expr)
 {
-	debug("RPN class created with the following expression: " + this->_expr);
+	debug("RPN class created with the following expression: \"" + this->_expr + '"');
 }
 
 // Destructor
@@ -92,6 +101,16 @@ const char *RPN::WrongExpression::what() const throw()
 	return ("Wrong expresion");
 }
 
+const char *RPN::ExpressionOverflow::what() const throw()
+{
+	return ("Calculation overflow");
+}
+
+const char *RPN::ExpressionUnderflow::what() const throw()
+{
+	return ("Calculation underflow");
+}
+
 RPN::UnexpectedCharAt::UnexpectedCharAt(int i)
 	: _msg(std::string("Unexpected char at position ") + to_string(i))
 { };
@@ -108,12 +127,48 @@ const char *RPN::UnexpectedCharAt::what() const throw()
 
 void	RPN::process_number(const char *c)
 {
+	std::cout << H_INFO;
 	this->_stack.push(std::atoi(c));
+	std::cout << this->_stack.top() << " → ";
+	print_stack(this->_stack);
+}
+
+large_type RPN::take_top_stack(void)
+{
+	large_type	n;
+
+	if (this->_stack.empty())
+		throw WrongExpression();
+	n = this->_stack.top();
+	this->_stack.pop();
+	return (n);
 }
 
 void	RPN::process_operator(char c)
 {
+	large_type	n2 = this->take_top_stack();
+	large_type	n1 = this->take_top_stack();
+	large_type	result;
 
+	switch (c)
+	{
+		case ('+') :
+		{ result = n1 + n2; break;}
+		case ('-') :
+		{ result = n1 - n2; break;}
+		case ('/') :
+		{ result = n1 / n2; break;}
+		case ('*') :
+		{ result = n1 * n2; break;}
+	}
+	if (result > std::numeric_limits<sttype>::max())
+		throw ExpressionOverflow();
+	if (result < -std::numeric_limits<sttype>::max())
+		throw ExpressionUnderflow();
+	std::cout << H_INFO;
+	this->_stack.push(result);
+	std::cout << c << " → ";
+	print_stack(this->_stack);
 }
 
 void	RPN::calculate(void)
@@ -127,16 +182,29 @@ void	RPN::calculate(void)
 	{
 		while (this->_expr[i] == ' ')
 			i++;
+		if (i == len_expr)
+			break ;
 		c = this->_expr[i];
 		i_1 = i + 1;
-		if (this->_expr[i_1] && this->_expr[i_1] != ' ')
-			throw UnexpectedCharAt(i + 2);
-		else if (is_good_number(c))
-			this->process_number(&c);
+		if (is_good_number(c))
+		{
+			if (this->_expr[i_1] && this->_expr[i_1] != ' ')
+				throw UnexpectedCharAt(i + 2);
+			else
+				this->process_number(&c);
+		}
 		else if(is_good_operator(c))
-			this->process_operator(c);
+		{
+			if (this->_expr[i_1] && this->_expr[i_1] != ' ')
+				throw UnexpectedCharAt(i + 2);
+			else
+				this->process_operator(c);
+		}
 		else
 			throw UnexpectedCharAt(i + 1);
 		i++;
 	}
+	if (this->_stack.size() != 1)
+		throw WrongExpression();
+	std::cout << H_INFO "result: " << this->_stack.top() << std::endl;
 }

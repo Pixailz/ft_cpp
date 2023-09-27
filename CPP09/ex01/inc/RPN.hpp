@@ -21,6 +21,7 @@
 #include <exception>
 #include <cstdlib>
 #include <sstream>
+#include <limits>
 
 enum err {
 	ERR_ARG = 1,
@@ -33,6 +34,7 @@ void	err(std::string title, int char_pos);
 
 const std::string AVAILABLE_OPERATOR = "*/+-";
 
+typedef long double			large_type;
 typedef int					sttype;
 typedef std::stack<sttype>	st;
 
@@ -49,9 +51,9 @@ class RPN
 
 		RPN	&operator=(const RPN &src);
 
-		void process_number(const char *c);
-		void process_operator(char c);
-
+		void		process_number(const char *c);
+		void		process_operator(char c);
+		large_type	take_top_stack(void);
 
 	public:
 		// EXCEPTION
@@ -59,7 +61,14 @@ class RPN
 			public:
 				virtual const char *what() const throw();
 		};
-
+		class ExpressionOverflow : public std::exception {
+			public:
+				virtual const char *what() const throw();
+		};
+		class ExpressionUnderflow : public std::exception {
+			public:
+				virtual const char *what() const throw();
+		};
 		class UnexpectedCharAt : public std::exception {
 			private:
 				std::string	_msg;

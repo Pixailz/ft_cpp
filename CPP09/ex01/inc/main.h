@@ -43,7 +43,8 @@
 # define	RST					ANSI_ESC "0m"
 
 # define	H_CLASS				"[" G "CLASS" RST "] → "
-# define	H_DEBUG				"[" B "DEBUG" RST "] → "
+# define	H_DEBUG				"[" B "DEBUG" RST "] "
+# define	H_INFO				"[" G "INFO " RST "] "
 # define	H_ERROR				"[" R "ERROR" RST "] → "
 
 #endif // MAIN_H

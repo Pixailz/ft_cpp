@@ -75,9 +75,6 @@ re:						fclean $(TARGET)
 .SILENT:
 run:						re
 	# @$(call PRINT_ANSI,\x1b[2J\x1b[H)
-	# ./$(TARGET) "7 7 * 7 -"
-	./$(TARGET) "      1 2 * 2 / 2 * 2 4 - +"
-	./$(TARGET) "   a  1 2 * 2 / 2 * 2 4 - +"
-	./$(TARGET) "1 3 2 35 8"
+	./$(TARGET) "1 2 +"
 
 ##END#___________________________<#_|RULES|_#>________________________________##
