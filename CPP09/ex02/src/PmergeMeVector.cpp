@@ -40,8 +40,8 @@ PmergeMeVector::PmergeMeVector(std::string array)
 		j = i;
 		while (array[j] != ' ' && is_good_number(array[j]))
 			j++;
-		tmp_n = array.substr(i, j - i);
-		this->_array.push_back(std::atoi(&array[i]));
+		tmp_n = array.substr(i, j - i + 1);
+		this->_array.push_back(std::atoi(tmp_n.c_str()));
 		i = j;
 		i++;
 	}

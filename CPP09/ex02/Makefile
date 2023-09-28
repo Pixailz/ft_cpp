@@ -76,6 +76,6 @@ re:						fclean $(TARGET)
 .SILENT:
 run:						re
 	# @$(call PRINT_ANSI,\x1b[2J\x1b[H)
-	./$(TARGET) "718 42 118 107 90 "
+	./$(TARGET) "1"
 
 ##END#___________________________<#_|RULES|_#>________________________________##
