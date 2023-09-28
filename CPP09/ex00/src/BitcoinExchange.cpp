@@ -274,7 +274,7 @@ void	BitcoinExchange::parse_input_file(std::string input_file)
 bool BitcoinExchange::input_is_good_first_line(void)
 {
 	this->_line = trim(this->_line);
-	return (this->_line == "date | exchange_rate");
+	return (this->_line == "date | value");
 }
 
 int BitcoinExchange::input_is_good_line(void)
@@ -317,17 +317,19 @@ void BitcoinExchange::report(std::string date, double value)
 	double calculated_value = this->find_closest_date(date) * value;
 
 	if (value <= BTC_MAX_VALUE)
-		std::cout << date << " ⇉ " << value << " →" << VALUE_COL << calculated_value << std::endl;
+		std::cout	<< date << " ⇉ " << value << " → "
+					<< calculated_value << std::endl;
 	else
-		std::cout << "Error: calculated value too high." << std::endl;
+		std::cout << "Error: input value too high" << std::endl;
 }
 
 double	BitcoinExchange::find_closest_date(std::string date)
 {
-	std::map<std::string, double>::iterator  it;
+	std::map<std::string, double>::iterator it;
+	std::map<std::string, double>::iterator itb = this->_data.begin();
 
-	it = _data.lower_bound(date);
-	if (it->first != date)
+	it = this->_data.lower_bound(date);
+	if (it->first != date && it != itb)
 		it--;
 	return (it->second);
 }
