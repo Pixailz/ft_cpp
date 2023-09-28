@@ -69,6 +69,10 @@ class RPN
 			public:
 				virtual const char *what() const throw();
 		};
+		class DivisionByZero : public std::exception {
+			public:
+				virtual const char *what() const throw();
+		};
 		class UnexpectedCharAt : public std::exception {
 			private:
 				std::string	_msg;

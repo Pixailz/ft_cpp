@@ -111,6 +111,11 @@ const char *RPN::ExpressionUnderflow::what() const throw()
 	return ("Calculation underflow");
 }
 
+const char *RPN::DivisionByZero::what() const throw()
+{
+	return ("Cannot divide by zero");
+}
+
 RPN::UnexpectedCharAt::UnexpectedCharAt(int i)
 	: _msg(std::string("Unexpected char at position ") + to_string(i))
 { };
@@ -157,7 +162,11 @@ void	RPN::process_operator(char c)
 		case ('-') :
 		{ result = n1 - n2; break;}
 		case ('/') :
-		{ result = n1 / n2; break;}
+		{
+			if (n2 == 0)
+				throw DivisionByZero();
+			result = n1 / n2; break;
+		}
 		case ('*') :
 		{ result = n1 * n2; break;}
 	}
