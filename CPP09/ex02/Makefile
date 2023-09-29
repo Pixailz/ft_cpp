@@ -75,6 +75,6 @@ re:						fclean $(TARGET)
 
 run:						re
 	# @$(call PRINT_ANSI,\x1b[2J\x1b[H)
-	./$(TARGET) "1"
+	./$(TARGET) "$$(shuf -i 1-3000 -n 3000 | tr '\n' ' ')"
 
 ##END#___________________________<#_|RULES|_#>________________________________##

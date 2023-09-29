@@ -34,9 +34,7 @@ void	err(std::string title, std::string msg)
 }
 
 bool	is_good_number(char n)
-{
-	return (n >= '0' && n <= '9');
-}
+{ return (n >= '0' && n <= '9'); }
 
 template <typename T>
 void	print_array_t(T array)
@@ -67,19 +65,39 @@ void	print_array(std::string title, T array)
 	std::cout << "]" << std::endl;
 }
 
-# define MILLION		1000000
 
 void	display_elapsed_time_usec(std::string title, timeval begin, timeval end)
 {
 	ts	elapsed_us = (
-		(end.tv_sec - begin.tv_sec) * MILLION
+		(end.tv_sec - begin.tv_sec) * 1000000
 	) + (
-		(end.tv_usec - begin.tv_usec) % MILLION
+		(end.tv_usec - begin.tv_usec) % 1000000
 	);
 
 	std::cout << H_INFO << title << ": elapsed time" << COL_ARRAY
 		<< std::setprecision(20) << elapsed_us << MICRO_SEC_STR
 		<< std::endl;
+}
+
+const char *ParsingError::what() const throw()
+{ return ("Inputed string isn't good"); }
+
+int	parse_number(std::string n)
+{
+	int			i = 0;
+	long int	j = 0;
+
+	while(n[i])
+	{
+		if (!is_good_number(n[i]))
+			throw ParsingError();
+		i++;
+	}
+	j = std::atol(n.c_str());
+	if (j > std::numeric_limits<int>::max() ||
+		j < -std::numeric_limits<int>::max())
+		throw ParsingError();
+	return (static_cast<int>(j));
 }
 
 int	main(int ac, char **av)
@@ -89,32 +107,37 @@ int	main(int ac, char **av)
 		err("Not enought args");
 		return (1);
 	}
+	try
 	{
-		timeval	begin;
-		timeval	end;
+		{
+			timeval	begin;
+			timeval	end;
 
-		gettimeofday(&begin, NULL);
-		PmergeMeVector	vector_test(av[1]);
-		print_array("std::vector: before", vector_test.get_array());
+			gettimeofday(&begin, NULL);
+			PmergeMeVector	vector_test(av[1]);
+			print_array("std::vector: before", vector_test.get_array());
 
-		vector_test.start_sorting();
-		gettimeofday(&end, NULL);
-		print_array("std::vector: after", vector_test.get_array());
-		display_elapsed_time_usec("std::vector", begin, end);
+			vector_test.start_sorting();
+			gettimeofday(&end, NULL);
+			print_array("std::vector: after", vector_test.get_array());
+			display_elapsed_time_usec("std::vector", begin, end);
+		}
+		std::cout << std::endl;
+		{
+			timeval	begin;
+			timeval	end;
+
+			gettimeofday(&begin, NULL);
+			PmergeMeDeque	deque_test(av[1]);
+			print_array("std::deque : before", deque_test.get_array());
+
+			deque_test.start_sorting();
+			gettimeofday(&end, NULL);
+			print_array("std::deque : after", deque_test.get_array());
+			display_elapsed_time_usec("std::deque ", begin, end);
+		}
 	}
-	std::cout << std::endl;
-	{
-		timeval	begin;
-		timeval	end;
-
-		gettimeofday(&begin, NULL);
-		PmergeMeDeque	deque_test(av[1]);
-		print_array("std::deque : before", deque_test.get_array());
-
-		deque_test.start_sorting();
-		gettimeofday(&end, NULL);
-		print_array("std::deque : after", deque_test.get_array());
-		display_elapsed_time_usec("std::deque ", begin, end);
-	}
+	catch (std::exception &e)
+	{ err(e.what()); }
 	return (0);
 }

@@ -32,6 +32,7 @@
  * <object>		timeval
  */
 #include <iomanip>
+#include <limits>
 
 # ifndef DEBUG
 #  define	DEBUG				1
@@ -69,7 +70,15 @@ bool	is_good_number(char n);
 template <typename T>
 void	print_array_t(T array);
 
+int	parse_number(std::string n);
+
 typedef int		arrType;
 typedef double	ts;
+
+class	ParsingError: public std::exception
+{
+	public:
+		virtual const char *what() const throw();
+};
 
 #endif // MAIN_H

@@ -38,12 +38,11 @@ PmergeMeVector::PmergeMeVector(std::string array)
 		if (i == len_array)
 			break ;
 		j = i;
-		while (array[j] != ' ' && is_good_number(array[j]))
+		while (array[j] && array[j] != ' ')
 			j++;
-		tmp_n = array.substr(i, j - i + 1);
-		this->_array.push_back(std::atoi(tmp_n.c_str()));
+		tmp_n = array.substr(i, j - i);
+		this->_array.push_back(parse_number(tmp_n));
 		i = j;
-		i++;
 	}
 	debug("PmergeMeVector class created");
 }

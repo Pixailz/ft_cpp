@@ -38,12 +38,11 @@ PmergeMeDeque::PmergeMeDeque(std::string array)
 		if (i == len_array)
 			break ;
 		j = i;
-		while (array[j] != ' ' && is_good_number(array[j]))
+		while (array[j] && array[j] != ' ')
 			j++;
 		tmp_n = array.substr(i, j - i);
-		this->_array.push_back(std::atoi(&array[i]));
+		this->_array.push_back(parse_number(tmp_n));
 		i = j;
-		i++;
 	}
 	debug("PmergeMeDeque class created");
 }
