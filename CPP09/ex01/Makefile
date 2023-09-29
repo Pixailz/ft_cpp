@@ -72,7 +72,6 @@ fclean:					clean
 
 re:						fclean $(TARGET)
 
-.SILENT:
 run:						re
 	# @$(call PRINT_ANSI,\x1b[2J\x1b[H)
 	./$(TARGET) "1 2 +"
