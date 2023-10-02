@@ -75,6 +75,6 @@ re:						fclean $(TARGET)
 run:						re
 	# @$(call PRINT_ANSI,\x1b[2J\x1b[H)
 	# ./$(TARGET) "$$(shuf -i 1-3000 -n 3000 | tr '\n' ' ')"
-	./$(TARGET) "$$(shuf -i 1-3 -n 3 | tr '\n' ' ')"
+	./$(TARGET) "$$(shuf -i 1-11 -n 11 | tr '\n' ' ')"
 
 ##END#___________________________<#_|RULES|_#>________________________________##

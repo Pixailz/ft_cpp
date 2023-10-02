@@ -90,6 +90,27 @@ void	PmergeMeVector::start_sorting(void)
 		this->_array_len--;
 	}
 	this->create_pair();
+	this->sort_pair();
+	this->sort_pair_array();
+}
+
+void	PmergeMeVector::sort_pair_array(void)
+{
+//TODO
+}
+
+void	PmergeMeVector::sort_pair(void)
+{
+	for (vecVecIt it = this->_pair_array.begin(); it != this->_pair_array.end(); it++)
+	{
+		vecIt itt = it->begin();
+		if (*itt > *(itt + 1))
+		{
+			*itt ^= *(itt + 1);
+			*(itt + 1) ^= *itt;
+			*itt ^= *(itt + 1);
+		}
+	}
 }
 
 void	PmergeMeVector::create_pair(void)
@@ -103,9 +124,8 @@ void	PmergeMeVector::create_pair(void)
 		this->_array.pop_back();
 		tmp.push_back(this->_array.back());
 		this->_array.pop_back();
-		this->_tmp_array.push_back(tmp);
+		this->_pair_array.push_back(tmp);
 	}
-	print_array_array_t(this->_tmp_array);
 }
 
 void	PmergeMeVector::mergeSort(std::vector<arrType> &array)

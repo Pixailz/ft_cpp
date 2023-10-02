@@ -28,7 +28,8 @@ class PmergeMeVector
 		bool								_has_straggler;
 		arrType								_straggler;
 
-		std::vector<std::vector<arrType> >	_tmp_array;
+		std::vector<std::vector<arrType> >	_pair_array;
+		std::vector<std::vector<arrType> >	_sorted_pair_array;
 
 		// OTHER FUNCTION
 		PmergeMeVector(void);
@@ -36,6 +37,8 @@ class PmergeMeVector
 		PmergeMeVector	&operator=(const PmergeMeVector &src);
 
 		void					create_pair(void);
+		void					sort_pair(void);
+		void					sort_pair_array(void);
 		void					mergeSort(std::vector<arrType> &array);
 		void					merge(
 			std::vector<arrType> &left_array,
