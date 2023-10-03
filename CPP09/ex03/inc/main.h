@@ -48,6 +48,8 @@
 #  define	VERBOSE				1
 # endif
 
+# define	MAX_DISPLAY_N		15;
+
 # define	ANSI_ESC			"\x1b["
 # define	R					ANSI_ESC "38:2::192:0:0m"
 # define	G					ANSI_ESC "38:2::0:192:0m"
@@ -78,12 +80,15 @@ void	err(std::string msg);
 void	err(std::string title, std::string msg);
 bool	is_good_number(char n);
 
-template <typename T>
-void	print_array_t(T array);
+void	print_vec_t(std::string title, vec array);
 
-void	print_array_array_t(vecVec array);
+void	print_vec_vec(vecVec array);
 
-int	parse_number(std::string n);
+int		parse_number(std::string n);
+
+void	display_elapsed_time_usec(std::string title, timeval begin, timeval end);
+
+bool	is_arr_sorted(vecVec array);
 
 class	ParsingError: public std::exception
 {

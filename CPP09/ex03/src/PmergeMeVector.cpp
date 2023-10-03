@@ -75,7 +75,7 @@ PmergeMeVector	&PmergeMeVector::operator=(const PmergeMeVector &src)
 
 // Getter
 
-std::vector<int> PmergeMeVector::get_array(void)
+vec PmergeMeVector::get_array(void)
 { return (this->_array); }
 
 // Other
@@ -90,16 +90,32 @@ void	PmergeMeVector::start_sorting(void)
 		this->_array_len--;
 	}
 	this->create_pair();
+	this->compare_pair();
 	this->sort_pair();
-	this->sort_pair_array();
-}
-
-void	PmergeMeVector::sort_pair_array(void)
-{
-//TODO
 }
 
 void	PmergeMeVector::sort_pair(void)
+{
+	vecVecIt ite = this->_pair_array.end();
+
+	print_vec_vec(this->_pair_array);
+
+	// while (!is_arr_sorted(this->_pair_array))
+	// {
+		for (vecVecIt it = this->_pair_array.begin(); it != ite; it++)
+		{
+			if (it != ite)
+			{
+				if (*i > *j)
+					std::cout << "swap" << std::endl;
+				else
+					std::cout << "not swap" << std::endl;
+			}
+		}
+	// }
+}
+
+void	PmergeMeVector::compare_pair(void)
 {
 	for (vecVecIt it = this->_pair_array.begin(); it != this->_pair_array.end(); it++)
 	{
@@ -127,6 +143,14 @@ void	PmergeMeVector::create_pair(void)
 		this->_pair_array.push_back(tmp);
 	}
 }
+
+
+
+
+
+
+
+
 
 void	PmergeMeVector::mergeSort(std::vector<arrType> &array)
 {

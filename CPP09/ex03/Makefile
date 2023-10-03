@@ -35,7 +35,8 @@ MAKE					:= make
 PRINTF					:= @printf
 
 SRC_CPP					:=	main.cpp \
-							PmergeMeVector.cpp
+							PmergeMeVector.cpp \
+							utils.cpp
 
 OBJ_CPP					:= $(addprefix $(OBJ_DIR)/,$(SRC_CPP:%.cpp=%.o))
 SRC_CPP					:= $(addprefix $(SRC_DIR)/,$(SRC_CPP))
@@ -75,6 +76,6 @@ re:						fclean $(TARGET)
 run:						re
 	# @$(call PRINT_ANSI,\x1b[2J\x1b[H)
 	# ./$(TARGET) "$$(shuf -i 1-3000 -n 3000 | tr '\n' ' ')"
-	./$(TARGET) "$$(shuf -i 1-11 -n 11 | tr '\n' ' ')"
+	./$(TARGET) "$$(shuf -i 1-6 -n 6 | tr '\n' ' ')"
 
 ##END#___________________________<#_|RULES|_#>________________________________##

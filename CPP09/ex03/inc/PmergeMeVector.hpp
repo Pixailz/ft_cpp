@@ -22,14 +22,14 @@ class PmergeMeVector
 {
 	private:
 		// VAR
-		std::vector<arrType>				_array;
-		size_t								_array_len;
+		vec			_array;
+		size_t		_array_len;
 
-		bool								_has_straggler;
-		arrType								_straggler;
+		bool		_has_straggler;
+		arrType		_straggler;
 
-		std::vector<std::vector<arrType> >	_pair_array;
-		std::vector<std::vector<arrType> >	_sorted_pair_array;
+		vecVec		_pair_array;
+		// vecVec		_sorted_pair_array;
 
 		// OTHER FUNCTION
 		PmergeMeVector(void);
@@ -37,13 +37,13 @@ class PmergeMeVector
 		PmergeMeVector	&operator=(const PmergeMeVector &src);
 
 		void					create_pair(void);
+		void					compare_pair(void);
 		void					sort_pair(void);
-		void					sort_pair_array(void);
-		void					mergeSort(std::vector<arrType> &array);
+		void					mergeSort(vec &array);
 		void					merge(
-			std::vector<arrType> &left_array,
-			std::vector<arrType> &right_array,
-			std::vector<arrType> &array
+			vec &left_array,
+			vec &right_array,
+			vec &array
 		);
 
 	public:
@@ -60,7 +60,7 @@ class PmergeMeVector
 		// SETTER
 
 		// GETTER
-		std::vector<arrType>	get_array(void);
+		vec	get_array(void);
 
 		// OTHER
 		void					start_sorting(void);
