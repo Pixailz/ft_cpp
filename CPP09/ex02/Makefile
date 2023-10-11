@@ -36,7 +36,8 @@ PRINTF					:= @printf
 
 SRC_CPP					:=	main.cpp \
 							PmergeMeVector.cpp \
-							PmergeMeDeque.cpp
+							PmergeMeDeque.cpp \
+							utils.cpp
 
 OBJ_CPP					:= $(addprefix $(OBJ_DIR)/,$(SRC_CPP:%.cpp=%.o))
 SRC_CPP					:= $(addprefix $(SRC_DIR)/,$(SRC_CPP))
@@ -73,8 +74,8 @@ fclean:					clean
 
 re:						fclean $(TARGET)
 
-run:						re
-	# @$(call PRINT_ANSI,\x1b[2J\x1b[H)
-	./$(TARGET) "$$(shuf -i 1-3000 -n 3000 | tr '\n' ' ')"
+run:						$(TARGET)
+	@$(call PRINT_ANSI,\x1b[2J\x1b[H)
+	./$(TARGET) $$(shuf -i 1-$${MAX:-10} -n $${MAX:-10} | tr '\n' ' ')
 
 ##END#___________________________<#_|RULES|_#>________________________________##

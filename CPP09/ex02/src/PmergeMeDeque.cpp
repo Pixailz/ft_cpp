@@ -1,7 +1,7 @@
 /*#BEGIN#_________________________>#_|INFO|_#<______________________________##*/
 /*#                                                        ______ _         ##*/
 /*# DETAILS:                                               | ___ (_)        ##*/
-/*#- FILENAME		PmergeMeDeque.cpp                      | |_/ /___  __   ##*/
+/*#- FILENAME		PmergeMeDeque.cpp                     | |_/ /___  __   ##*/
 /*#- PROJECT_NAME	None                                   |  __/| \ \/ /   ##*/
 /*#- AUTHOR			Pixailz                                | |   | |>  <    ##*/
 /*#- CREATED		2023−01−29T23:02:00+0100               \_|   |_/_/\_\   ##*/
@@ -12,11 +12,7 @@
 /*# VERSION:[ALPHA|BETA]_MAJOR.MINOR.PATCH                                  ##*/
 /*#END#___________________________<#_|INFO|_#>______________________________##*/
 
-# include <PmergeMeDeque.hpp>
-/**
- * <object>		object
- * <function>	function()
- */
+# include "main.h"
 
 // Constructor (void)
 PmergeMeDeque::PmergeMeDeque(void)
@@ -24,26 +20,35 @@ PmergeMeDeque::PmergeMeDeque(void)
 	debug("PmergeMeDeque class created");
 }
 
-PmergeMeDeque::PmergeMeDeque(std::string array)
+PmergeMeDeque::PmergeMeDeque(char **av)
 {
 	int	i = 0;
 	int	j = 0;
-	int	len_array = (int)array.size();
+	int	k = 1;
 	std::string	tmp_n;
 
-	while (array[i])
+	while (av[k])
 	{
-		while (array[i] == ' ')
-			i++;
-		if (i == len_array)
-			break ;
-		j = i;
-		while (array[j] && array[j] != ' ')
-			j++;
-		tmp_n = array.substr(i, j - i);
-		this->_array.push_back(parse_number(tmp_n));
-		i = j;
+		std::string	tmp = av[k];
+		i = 0;
+		j = 0;
+		while (tmp[i])
+		{
+			while (tmp[i] == ' ')
+				i++;
+			if (i == (int)tmp.size())
+				break ;
+			j = i;
+			while (tmp[j] && tmp[j] != ' ')
+				j++;
+			tmp_n = tmp.substr(i, j - i);
+			this->_array.push_back(parse_number(tmp_n));
+			i = j;
+		}
+		k++;
 	}
+	this->_has_odd = false;
+	this->_array_len = this->_array.size();
 	debug("PmergeMeDeque class created");
 }
 
@@ -74,25 +79,63 @@ PmergeMeDeque	&PmergeMeDeque::operator=(const PmergeMeDeque &src)
 
 // Getter
 
-std::deque<int> PmergeMeDeque::get_array(void)
+deq PmergeMeDeque::get_array(void)
 { return (this->_array); }
 
 // Other
 
 void	PmergeMeDeque::start_sorting(void)
 {
-	this->mergeSort(this->_array);
+	if (this->_array_len % 2)
+	{
+		this->_has_odd = true;
+		this->_odd = this->_array.back();
+		this->_array.pop_back();
+		this->_array_len--;
+	}
+	this->create_pair();
+	this->compare_pair();
+	// sort pair
+	this->mergeSort(this->_pair_array);
+	this->mergeInsert();
 }
 
-void	PmergeMeDeque::mergeSort(std::deque<arrType> &array)
+void	PmergeMeDeque::compare_pair(void)
+{
+	for (deqDeqIt it = this->_pair_array.begin(); it != this->_pair_array.end(); it++)
+	{
+		deqIt itt = it->begin();
+		if (*itt > *(itt + 1))
+		{
+			*itt ^= *(itt + 1);
+			*(itt + 1) ^= *itt;
+			*itt ^= *(itt + 1);
+		}
+	}
+}
+
+void	PmergeMeDeque::create_pair(void)
+{
+	deq	tmp;
+
+	for (deqIt it = this->_array.begin(); it != this->_array.end(); it += 2)
+	{
+		tmp.clear();
+		tmp.push_back(*(it));
+		tmp.push_back(*(it + 1));
+		this->_pair_array.push_back(tmp);
+	}
+}
+
+void	PmergeMeDeque::mergeSort(deqDeq &array)
 {
 	int	array_len = array.size();
 	if (array_len <= 1)
 		return ;
 
-	int middle = array_len / 2;
-	std::deque<arrType>	left_array;
-	std::deque<arrType>	right_array;
+	int		middle = array_len / 2;
+	deqDeq	left_array;
+	deqDeq	right_array;
 
 	for (int i = 0; i < array_len; i++)
 	{
@@ -107,9 +150,9 @@ void	PmergeMeDeque::mergeSort(std::deque<arrType> &array)
 }
 
 void	PmergeMeDeque::merge(
-	std::deque<arrType> &left_array,
-	std::deque<arrType> &right_array,
-	std::deque<arrType> &array
+	deqDeq &left_array,
+	deqDeq &right_array,
+	deqDeq &array
 )
 {
 	int	left_array_len = left_array.size();
@@ -118,7 +161,7 @@ void	PmergeMeDeque::merge(
 
 	while (l < left_array_len && r < right_array_len)
 	{
-		if (left_array[l] < right_array[r])
+		if (*(left_array[l].begin() + 1) < *(right_array[r].begin() + 1))
 			array[i] = left_array[l++];
 		else
 			array[i] = right_array[r++];
@@ -128,4 +171,39 @@ void	PmergeMeDeque::merge(
 		array[i++] = left_array[l++];
 	while (r < right_array_len)
 		array[i++] = right_array[r++];
+}
+
+
+void	PmergeMeDeque::mergeInsert(void)
+{
+	size_t	base = 0;
+	bool	inserted = false;
+	deq		smallest;
+	this->_array.clear();
+
+	for (deqDeqIt it = this->_pair_array.begin(); it != this->_pair_array.end(); it++)
+	{
+		this->_array.push_back(*(it->begin() + 1));
+		smallest.push_back(*(it->begin()));
+	}
+	if (this->_has_odd)
+		smallest.push_back(this->_odd);
+	for (deqIt it = smallest.begin(); it != smallest.end(); it++)
+	{
+		inserted = false;
+		if (base == this->_array.size())
+			base--;
+		for (int i = base; i >= 0; i--)
+		{
+			if (*it > this->_array.at(i))
+			{
+				this->_array.insert(this->_array.begin() + i + 1, *it);
+				inserted = true;
+				break;
+			}
+		}
+		if (!inserted)
+			this->_array.insert(this->_array.begin(), *it);
+		base += 2;
+	}
 }

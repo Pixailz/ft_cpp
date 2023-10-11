@@ -15,23 +15,46 @@
 #ifndef PMERGEMEDEQUE_HPP
 # define PMERGEMEDEQUE_HPP
 
-#include "main.h"
 #include <deque>
+
+typedef std::deque<arrType>	deq;
+typedef std::deque<deq>		deqDeq;
+
+typedef deq::iterator			deqIt;
+typedef deqDeq::iterator		deqDeqIt;
 
 class PmergeMeDeque
 {
 	private:
 		// VAR
-		std::deque<arrType>		_array;
+		deq			_array;
+		size_t		_array_len;
+
+		bool		_has_odd;
+		arrType		_odd;
+
+		deqDeq		_pair_array;
+		// vecVec		_sorted_pair_array;
 
 		// OTHER FUNCTION
 		PmergeMeDeque(void);
 		PmergeMeDeque(const PmergeMeDeque &copy);
 		PmergeMeDeque	&operator=(const PmergeMeDeque &src);
 
+		void					create_pair(void);
+		void					compare_pair(void);
+		void					sort_pair(void);
+		void					mergeSort(deqDeq &array);
+		void					merge(
+			deqDeq &left_array,
+			deqDeq &right_array,
+			deqDeq &array
+		);
+		void					mergeInsert(void);
+
 	public:
 		// CONSTRUCTOR
-		PmergeMeDeque(std::string array);
+		PmergeMeDeque(char **av);
 
 		// DESTRUCTOR
 		~PmergeMeDeque(void);
@@ -43,16 +66,10 @@ class PmergeMeDeque
 		// SETTER
 
 		// GETTER
-		std::deque<arrType>	get_array(void);
+		deq	get_array(void);
 
 		// OTHER
 		void					start_sorting(void);
-		void					mergeSort(std::deque<arrType> &array);
-		void					merge(
-			std::deque<arrType> &left_array,
-			std::deque<arrType> &right_array,
-			std::deque<arrType> &array
-		);
 };
 
-#endif // PMERGEMEDeque_CLASS
+#endif // PMERGEMEVECTOR_CLASS

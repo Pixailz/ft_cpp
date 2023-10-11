@@ -12,11 +12,7 @@
 /*# VERSION:[ALPHA|BETA]_MAJOR.MINOR.PATCH                                  ##*/
 /*#END#___________________________<#_|INFO|_#>______________________________##*/
 
-# include <PmergeMeVector.hpp>
-/**
- * <object>		object
- * <function>	function()
- */
+# include "main.h"
 
 // Constructor (void)
 PmergeMeVector::PmergeMeVector(void)
@@ -24,26 +20,35 @@ PmergeMeVector::PmergeMeVector(void)
 	debug("PmergeMeVector class created");
 }
 
-PmergeMeVector::PmergeMeVector(std::string array)
+PmergeMeVector::PmergeMeVector(char **av)
 {
 	int	i = 0;
 	int	j = 0;
-	int	len_array = (int)array.size();
+	int	k = 1;
 	std::string	tmp_n;
 
-	while (array[i])
+	while (av[k])
 	{
-		while (array[i] == ' ')
-			i++;
-		if (i == len_array)
-			break ;
-		j = i;
-		while (array[j] && array[j] != ' ')
-			j++;
-		tmp_n = array.substr(i, j - i);
-		this->_array.push_back(parse_number(tmp_n));
-		i = j;
+		std::string	tmp = av[k];
+		i = 0;
+		j = 0;
+		while (tmp[i])
+		{
+			while (tmp[i] == ' ')
+				i++;
+			if (i == (int)tmp.size())
+				break ;
+			j = i;
+			while (tmp[j] && tmp[j] != ' ')
+				j++;
+			tmp_n = tmp.substr(i, j - i);
+			this->_array.push_back(parse_number(tmp_n));
+			i = j;
+		}
+		k++;
 	}
+	this->_has_odd = false;
+	this->_array_len = this->_array.size();
 	debug("PmergeMeVector class created");
 }
 
@@ -74,27 +79,63 @@ PmergeMeVector	&PmergeMeVector::operator=(const PmergeMeVector &src)
 
 // Getter
 
-std::vector<int> PmergeMeVector::get_array(void)
+vec PmergeMeVector::get_array(void)
 { return (this->_array); }
 
 // Other
 
 void	PmergeMeVector::start_sorting(void)
 {
-	this->mergeSort(this->_array);
+	if (this->_array_len % 2)
+	{
+		this->_has_odd = true;
+		this->_odd = this->_array.back();
+		this->_array.pop_back();
+		this->_array_len--;
+	}
+	this->create_pair();
+	this->compare_pair();
+	// sort pair
+	this->mergeSort(this->_pair_array);
+	this->mergeInsert();
 }
 
-void	PmergeMeVector::mergeSort(std::vector<arrType> &array)
+void	PmergeMeVector::compare_pair(void)
+{
+	for (vecVecIt it = this->_pair_array.begin(); it != this->_pair_array.end(); it++)
+	{
+		vecIt itt = it->begin();
+		if (*itt > *(itt + 1))
+		{
+			*itt ^= *(itt + 1);
+			*(itt + 1) ^= *itt;
+			*itt ^= *(itt + 1);
+		}
+	}
+}
+
+void	PmergeMeVector::create_pair(void)
+{
+	vec	tmp;
+
+	for (vecIt it = this->_array.begin(); it != this->_array.end(); it += 2)
+	{
+		tmp.clear();
+		tmp.push_back(*(it));
+		tmp.push_back(*(it + 1));
+		this->_pair_array.push_back(tmp);
+	}
+}
+
+void	PmergeMeVector::mergeSort(vecVec &array)
 {
 	int	array_len = array.size();
 	if (array_len <= 1)
 		return ;
 
-	int middle = array_len / 2;
-	std::vector<arrType>	left_array;
-	std::vector<arrType>	right_array;
-	left_array.reserve(middle);
-	right_array.reserve(array_len - middle);
+	int		middle = array_len / 2;
+	vecVec	left_array;
+	vecVec	right_array;
 
 	for (int i = 0; i < array_len; i++)
 	{
@@ -109,9 +150,9 @@ void	PmergeMeVector::mergeSort(std::vector<arrType> &array)
 }
 
 void	PmergeMeVector::merge(
-	std::vector<arrType> &left_array,
-	std::vector<arrType> &right_array,
-	std::vector<arrType> &array
+	vecVec &left_array,
+	vecVec &right_array,
+	vecVec &array
 )
 {
 	int	left_array_len = left_array.size();
@@ -120,7 +161,7 @@ void	PmergeMeVector::merge(
 
 	while (l < left_array_len && r < right_array_len)
 	{
-		if (left_array[l] < right_array[r])
+		if (*(left_array[l].begin() + 1) < *(right_array[r].begin() + 1))
 			array[i] = left_array[l++];
 		else
 			array[i] = right_array[r++];
@@ -130,4 +171,39 @@ void	PmergeMeVector::merge(
 		array[i++] = left_array[l++];
 	while (r < right_array_len)
 		array[i++] = right_array[r++];
+}
+
+
+void	PmergeMeVector::mergeInsert(void)
+{
+	size_t	base = 0;
+	bool	inserted = false;
+	vec		smallest;
+	this->_array.clear();
+
+	for (vecVecIt it = this->_pair_array.begin(); it != this->_pair_array.end(); it++)
+	{
+		this->_array.push_back(*(it->begin() + 1));
+		smallest.push_back(*(it->begin()));
+	}
+	if (this->_has_odd)
+		smallest.push_back(this->_odd);
+	for (vecIt it = smallest.begin(); it != smallest.end(); it++)
+	{
+		inserted = false;
+		if (base == this->_array.size())
+			base--;
+		for (int i = base; i >= 0; i--)
+		{
+			if (*it > this->_array.at(i))
+			{
+				this->_array.insert(this->_array.begin() + i + 1, *it);
+				inserted = true;
+				break;
+			}
+		}
+		if (!inserted)
+			this->_array.insert(this->_array.begin(), *it);
+		base += 2;
+	}
 }

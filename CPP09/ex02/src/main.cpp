@@ -12,72 +12,7 @@
 /*# VERSION:[ALPHA|BETA]_MAJOR.MINOR.PATCH                                  ##*/
 /*#END#___________________________<#_|INFO|_#>______________________________##*/
 
-#include "PmergeMeVector.hpp"
-#include "PmergeMeDeque.hpp"
-
-# define MAX_DISPLAY_N		15;
-
-void	debug(std::string msg)
-{
-	if (DEBUG == 1)
-		std::cout << msg << std::endl;
-}
-
-void	err(std::string msg)
-{
-	std::cerr << H_ERROR << msg << std::endl;
-}
-
-void	err(std::string title, std::string msg)
-{
-	std::cerr << H_ERROR << title << " " << msg << std::endl;
-}
-
-bool	is_good_number(char n)
-{ return (n >= '0' && n <= '9'); }
-
-template <typename T>
-void	print_array_t(T array)
-{
-	typename T::iterator	ite = array.end();
-	int						i = 0;
-	int						max_ite = MAX_DISPLAY_N;
-
-	for (typename T::iterator it = array.begin(); it != ite; it++)
-	{
-		std::cout << *it;
-		i++;
-		if (it + 1 != ite)
-			std::cout << " ";
-		if (max_ite == i)
-		{
-			std::cout << "...";
-			break ;
-		}
-	}
-}
-
-template <typename T>
-void	print_array(std::string title, T array)
-{
-	std::cout << H_INFO << title << ":" << COL_ARRAY << "[";
-	print_array_t(array);
-	std::cout << "]" << std::endl;
-}
-
-
-void	display_elapsed_time_usec(std::string title, timeval begin, timeval end)
-{
-	ts	elapsed_us = (
-		(end.tv_sec - begin.tv_sec) * 1000000
-	) + (
-		(end.tv_usec - begin.tv_usec) % 1000000
-	);
-
-	std::cout << H_INFO << title << ": elapsed time" << COL_ARRAY
-		<< std::setprecision(20) << elapsed_us << MICRO_SEC_STR
-		<< std::endl;
-}
+#include "main.h"
 
 const char *ParsingError::what() const throw()
 { return ("Inputed string isn't good"); }
@@ -102,11 +37,12 @@ int	parse_number(std::string n)
 
 int	main(int ac, char **av)
 {
-	if (ac != 2)
+	if (ac < 2)
 	{
 		err("Not enought args");
 		return (1);
 	}
+
 	try
 	{
 		{
@@ -114,30 +50,30 @@ int	main(int ac, char **av)
 			timeval	end;
 
 			gettimeofday(&begin, NULL);
-			PmergeMeVector	vector_test(av[1]);
-			print_array("std::vector: before", vector_test.get_array());
+			PmergeMeVector	vector_test(av);
+			print_vec_t("std::vector: before", vector_test.get_array());
 
 			vector_test.start_sorting();
 			gettimeofday(&end, NULL);
-			print_array("std::vector: after", vector_test.get_array());
+			print_vec_t("std::vector: after", vector_test.get_array());
 			display_elapsed_time_usec("std::vector", begin, end);
 		}
-		std::cout << std::endl;
 		{
 			timeval	begin;
 			timeval	end;
 
 			gettimeofday(&begin, NULL);
-			PmergeMeDeque	deque_test(av[1]);
-			print_array("std::deque : before", deque_test.get_array());
+			PmergeMeDeque	deque_test(av);
+			print_deq_t("std::deque: before", deque_test.get_array());
 
 			deque_test.start_sorting();
 			gettimeofday(&end, NULL);
-			print_array("std::deque : after", deque_test.get_array());
-			display_elapsed_time_usec("std::deque ", begin, end);
+			print_deq_t("std::deque: after", deque_test.get_array());
+			display_elapsed_time_usec("std::deque", begin, end);
 		}
 	}
 	catch (std::exception &e)
 	{ err(e.what()); }
+
 	return (0);
 }

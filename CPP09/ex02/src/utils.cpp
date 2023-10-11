@@ -75,9 +75,55 @@ void	print_vec(vec array)
 
 void	print_vec_t(std::string title, vec array)
 {
-	std::cout << H_INFO << title << ":" << COL_ARRAY << "[";
+	std::cout << H_INFO << title << ":" << COL_ARRAY << "top [";
 	print_vec(array);
-	std::cout << "]" << std::endl;
+	std::cout << "] back" << std::endl;
+}
+
+void	print_deq(deq array)
+{
+	deqIt	ite = array.end();
+	int						i = 0;
+	int						max_ite = MAX_DISPLAY_N;
+
+	for (deqIt it = array.begin(); it != ite; it++)
+	{
+		std::cout << *it;
+		i++;
+		if (it + 1 != ite)
+			std::cout << " ";
+		if (max_ite == i)
+		{
+			std::cout << "...";
+			break ;
+		}
+	}
+}
+
+void	print_deq_t(std::string title, deq array)
+{
+	std::cout << H_INFO << title << ":" << COL_ARRAY << "top [";
+	print_deq(array);
+	std::cout << "] back" << std::endl;
+}
+
+std::string	get_doted_time(ts elapsed_us)
+{
+	std::ostringstream oss;
+	oss << std::setprecision(20) << elapsed_us;
+	std::string tmp = oss.str();
+	size_t tmp_size = tmp.size();
+	size_t tmp_len = tmp_size / 3;
+	if (tmp_len && !(tmp_size % 3))
+		tmp_len--;
+	std::string result = "";
+	for (size_t i = 0; i < tmp_len; i++)
+	{
+		tmp_size = tmp.size();
+		result += "," + tmp.substr(tmp_size - 3, 3);
+		tmp = tmp.substr(0, tmp_size - 3);
+	}
+	return (tmp + result);
 }
 
 void	display_elapsed_time_usec(std::string title, timeval begin, timeval end)
@@ -89,6 +135,13 @@ void	display_elapsed_time_usec(std::string title, timeval begin, timeval end)
 	);
 
 	std::cout << H_INFO << title << ": elapsed time" << COL_ARRAY
-		<< std::setprecision(20) << elapsed_us << MICRO_SEC_STR
+		<< get_doted_time(elapsed_us) << MICRO_SEC_STR
 		<< std::endl;
+}
+
+std::string to_string(int value)
+{
+	std::ostringstream oss;
+	oss << value;
+	return oss.str();
 }

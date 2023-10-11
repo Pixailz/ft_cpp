@@ -34,6 +34,10 @@
 #include <iomanip>
 #include <limits>
 
+#include <vector>
+#include <deque>
+#include <sstream>
+
 # ifndef DEBUG
 #  define	DEBUG				1
 # endif
@@ -45,6 +49,8 @@
 # ifndef	VERBOSE
 #  define	VERBOSE				1
 # endif
+
+# define	MAX_DISPLAY_N		15;
 
 # define	ANSI_ESC			"\x1b["
 # define	R					ANSI_ESC "38:2::192:0:0m"
@@ -61,19 +67,31 @@
 
 # define	MICRO_SEC_STR		"μs"
 
+typedef int		arrType;
+
+#include "PmergeMeVector.hpp"
+#include "PmergeMeDeque.hpp"
+
+typedef double	ts;
+
 void	debug(std::string msg);
 
 void	err(std::string msg);
 void	err(std::string title, std::string msg);
 bool	is_good_number(char n);
 
-template <typename T>
-void	print_array_t(T array);
+void	print_vec_t(std::string title, vec array);
+void	print_deq_t(std::string title, deq array);
 
-int	parse_number(std::string n);
+void	print_vec_vec(vecVec array);
 
-typedef int		arrType;
-typedef double	ts;
+int		parse_number(std::string n);
+
+void	display_elapsed_time_usec(std::string title, timeval begin, timeval end);
+
+bool	is_arr_sorted(vecVec array);
+
+std::string	to_string(int value);
 
 class	ParsingError: public std::exception
 {

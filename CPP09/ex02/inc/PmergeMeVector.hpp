@@ -15,23 +15,46 @@
 #ifndef PMERGEMEVECTOR_HPP
 # define PMERGEMEVECTOR_HPP
 
-#include "main.h"
 #include <vector>
+
+typedef std::vector<arrType>	vec;
+typedef std::vector<vec>		vecVec;
+
+typedef vec::iterator			vecIt;
+typedef vecVec::iterator		vecVecIt;
 
 class PmergeMeVector
 {
 	private:
 		// VAR
-		std::vector<arrType>		_array;
+		vec			_array;
+		size_t		_array_len;
+
+		bool		_has_odd;
+		arrType		_odd;
+
+		vecVec		_pair_array;
+		// vecVec		_sorted_pair_array;
 
 		// OTHER FUNCTION
 		PmergeMeVector(void);
 		PmergeMeVector(const PmergeMeVector &copy);
 		PmergeMeVector	&operator=(const PmergeMeVector &src);
 
+		void					create_pair(void);
+		void					compare_pair(void);
+		void					sort_pair(void);
+		void					mergeSort(vecVec &array);
+		void					merge(
+			vecVec &left_array,
+			vecVec &right_array,
+			vecVec &array
+		);
+		void					mergeInsert(void);
+
 	public:
 		// CONSTRUCTOR
-		PmergeMeVector(std::string array);
+		PmergeMeVector(char **av);
 
 		// DESTRUCTOR
 		~PmergeMeVector(void);
@@ -43,16 +66,10 @@ class PmergeMeVector
 		// SETTER
 
 		// GETTER
-		std::vector<arrType>	get_array(void);
+		vec	get_array(void);
 
 		// OTHER
 		void					start_sorting(void);
-		void					mergeSort(std::vector<arrType> &array);
-		void					merge(
-			std::vector<arrType> &left_array,
-			std::vector<arrType> &right_array,
-			std::vector<arrType> &array
-		);
 };
 
 #endif // PMERGEMEVECTOR_CLASS
