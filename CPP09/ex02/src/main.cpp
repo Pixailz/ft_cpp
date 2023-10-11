@@ -42,7 +42,6 @@ int	main(int ac, char **av)
 		err("Not enought args");
 		return (1);
 	}
-
 	try
 	{
 		{

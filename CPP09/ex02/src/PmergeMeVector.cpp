@@ -49,6 +49,8 @@ PmergeMeVector::PmergeMeVector(char **av)
 	}
 	this->_has_odd = false;
 	this->_array_len = this->_array.size();
+	if (this->_array_len == 0)
+		throw ParsingError();
 	debug("PmergeMeVector class created");
 }
 
