@@ -16,7 +16,13 @@ CPP modules + all their subject
 |CPP07|![](https://img.shields.io/static/v1?logo=42&label=&message=80&color=brightgreen)|[CPP_07](./PDF/CPP07.en.subject.pdf)|
 |CPP08|![](https://img.shields.io/static/v1?logo=42&label=&message=100&color=yellow)|[CPP_08](./PDF/CPP08.en.subject.pdf)|
 |CPP09|![](https://img.shields.io/static/v1?logo=42&label=&message=100&color=yellow)|[CPP_09](./PDF/CPP09.en.subject.pdf)|
+|EXAM|![](https://img.shields.io/static/v1?logo=42&label=&message=???&color=gray)|EXAM|
 |||
+
+> Exam done with [this](https://github.com/jcluzet/42_EXAM) awesome trainer.
+you should try it before stupidly steeling my work, that won't help you ;)
+
+> this provided version of the exam don't pass the real exam, and it will not be updated
 
 ## USEFULL COMMAND
 
